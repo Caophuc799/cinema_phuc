@@ -1,0 +1,137 @@
+<!-- views/pages/about.ejs -->
+
+
+<html ng-app="app.cinema">
+
+<head>
+
+    <%- partial('./../share/load.ejs') -%>
+
+        <!-- Load javascript  -->
+        <script src="/javascripts/film/create.js"></script>
+        <!-- Load style header-->
+        <link rel="stylesheet" href="/stylesheets/style.css">
+        <link rel="stylesheet" href="/stylesheets/film/create.css">
+
+        <meta charset="UTF-8">
+        <title>Tạo phim</title>
+</head>
+
+
+<body onload="loadAgeSelector()" ng-controller="createController">
+
+    <!-- Header -->
+    <!-- Header -->
+    <div class="header">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                </div>
+
+                <div class="header-icon-logout">
+                    <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                </div>
+                <div class="avatar-profile-header">
+                    <a href="/user">
+                        <img src="{{account.url}}" class="avatar-img" alt="avatar">
+</a>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+
+
+
+
+
+    <!-- Body -->
+    <div class="container main-container">
+        <h1 class="title-header">Tạo Phim</h1>
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="text-center">
+                    <div class="image-avatar">
+                        <img style="border-radius:20px;border:1px solid black" id="avatar-film" src="https://firebasestorage.googleapis.com/v0/b/filmapplication-9a88c.appspot.com/o/a.jpg?alt=media&token=852bf4e3-1bf0-48dc-bbd5-93e81b10c076"
+                            class="avatar" alt="avatar">
+                    </div>
+                    <h6>Upload a different photo... </h6>
+                    <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm" required>
+                </div>
+            </div>
+            <!-- edit form column -->
+            <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+
+
+                <form class="form-horizontal" role="form">
+                    <h3 class="col-lg-10 col-lg-offset-1">Thông tin phim:</h3>
+                    <div class="form-group">
+                        <label style="text-align:left;" class="col-lg-10 col-lg-offset-1 control-label">Tên Phim</label>
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <input ng-model="name" class="form-control" placeholder="Tên phim" type="text" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="text-align:left;" class="col-lg-10 col-lg-offset-1 control-label  text-right">Thể Loại</label>
+                        <div class="col-lg-10 col-lg-offset-1">
+
+
+                            <select ng-init="genre = optionsGenre[0]" ng-model="genre" ng-options="option.name for option in optionsGenre">
+
+                    </select>
+                            <!-- <select ng-model="genre" id="genre">
+                                <option  value="Phim hành động"  selected="selected"> Phim hành động</option>
+                                <option value="Phim cổ trang">Phim cổ trang</option>
+                                <option value="Phim kiếm hiệp">Phim kiếm hiệp</option>
+                                <option value="Phim tình cảm">Phim tình cảm</option>
+                                <option value="Phim viễn tưởng">Phim viễn tưởng</option>
+                                <option value="Phim khoa học">Phim khoa học</option>
+                                <option value="Phim hoạt hình">Phim hoạt hình</option>
+                                <option value="Phim chiến tranh">Phim chiến tranh</option>
+                              
+                            </select> -->
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label style="text-align:left;" class="col-lg-10 col-lg-offset-1 control-label">Năm sản xuất</label>
+                        <div class="col-lg-10 col-lg-offset-1">
+
+
+                            <select ng-model="year" id="yearselect" ng-change="selectoption();"></select>
+
+
+
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label style="text-align:left;" class="col-lg-10 col-lg-offset-1 control-label">Nội dung phim</label>
+                        <div class="col-lg-10 col-lg-offset-1">
+                            <textarea ng-model="content" class="form-control" placeholder="Nội dung phim" rows="5" required>
+
+                            </textarea>
+                        </div>
+
+                    </div>
+                    <div class="form-group col-lg-10 col-lg-offset-1">
+                        <input ng-click="createFilm()" class="btn btn-primary" value="Create" type="button">
+                        <input ng-click="reset()" class="btn btn-primary" value="Reset" type="button">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+</html>

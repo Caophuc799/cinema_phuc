@@ -1,0 +1,49 @@
+body {
+
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: whitesmoke;
+}
+
+a {
+  color:blue;
+}
+
+
+.header-icon{
+    padding-top: 2px;
+    float: right;
+    font-size: 32px;
+    color: white;
+}
+
+
+.white{
+  color: white;
+}
+
+.header-icon-logout{
+    padding-top: 2px;
+    float: right;
+    font-size: 32px;
+    display: inline-block;
+    color: white;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.avatar-profile-header{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border: 1px solid white;
+    overflow: hidden;
+    float:right;
+    display: inline-block;
+    margin-top: 5px;
+
+}
+
+.avatar-profile-header img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

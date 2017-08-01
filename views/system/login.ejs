@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+
+<html lang="en" ng-app="app.cinema">
+
+<head>
+
+    <%- partial('./../share/load.ejs') -%>
+
+        <script src="/javascripts/system/login.js"></script>
+        <link rel="stylesheet" href="stylesheets/system/login.css">
+        <meta charset="UTF-8">
+        <title>Đăng nhập</title>
+</head>
+
+<body>
+    <!--Load app cinema-->
+
+
+
+
+    <div ng-controller="loginController">
+
+
+      
+        <div class="container login-container">
+
+            <h3 class="omb_authTitle">Login or <a href="/register">Sign up</a></h3>
+            <div class="row omb_row-sm-offset-1 omb_socialButtons">
+                <div class="col-xs-4">
+                    <a ng-click="loginFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
+                    <i class="fa fa-facebook visible-xs"></i>
+                    
+			        <span class="hidden-xs">Facebook</span>
+		        </a>
+                </div>
+
+                <div class="col-xs-4">
+                    <a ng-click="loginGoogle()" class="btn btn-lg btn-block omb_btn-google">
+			        <i class="fa fa-google-plus visible-xs"></i>
+			        <span class="hidden-xs">Google+</span>
+		        </a>
+                </div>
+            </div>
+            <div class="row omb_row-sm-offset-3 omb_loginOr">
+                <div class="col-xs-12">
+                    <hr class="omb_hrOr">
+                    <span class="omb_spanOr">or</span>
+                </div>
+            </div>
+            <form class="form-signin">
+
+                <div class="input-group">
+                    <span style="height:45px;border-bottom-left-radius:10px;border-top-left-radius:10px;" class="input-group-addon"><i style="font-size:25px;" class="fa fa-user"></i></span>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input style="height:45px;border-bottom-right-radius:10px;border-top-right-radius:10px;" ng-model="username" name="username"
+                        type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                </div>
+                <br>
+                <div class="input-group">
+                    <span style="height:45px;border-bottom-left-radius:10px;border-top-left-radius:10px;" class="input-group-addon"><i style="font-size:25px;" class="fa fa-lock"></i></span>
+                    <label for="inputPassword" class="sr-only">Password </label>
+                    <input style="height:45px;border-bottom-right-radius:10px;border-top-right-radius:10px;" ng-model="password" name="password"
+                        type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="checkbox">
+                    <label>
+                <input ng-model="remember" type="checkbox" value="remember-me">Remember me
+            </label>
+                </div>
+                <button ng-click="loginCinema()" class="btn btn-lg btn-primary btn-block" type="submit">Sign in </button>
+                <br>
+                <a data-toggle="modal" data-target="#exampleModalLong">Forgot password?</a>
+
+            </form>
+
+        </div>
+
+        <!-- Modal -->
+       
+            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                     <div class="col-xs-8 col-xs-offset-2">
+                    <div class="modal-content">
+                        
+                        <div class="modal-header">
+                            <h3 class="modal-title" style="display:inline-block;" id="exampleModalLongTitle">Reset Password</h3>
+                            <button type="button" style="margin-top:0px;display:inline-block;" class="close" data-dismiss="modal" aria-label="Close">
+          <span  aria-hidden="true">&times;</span>
+        </button>
+                        </div>
+                        <div class="modal-body">
+                            <input ng-model="resetemail" name="resetemail" type="email" id="resetemail" class="form-control" placeholder="Email address"
+                                required autofocus>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button ng-click="ResetPassword()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

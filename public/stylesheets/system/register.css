@@ -1,0 +1,20 @@
+.omb_authTitle {
+  
+    text-align: center;
+    font-size: 35px;
+	line-height: 100%;
+}
+.main-center{
+   padding-left: 30px;
+}
+
+.form-register{
+    background-color: white;
+   margin-top: 40px;
+   padding-top: 5px;
+   border: 1px solid black;
+   border-radius: 15px;
+   height: 450px;
+   border-bottom-width: 4px;
+   border-bottom-color: grey;
+}

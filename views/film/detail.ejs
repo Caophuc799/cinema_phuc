@@ -1,0 +1,99 @@
+<!-- views/pages/about.ejs -->
+
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app.cinema">
+
+<head>
+
+    <%- partial('./../share/load.ejs') -%>
+
+        <!-- Load javascript  -->
+        <script src="/javascripts/film/listFilm.js"></script>
+        <!--Load style css my cinema-->
+
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/css/xeditable.min.css">
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/js/xeditable.min.js"></script>
+
+        <link rel="stylesheet" href="/stylesheets/film/detail.css">
+        <!-- Load style header-->
+
+
+
+        <!-- Load style header-->
+        <script src="/javascripts/film/detail.js"></script>
+        <link rel="stylesheet" href="/stylesheets/style.css">
+
+
+        <meta charset="UTF-8">
+        <title>Phim {{Film.name}}</title>
+</head>
+
+<body>
+
+    <div ng-controller="detailController">
+
+        <!-- Header -->
+ <!-- Header -->
+        <div class="header">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a  class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                    </div>
+
+                    <div class="header-icon-logout">
+                        <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="avatar-profile-header">
+                        <a href="/user">
+                        <img src="{{account.url}}" class="avatar-img" alt="avatar">
+</a>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+
+
+        <!-- Body -->
+        <div class="container">
+
+            <div class="row col-xs-10 col-xs-offset-1">
+                <!-- left column -->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="image-avatar">
+                        <img src='{{Film.url}}' style="border-radius:20px;border:1px solid black" alt="avatar">
+
+                    </div>
+                </div>
+                <!-- edit form column -->
+                <div class="col-xs-offset-6">
+                    <h1>Tên Phim:
+                        <a class="edit-text" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible" editable-text="Film.name" e-form="textBtnForm"
+                            onaftersave="updateFilm()"> {{Film.name}}</a>
+                    </h1>
+                    <!-- <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-edit"></i></a> -->
+
+
+                    <h3>Thể Loại:
+                       
+                        <!-- <a href="#" editable-select="Film.genre" e-ng-options="s.name for s in genres"> -->
+    {{Film.genre}}
+  
+                    </h3>
+                    <h3>Năm sản xuất:{{Film.year}}</h3>
+                    <p>Nội dung: {{Film.content}}</p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</body>
+
+</html>

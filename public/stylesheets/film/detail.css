@@ -1,0 +1,25 @@
+.main-container{
+    border:1px  solid black;
+   
+   
+}
+.image-avatar{
+         height:500px;
+      width:400px;
+       border-radius:20px;
+       border:1px solid black;
+       position: relative;
+     overflow: hidden; 
+}
+    .image-avatar img{
+     object-fit: cover;
+     width: 100%;
+    min-height: 100%;
+     left: 0px;
+     
+        
+    }
+.edit-text{
+    color: black;
+}
+

@@ -1,0 +1,34 @@
+.title-header{
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+.main-container{
+   width: 970px;
+   margin-top: 0px;
+    background-color: white;
+   padding-left: 30px;
+    border-radius: 10px;
+}
+
+.image-avatar{
+          height:400px;
+      width:300px;
+       border-radius:20px;
+       border:1px solid black;
+       position: relative;
+       
+   
+     overflow: hidden; 
+       
+}
+    .image-avatar img{
+     object-fit: cover;
+     width: 100%;
+    min-height: 100%;
+     left: 0px;
+     
+        
+    }

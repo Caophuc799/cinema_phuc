@@ -1,0 +1,82 @@
+<!-- views/pages/about.ejs -->
+
+<!DOCTYPE html>
+<html lang="en" ng-app="app.cinema">
+
+<head>
+
+    <%- partial('./../share/load.ejs') -%>
+
+        <!-- Load javascript  -->
+        <script src="/javascripts/film/listFilm.js"></script>
+        <!--Load style css my cinema-->
+
+
+        <link rel="stylesheet" href="/stylesheets/film/listFilm.css">
+        <!-- Load style header-->
+        <link rel="stylesheet" href="/stylesheets/style.css">
+
+
+        <meta charset="UTF-8">
+        <title>Danh Sách phim</title>
+</head>
+
+<body>
+    <div ng-controller="listFilmController">
+
+        <!-- Header -->
+
+ <!-- Header -->
+        <div class="header">
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a  class="navbar-brand" href="" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                    </div>
+
+                    <div class="header-icon-logout">
+                        <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="avatar-profile-header">
+                        <a href="/user">
+                        <img src="{{account.url}}" class="avatar-img" alt="avatar">
+</a>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+
+
+
+        <!-- List Film -->
+        <div class="container">
+            <div class="row-inline">
+
+                <div ng-repeat="Film in listFilm" class="col-sm-4">
+
+                    <div class="nopadding">
+
+                        <a href='/film/detail/{{Film.$id}}'>
+                            <!-- <a href='/film/detail/{{Film.$id}}'>  -->
+                            <img class="card-img" alt="ảnh" src='{{Film.url}}'>
+
+                            <div class="card">
+                                <p class="card-name">{{Film.name}}</p>
+                              
+                                <p class="card-content">{{Film.genre}} </p>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

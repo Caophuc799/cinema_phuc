@@ -28,16 +28,26 @@
                 <div class="navbar-header">
                     <a href="#" class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
                 </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item  main-disactive">
+                            <a class="nav-link" href="/film/list">Danh Sách Phim </a>
+                        </li>
+                        <li class="nav-item active main-active">
+                            <a class="nav-link" href="">Tạo phim</a>
+                        </li>
+                       
+                    </ul>
 
-                <div class="header-icon-logout">
-                    <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
-                </div>
-                <div class="avatar-profile-header">
-                    <a href="/user">
+                    <div class="header-icon-logout">
+                        <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="avatar-profile-header">
+                        <a href="/user">
                         <img src="{{account.url}}" class="avatar-img" alt="avatar">
-</a>
+                     </a>
+                    </div>
                 </div>
-
             </div>
         </nav>
     </div>
@@ -66,21 +76,22 @@
 
 
                 <form class="form-horizontal" role="form">
-                    <h3 class="col-lg-10 col-lg-offset-1">Thông tin phim:</h3>
+                    <h2 class="col-lg-10" style="left:20px;">Thông tin phim:</h2>
                     <div class="form-group">
-                        <label style="text-align:left;" class="col-lg-10 col-lg-offset-1 control-label">Tên Phim</label>
+                        <label style="text-align:left;font-size:16px;" class="col-lg-10 col-lg-offset-1 control-label">Tên Phim</label>
                         <div class="col-lg-10 col-lg-offset-1">
                             <input ng-model="name" class="form-control" placeholder="Tên phim" type="text" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="text-align:left;" class="col-lg-10 col-lg-offset-1 control-label  text-right">Thể Loại</label>
-                        <div class="col-lg-10 col-lg-offset-1">
+                        <label style="text-align:left;font-size:16px;" class="col-lg-2 col-lg-offset-1 control-label  text-right">Thể Loại</label>
+                        <div class="col-lg-4">
 
 
-                            <select ng-init="genre = optionsGenre[0]" ng-model="genre" ng-options="option.name for option in optionsGenre">
+                            <select  class="form-control" ng-init="genre = optionsGenre[0]" ng-model="genre" ng-options="option.name for option in optionsGenre">
 
                     </select>
+
                             <!-- <select ng-model="genre" id="genre">
                                 <option  value="Phim hành động"  selected="selected"> Phim hành động</option>
                                 <option value="Phim cổ trang">Phim cổ trang</option>
@@ -97,11 +108,11 @@
 
 
                     <div class="form-group">
-                        <label style="text-align:left;" class="col-lg-10 col-lg-offset-1 control-label">Năm sản xuất</label>
-                        <div class="col-lg-10 col-lg-offset-1">
+                        <label style="text-align:left;font-size:16px;" class="col-lg-3 col-lg-offset-1 control-label">Năm sản xuất</label>
+                        <div class="col-lg-2">
 
 
-                            <select ng-model="year" id="yearselect" ng-change="selectoption();"></select>
+                            <select  class="form-control"    ng-model="year" id="yearselect" ng-change="selectoption();"></select>
 
 
 
@@ -110,7 +121,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="text-align:left;" class="col-lg-10 col-lg-offset-1 control-label">Nội dung phim</label>
+                        <label style="text-align:left;font-size:16px;" class="col-lg-3 col-lg-offset-1 control-label">Nội dung phim</label>
                         <div class="col-lg-10 col-lg-offset-1">
                             <textarea ng-model="content" class="form-control" placeholder="Nội dung phim" rows="5" required>
 
@@ -118,9 +129,9 @@
                         </div>
 
                     </div>
-                    <div class="form-group col-lg-10 col-lg-offset-1">
-                        <input ng-click="createFilm()" class="btn btn-primary" value="Create" type="button">
-                        <input ng-click="reset()" class="btn btn-primary" value="Reset" type="button">
+                    <div style="float:right;left:19px;" class="form-group col-lg-4">
+                        <input  style="font-size:16px;"  ng-click="createFilm()" class="btn btn-primary" value="Tạo Phim" type="button">
+                        <!-- <input  style="font-size:16px;"  ng-click="reset()" class="btn btn-primary" value="Reset" type="button"> -->
                     </div>
 
                 </form>

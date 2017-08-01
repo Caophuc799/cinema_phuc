@@ -36,32 +36,41 @@
     <div ng-controller="detailController">
 
         <!-- Header -->
- <!-- Header -->
+        <!-- Header -->
         <div class="header">
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a  class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
                     </div>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item  main-disactive">
+                                <a class="nav-link" href="/film/list">Danh Sách Phim </a>
+                            </li>
+                            <li class="nav-item  main-disactive">
+                                <a class="nav-link" href="/film/create">Tạo phim</a>
+                            </li>
 
-                    <div class="header-icon-logout">
-                        <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="avatar-profile-header">
-                        <a href="/user">
+                        </ul>
+                        <div class="header-icon-logout">
+                            <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="avatar-profile-header">
+                            <a href="/user">
                         <img src="{{account.url}}" class="avatar-img" alt="avatar">
 </a>
+                        </div>
                     </div>
-
                 </div>
             </nav>
         </div>
 
 
         <!-- Body -->
-        <div class="container">
+        <div class="container main-container">
 
-            <div class="row col-xs-10 col-xs-offset-1">
+            <div class="row">
                 <!-- left column -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="image-avatar">
@@ -75,14 +84,15 @@
                         <a class="edit-text" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible" editable-text="Film.name" e-form="textBtnForm"
                             onaftersave="updateFilm()"> {{Film.name}}</a>
                     </h1>
+                      
                     <!-- <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-edit"></i></a> -->
 
 
                     <h3>Thể Loại:
-                       
+
                         <!-- <a href="#" editable-select="Film.genre" e-ng-options="s.name for s in genres"> -->
-    {{Film.genre}}
-  
+                        {{Film.genre}}
+
                     </h3>
                     <h3>Năm sản xuất:{{Film.year}}</h3>
                     <p>Nội dung: {{Film.content}}</p>

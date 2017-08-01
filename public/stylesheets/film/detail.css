@@ -1,7 +1,11 @@
 .main-container{
-    border:1px  solid black;
    
    
+    width: 970px;
+   margin-top: 0px;
+    background-color: white;
+   padding-left: 30px;
+    border-radius: 10px;
 }
 .image-avatar{
          height:500px;

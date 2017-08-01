@@ -26,23 +26,32 @@
 
         <!-- Header -->
 
- <!-- Header -->
+        <!-- Header -->
         <div class="header">
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a  class="navbar-brand" href="" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                        <a class="navbar-brand" href="" style="font-size:40px;color:antiquewhite;">Cinema</a>
                     </div>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active  main-disactive">
+                                <a class="nav-link" href="">Danh Sách Phim </a>
+                            </li>
+                            <li class="nav-item   main-active">
+                                <a class="nav-link" href="/film/create">Tạo phim</a>
+                            </li>
 
-                    <div class="header-icon-logout">
-                        <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="avatar-profile-header">
-                        <a href="/user">
+                        </ul>
+                        <div class="header-icon-logout">
+                            <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                        </div>
+                        <div class="avatar-profile-header">
+                            <a href="/user">
                         <img src="{{account.url}}" class="avatar-img" alt="avatar">
 </a>
+                        </div>
                     </div>
-
                 </div>
             </nav>
         </div>
@@ -60,10 +69,13 @@
                         <a href='/film/detail/{{Film.$id}}'>
                             <!-- <a href='/film/detail/{{Film.$id}}'>  -->
                             <img class="card-img" alt="ảnh" src='{{Film.url}}'>
-
+                            <span style="font-size:12px;" class="ribbon">
+                            Full HD 
+                            
+                        </span>
                             <div class="card">
                                 <p class="card-name">{{Film.name}}</p>
-                              
+
                                 <p class="card-content">{{Film.genre}} </p>
                             </div>
                         </a>

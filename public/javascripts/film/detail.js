@@ -3,19 +3,33 @@ var app = angular.module("app.cinema", ["xeditable", 'firebase']);
 
 
 
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-    } else {
-        // No user is signed in.
-        window.location.href = '/';
-        //  alert('Vui lòng đăng nhập');
-    }
-});
-
 app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$firebaseObject',
     function ($scope, $log, $firebaseArray, $firebaseObject) {
 
 
+          firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+
+                if (user != null) {
+                    user.providerData.forEach(function (profile) {
+
+
+                    });
+                    var databaseRef = firebase.database().ref();
+                    $scope.account = $firebaseObject(databaseRef.child('/users/' + user.uid));
+
+                    $scope.account.$loaded(function () {
+                        console.log($scope.account.$id);
+
+                    })
+
+                }
+            } else {
+                // No user is signed in.
+                window.location.href = '/';
+                //  alert('Vui lòng đăng nhập');
+            }
+        });
         //   Get id
         var val = window.location.href.toString();
         var arr = val.split('/');

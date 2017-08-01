@@ -22,14 +22,14 @@ app.controller('registerController', ['$scope', function ($scope) {
                     // User is signed in.
                     databaseRef.child('/users/' + firebaseUser.uid).set({
                         email: $scope.email,
-                        name: $scope.yourname
-                        url:"https://firebasestorage.googleapis.com/v0/b/filmapplication-9a88c.appspot.com/o/aa.jpg?alt=media&token=d94d5fc2-25bd-4f14-9193-8a719efb2733"
-                    
+                        name: $scope.yourname,
+                        url: "https://firebasestorage.googleapis.com/v0/b/filmapplication-9a88c.appspot.com/o/aa.jpg?alt=media&token=d94d5fc2-25bd-4f14-9193-8a719efb2733"
+
                     })
                     console.log(firebaseUser.uid);
 
-                        alert('Tạo tài khoản thành công');
-                       window.location.href = "/film/list";
+                    alert('Tạo tài khoản thành công');
+                    window.location.href = "/film/list";
                 }).catch(function (error) {
                     // Handle Errors here.
                     var errorCode = error.code;
@@ -37,10 +37,10 @@ app.controller('registerController', ['$scope', function ($scope) {
                     if (errorCode == 'auth/weak-password') {
                         alert('The password is too weak.');
                     } else {
-                       
+
                         if (error.code == "auth/email-already-in-use") {
                             alert('Tài khoản đã tồn tại');
-                        }else{
+                        } else {
                             alert(errorMessage);
                         }
 

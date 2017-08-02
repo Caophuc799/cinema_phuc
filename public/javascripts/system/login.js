@@ -43,9 +43,8 @@ app.controller('loginController', ['$scope', function ($scope) {
                 name: user.displayName,
                 url: user.photoURL
             })
-            console.log("dc r");
-            console.log(user);
-            window.location.href = "/film/list";
+           
+          window.location.href = "/film/list";
             
         }).catch(function (error) {
             // Handle Errors here.
@@ -83,7 +82,7 @@ app.controller('loginController', ['$scope', function ($scope) {
                 name: user.displayName,
                 url: user.photoURL
             })
-
+           
             window.location.href = "/film/list";
             // ...
         }).catch(function (error) {

@@ -34,7 +34,7 @@ a {
     height: 40px;
     width: 40px;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 2px solid white;
     overflow: hidden;
     float:right;
     display: inline-block;
@@ -52,20 +52,38 @@ ul{
 }
 .main-active{
   
-    font-size: 24px;
-    height: 48px;
-    padding: 8px;
-    margin-left: 2px;
-    background-color: black;
+    font-size: 22px;
+   
+    
+    margin-left: 4px;
+  
 }
 .main-disactive{
   
-    font-size: 25px;
-    height: 48px;
-    padding: 8px;
-    margin-left: 2px;
-    background-color: black;
+    font-size: 22px;
+  
+    
+    margin-left: 4px;
+    
     
 }
+.menu-ac a{
+    padding-top:14px;
+    float:right;
+    color:aquamarine; 
+    margin-right:1px;
+      margin-left:10px;
+    font-size: 22px;
+     font-style: italic;
+}
 
+.menu-dis a{
+    padding-top:14px;
+    float:right;
+    color:white; 
+    margin-right:1px;
+    margin-left:14px;
+    font-size: 22px;
+   
+}
 

@@ -34,6 +34,23 @@
 
     <div ng-controller="profileController">
 
+        <!-- 
+        <nav class="navbar navbar-inverse bg-faded">
+            <form class="form-inline">
+                  <a class="navbar-brand" href="" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                
+                <button class="btn btn-outline-success" type="button">Main button</button>
+                <button  class="btn btn-sm align-middle btn-outline-secondary" type="button">Smaller button</button>
+                <div class="header-icon-logout">
+                    <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                </div>
+                <div class="avatar-profile-header">
+                    <a href="">
+                        <img src="{{account.url}}" class="avatar-img" alt="avatar">
+                    </a>
+                </div>
+            </form>
+        </nav>  -->
         <!-- Header -->
         <div class="header">
             <nav class="navbar navbar-inverse">
@@ -41,23 +58,35 @@
                     <div class="navbar-header">
                         <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
                     </div>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item  main-disactive">
-                                <a class="nav-link" href="/film/list">Danh Sách Phim </a>
-                            </li>
-                            <li class="nav-item  main-disactive">
-                                <a class="nav-link" href="/film/create">Tạo phim</a>
-                            </li>
 
-                        </ul>
-                        <div class="header-icon-logout">
-                            <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <div ng-click="signoutCinema()" style="margin-left:14px;font-size:22px;padding-top:10px;" class="header-icon-logout">
+                            <a style="color:white;" href="#">
+                            Đăng suất
+                            <i  class="fa fa-sign-out white" aria-hidden="true"></i></a>
                         </div>
-                        <div class="avatar-profile-header">
+                        <div>
                             <a href="">
-                        <img src="{{account.url}}" class="avatar-img" alt="avatar">
+
+                                <div class="avatar-profile-header">
+
+
+                                    <img src="{{account.url}}" class="avatar-img" alt="avatar">
+
+                                </div>
+                                <div class="menu-ac">
+<a href="">
+                                    Tài khoản
 </a>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="menu-dis">
+                            <a href="/film/create">
+                                Tạo Phim
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -70,15 +99,17 @@
             <h1 class="page-header">Chỉnh sửa hồ sơ cá nhân</h1>
             <div class="row">
                 <!-- left column -->
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="avatar-profile">
 
-                        <img id="img-profile" src="{{account.url}}" class="avatar-img" alt="avatar">
+                <div class="col-md-4 col-sm-6 col-xs-12 main-left">
+                    <div  class="avatar-profile">
+
+                        <img  id="img-profile" src="{{account.url}}" class="avatar-img" alt="avatar">
                     </div>
-                    <h6 style="margin-left:60px;">Ảnh đại diện</h6>
+                    <h3 style="margin-left:80px;">Ảnh đại diện</h3>
                     <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm">
 
                 </div>
+
                 <!-- edit form column -->
                 <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
 
@@ -87,14 +118,14 @@
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Display Name:</label>
                             <div class="col-lg-8">
-                                <input ng-model="account.name" class="form-control" value="Jane" type="text">
+                                <input ng-model="account.name" class="form-control" value="" type="text">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <input ng-model="account.email" class="form-control" value="janesemail@gmail.com" type="text">
+                                <input ng-model="account.email" class="form-control" value="" type="text">
                             </div>
 
                         </div>
@@ -116,7 +147,7 @@
                             <div class="col-md-8">
                                 <input ng-click="savechange()" class="btn btn-primary" value="Save Changes" type="button">
                                 <span></span>
-                                <input class="btn btn-default" value="Cancel" type="reset">
+                                <input class="btn btn-primary" value="Reset" type="reset">
                             </div>
                         </div>
                     </form>
@@ -124,7 +155,37 @@
             </div>
         </div>
 
+        <!-- Modal -->
+        <!-- 
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="col-xs-8 col-xs-offset-2">
+                    <div class="modal-content">
 
+                        <div class="modal-header">
+                            <h3 class="modal-title" style="display:inline-block;" id="exampleModalLongTitle">Reset Password</h3>
+                            <button type="button" style="margin-top:0px;display:inline-block;" class="close" data-dismiss="modal" aria-label="Close">
+          <span   aria-hidden="true">&times;</span>
+        </button>
+                        </div>
+                        <div class="modal-body">
+                            <input ng-model="currentpass" name="currentpass" type="password" id="currentpass" class="form-control" placeholder="Email address"
+                                required autofocus>
+                                <input ng-model="newpass" name="newpass" type="password" id="newpass" class="form-control" placeholder="Email address"
+                                required >
+                                <input ng-model="newpassconfirm" name="newpassconfirm" type="password" id="newpassconfirm" class="form-control" placeholder="Email address"
+                                required >
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button ng-click="ResetPassword()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Reset</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
 
     </div>
 </body>

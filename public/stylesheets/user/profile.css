@@ -1,9 +1,11 @@
 .avatar-profile{
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
-    border: 1px solid black;
+    border: 2px solid white;
     overflow: hidden;
+     margin:auto;
+     background-color:white;
 }
 .avatar-profile img{
     height: 100%;
@@ -24,6 +26,7 @@
     height: 40px;
     width: 40px;
     border-radius: 50%;
+   background-color:white;
     border: 1px solid white;
     overflow: hidden;
     float:right;
@@ -44,6 +47,16 @@
     background-color: white;
    padding-left: 30px;
     border-radius: 10px;
+    padding-bottom: 30px;
 }
-
+.main-left{
+background-color: #B5B5B5;
+padding: 20px;
+color:black;
+border-radius: 10px;
+border: 0.5px solid grey;
+}
+.btn-uploadfile{
+    width: 280px;
+}
 

@@ -23,34 +23,48 @@
     <!-- Header -->
     <!-- Header -->
     <div class="header">
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a href="#" class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
-                </div>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item  main-disactive">
-                            <a class="nav-link" href="/film/list">Danh Sách Phim </a>
-                        </li>
-                        <li class="nav-item active main-active">
-                            <a class="nav-link" href="">Tạo phim</a>
-                        </li>
-                       
-                    </ul>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                    </div>
 
-                    <div class="header-icon-logout">
-                        <a href="#"><i ng-click="signoutCinema()" class="fa fa-sign-out white" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="avatar-profile-header">
-                        <a href="/user">
-                        <img src="{{account.url}}" class="avatar-img" alt="avatar">
-                     </a>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <div ng-click="signoutCinema()" style="margin-left:14px;font-size:22px;padding-top:10px;" class="header-icon-logout">
+                            <a style="color:white;" href="">
+                            Đăng suất
+                            <i  class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                        </div>
+                        <div>
+
+
+                            <div class="avatar-profile-header">
+                                <a href="/user">
+
+                                    <img src="{{account.url}}" class="avatar-img" alt="avatar">
+</a>
+
+                            </div>
+                            <div class="menu-dis">
+                                <a href="/user">
+                                Tài khoản
+</a>
+
+                            </div>
+
+                        </div>
+                        <div class="menu-ac">
+                            <a style="color:aquamarine;" href="/film/create">
+                                Tạo Phim
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </div>
+            </nav>
+        </div>
+
 
 
 
@@ -67,7 +81,7 @@
                         <img style="border-radius:20px;border:1px solid black" id="avatar-film" src="https://firebasestorage.googleapis.com/v0/b/filmapplication-9a88c.appspot.com/o/a.jpg?alt=media&token=852bf4e3-1bf0-48dc-bbd5-93e81b10c076"
                             class="avatar" alt="avatar">
                     </div>
-                    <h6>Upload a different photo... </h6>
+                    <h6 id="upload-other-photo" style="display:none;">Upload a different photo... </h6>
                     <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm" required>
                 </div>
             </div>

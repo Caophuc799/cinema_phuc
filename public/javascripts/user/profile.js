@@ -26,6 +26,7 @@ function readURL(input) {
                 .width(300)
                 .height(300);
         };
+            
 
         reader.readAsDataURL(input.files[0]);
     }

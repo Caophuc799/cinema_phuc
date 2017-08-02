@@ -25,6 +25,8 @@ app.controller('loginController', ['$scope', function ($scope) {
 
     //dang nhap bang fb
     $scope.loginFacebook = function () {
+        var id='1966928746924754';
+        var idpp='6732424686315d9c9e72076230c02cd3';
         var provider = new firebase.auth.FacebookAuthProvider();
         provider.addScope('user_birthday');
         provider.setCustomParameters({

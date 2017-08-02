@@ -7,6 +7,24 @@
 
     <%- partial('./../share/load.ejs') -%>
 
+        <script>
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1966928746924754',
+                    xfbml: true,
+                    version: 'v2.10'
+                });
+                FB.AppEvents.logPageView();
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
         <script src="/javascripts/system/login.js"></script>
         <link rel="stylesheet" href="stylesheets/system/login.css">
         <meta charset="UTF-8">
@@ -22,7 +40,7 @@
     <div ng-controller="loginController">
 
 
-      
+
         <div class="container login-container">
 
             <h3 class="omb_authTitle">Login or <a href="/register">Sign up</a></h3>
@@ -77,12 +95,12 @@
         </div>
 
         <!-- Modal -->
-       
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                     <div class="col-xs-8 col-xs-offset-2">
+
+        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="col-xs-8 col-xs-offset-2">
                     <div class="modal-content">
-                        
+
                         <div class="modal-header">
                             <h3 class="modal-title" style="display:inline-block;" id="exampleModalLongTitle">Reset Password</h3>
                             <button type="button" style="margin-top:0px;display:inline-block;" class="close" data-dismiss="modal" aria-label="Close">

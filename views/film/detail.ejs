@@ -33,7 +33,7 @@
 
 <body>
 
-    <div ng-controller="detailController">
+    <div ng-controller="detailController" ng-cloak>
 
         <!-- Header -->
         <!-- Header -->
@@ -81,41 +81,48 @@
 
 
 
-        <!-- Body -->
-        <div class="container main-container">
+     
 
-            <div class="row">
-                <!-- left column -->
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="image-avatar">
-                        <img src='{{Film.url}}' style="border-radius:20px;border:1px solid black" alt="avatar">
+            <!-- Body -->
+            <div class="container main-container" >
 
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="image-avatar">
+                            <img src='{{Film.url}}' style="border-radius:20px;border:1px solid black" alt="avatar">
+
+                        </div>
+                    </div>
+                    <!-- edit form column -->
+                    <div class="main-right">
+                        <h1>Tên Phim:
+                            {{Film.name}}
+                        </h1>
+                        <hr>
+
+                        <!-- <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-edit"></i></a> -->
+
+
+                        <h3><div class="tieude">Thể Loại:</div>
+
+                            <!-- <a href="#" editable-select="Film.genre" e-ng-options="s.name for s in genres"> -->
+                            {{Film.genre}}
+
+                        </h3>
+                        <h3><div class="tieude">Năm sản xuất:</div>{{Film.year}}</h3>
+                        <div class="tieude">
+                        Nội dung:
+                        </div>
+                        <p class="content-style"> {{Film.content}}</p>
                     </div>
                 </div>
-                <!-- edit form column -->
-                <div class="col-xs-offset-6">
-                    <h1>Tên Phim:
-                        <a class="edit-text" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible" editable-text="Film.name" e-form="textBtnForm"
-                            onaftersave="updateFilm()"> {{Film.name}}</a>
-                    </h1>
-
-                    <!-- <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-edit"></i></a> -->
 
 
-                    <h3>Thể Loại:
 
-                        <!-- <a href="#" editable-select="Film.genre" e-ng-options="s.name for s in genres"> -->
-                        {{Film.genre}}
-
-                    </h3>
-                    <h3>Năm sản xuất:{{Film.year}}</h3>
-                    <p>Nội dung: {{Film.content}}</p>
-                </div>
             </div>
 
 
-
-        </div>
 
     </div>
 </body>

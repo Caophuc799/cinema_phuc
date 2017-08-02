@@ -31,7 +31,6 @@
 <body>
 
 
-
     <div ng-controller="profileController">
 
         <!-- 
@@ -76,7 +75,7 @@
 
                                 </div>
                                 <div class="menu-ac">
-<a href="">
+                                    <a href="">
                                     Tài khoản
 </a>
                                 </div>
@@ -101,50 +100,56 @@
                 <!-- left column -->
 
                 <div class="col-md-4 col-sm-6 col-xs-12 main-left">
-                    <div  class="avatar-profile">
+                    <div class="avatar-profile">
 
-                        <img  id="img-profile" src="{{account.url}}" class="avatar-img" alt="avatar">
+                        <img id="img-profile" src="{{account.url}}" class="avatar-img" alt="avatar">
                     </div>
-                    <h3 style="margin-left:80px;">Ảnh đại diện</h3>
+                    <h2 style="margin-left:75px;">Ảnh đại diện
+                       
+                    </h2>
+                     <br>
                     <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm">
 
                 </div>
 
                 <!-- edit form column -->
-                <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+                <div class="col-md-7  personal-info">
 
-                    <h3 style="margin-left:40px;">Thông tin cá nhân</h3>
-                    <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Display Name:</label>
-                            <div class="col-lg-8">
+                    <h2 >Thông tin cá nhân</h2>
+                    <hr>
+                    <form class="form-horizontala"  role="form">
+                        <div class="form-group" >
+                            <label class="col-lg-6 control-label">Display Name:</label>
+                            <div class="col-lg-11">
                                 <input ng-model="account.name" class="form-control" value="" type="text">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-3 control-label">Email:</label>
-                            <div class="col-lg-8">
+                            <label class="col-lg-6 control-label">Email:</label>
+                            <div class="col-lg-11">
                                 <input ng-model="account.email" class="form-control" value="" type="text">
                             </div>
 
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Password:</label>
-                            <div class="col-md-8">
+                            <label class="col-md-6 control-label">Password:</label>
+                            <div class="col-md-11">
                                 <input ng-model="password" class="form-control" value="" type="password">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">Confirm password:</label>
-                            <div class="col-md-8">
+                            <label class="col-md-6 control-label">Confirm password:</label>
+                            <div class="col-md-11">
                                 <input ng-model="confirmpassword" class="form-control" value="" type="password">
                             </div>
                         </div>
+                       
                         <div class="form-group">
-                            <label class="col-md-3 control-label"></label>
-                            <div class="col-md-8">
+                           
+                            <label class="col-md-3 control-label">  <br></label>
+                            <div class="col-md-8 col-md-offset-6" style="margin-right:20px;">
                                 <input ng-click="savechange()" class="btn btn-primary" value="Save Changes" type="button">
                                 <span></span>
                                 <input class="btn btn-primary" value="Reset" type="reset">

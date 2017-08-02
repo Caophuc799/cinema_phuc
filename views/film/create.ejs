@@ -17,53 +17,54 @@
         <title>Tạo phim</title>
 </head>
 
+<!-- onload="loadAgeSelector()" -->
 
-<body onload="loadAgeSelector()" ng-controller="createController">
+<body ng-controller="createController">
 
     <!-- Header -->
     <!-- Header -->
     <div class="header">
-            <nav class="navbar navbar-inverse">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
-                    </div>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                </div>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <div ng-click="signoutCinema()" style="margin-left:14px;font-size:22px;padding-top:10px;" class="header-icon-logout">
-                            <a style="color:white;" href="">
+                    <div ng-click="signoutCinema()" style="margin-left:14px;font-size:22px;padding-top:10px;" class="header-icon-logout">
+                        <a style="color:white;" href="">
                             Đăng suất
                             <i  class="fa fa-sign-out white" aria-hidden="true"></i></a>
-                        </div>
-                        <div>
+                    </div>
+                    <div>
 
 
-                            <div class="avatar-profile-header">
-                                <a href="/user">
+                        <div class="avatar-profile-header">
+                            <a href="/user">
 
                                     <img src="{{account.url}}" class="avatar-img" alt="avatar">
 </a>
 
-                            </div>
-                            <div class="menu-dis">
-                                <a href="/user">
+                        </div>
+                        <div class="menu-dis">
+                            <a href="/user">
                                 Tài khoản
 </a>
 
-                            </div>
-
                         </div>
-                        <div class="menu-ac">
-                            <a style="color:aquamarine;" href="/film/create">
+
+                    </div>
+                    <div class="menu-ac">
+                        <a style="color:aquamarine;" href="/film/create">
                                 Tạo Phim
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </a>
-                        </div>
                     </div>
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
+    </div>
 
 
 
@@ -102,7 +103,7 @@
                         <div class="col-lg-4">
 
 
-                            <select  class="form-control" ng-init="genre = optionsGenre[0]" ng-model="genre" ng-options="option.name for option in optionsGenre">
+                            <select class="form-control" ng-init="genre = optionsGenre[0]" ng-model="genre" ng-options="option.name for option in optionsGenre">
 
                     </select>
 
@@ -122,12 +123,12 @@
 
 
                     <div class="form-group">
-                        <label style="text-align:left;font-size:16px;" class="col-lg-3 col-lg-offset-1 control-label">Năm sản xuất</label>
-                        <div class="col-lg-2">
+                        <label style="text-align:left;font-size:16px;" class="col-lg-3 col-lg-offset-1 control-label">Thời gian phát hành</label>
+                        <div class="col-lg-4">
 
-
-                            <select  class="form-control"    ng-model="year" id="yearselect" ng-change="selectoption();"></select>
-
+                            <input ng-model="year.value" type="date" class="form-control" value='' />
+                            <!-- <select class="form-control" ng-model="year" id="yearselect" ng-change="selectoption();"></select> -->
+                         
 
 
 
@@ -144,7 +145,7 @@
 
                     </div>
                     <div style="float:right;left:19px;" class="form-group col-lg-4">
-                        <input  style="font-size:16px;"  ng-click="createFilm()" class="btn btn-primary" value="Tạo Phim" type="button">
+                        <input style="font-size:16px;" ng-click="createFilm()" class="btn btn-primary" value="Tạo Phim" type="button">
                         <!-- <input  style="font-size:16px;"  ng-click="reset()" class="btn btn-primary" value="Reset" type="button"> -->
                     </div>
 

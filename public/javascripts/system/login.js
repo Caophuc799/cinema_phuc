@@ -8,7 +8,7 @@ var app = angular.module("app.cinema", []);
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        //  window.location.href = '/film/list';
+         window.location.href = '/film/list';
     } else {
         // No user is signed in.
 

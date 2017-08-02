@@ -1,6 +1,6 @@
 .avatar-profile{
-    height: 200px;
-    width: 200px;
+    height: 230px;
+    width: 230px;
     border-radius: 50%;
     border: 2px solid white;
     overflow: hidden;
@@ -45,18 +45,35 @@
    width: 970px;
    margin-top: 0px;
     background-color: white;
-   padding-left: 30px;
+ 
     border-radius: 10px;
     padding-bottom: 30px;
+    padding-left: 55px;
 }
 .main-left{
 background-color: #B5B5B5;
-padding: 20px;
+padding-bottom: 16px;
+padding-top: 20px;
+width: 330px;
 color:black;
 border-radius: 10px;
 border: 0.5px solid grey;
+height: 411px;
 }
 .btn-uploadfile{
     width: 280px;
+}
+.personal-info{
+    background-color: #B5B5B5;
+    margin-left: 20px;
+  
+color:black;
+     margin-right: 20px;
+     border-radius: 10px;
+border: 0.5px solid grey;
+padding-left: 50px;
+padding-bottom: 30px;
+font-size: 16px;
+
 }
 

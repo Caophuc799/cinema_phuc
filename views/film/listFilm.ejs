@@ -6,7 +6,7 @@
 <head>
 
     <%- partial('./../share/load.ejs') -%>
-
+        <link href="https://fonts.googleapis.com/css?family=Pacifico&amp;subset=vietnamese" rel="stylesheet">
         <!-- Load javascript  -->
         <script src="/javascripts/film/listFilm.js"></script>
         <!--Load style css my cinema-->
@@ -47,7 +47,7 @@
                             <div class="avatar-profile-header">
                                 <a href="/user">
 
-                                    <img src="{{account.url}}" class="avatar-img" alt="avatar">
+                                    <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
 </a>
 
                             </div>
@@ -71,9 +71,11 @@
         </div>
 
 
+        <!-- <div id="body" style="display:none;"> -->
+
 
         <!-- List Film -->
-        <div class="container">
+        <div class="container" ng-cloak>
             <div class="row-inline">
 
                 <div ng-repeat="Film in listFilm" class="col-sm-4">
@@ -84,13 +86,15 @@
                             <!-- <a href='/film/detail/{{Film.$id}}'>  -->
                             <img class="card-img" alt="ảnh" src='{{Film.url}}'>
                             <span style="font-size:12px;" class="ribbon">
-                            Full HD 
+                            {{Film.genre}}
                             
                         </span>
+                            <div class="ribbon-right">
+                                {{Film.year}}
+                            </div>
                             <div class="card">
                                 <p class="card-name">{{Film.name}}</p>
 
-                                <p class="card-content">{{Film.genre}} </p>
                             </div>
                         </a>
 
@@ -101,6 +105,20 @@
             </div>
 
         </div>
+
+
+        <!--       
+       
+        </div>
+        <div id="msg" style="font-size:largest;">
+            Please Wait...
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#body').show();
+                $('#msg').hide();
+            });
+        </script>  -->
 
     </div>
 </body>

@@ -3,30 +3,37 @@
     color: white;
 }
 
+.header-icon{
+    padding-top: 2px;
+    float: right;
+    font-size: 10px;
+    color: white;
+} 
+
+.card{
+   background-color: rgba(0, 0, 0, 0.8);
+   position: absolute;
+   height: 120px;
+   bottom: 0px;
+   border: 1px solid black;
+   width: 100%;
+   padding-top:10px;
+   overflow: hidden;
+}
  .card-name{
      text-align: center;
       color: white;
       position: absolute;
-      bottom: 40px;
-      left: 10px;
-      font-size: 40px;
+      top: 5px;
+      left: 5px;
+      right:5px;
+      bottom: 5px;
+      font-size: 30px;
       text-transform:uppercase;
-      border-bottom-width: 1px;
-      border-bottom-color: white;
-      border-bottom-style: solid;
+    font-family: 'Francois One', sans-serif;
       
        
  }
-.card-content{
-    color: white;
-    left: 10px;
-     margin-right: 2px;
-    position: absolute;
-   bottom:5px;  
-  text-align: right;
-  
-
-}
 .card-img{  
     object-fit: cover;
     width: 100%;
@@ -38,21 +45,6 @@
  
 }
  
-.header-icon{
-    padding-top: 2px;
-    float: right;
-    font-size: 10px;
-    color: white;
-} 
-
-.card{
-   background-color: rgba(0, 0, 0, 0.8);
-   position: absolute;
-   height: 100px;
-   bottom: 0px;
-   border: 1px solid black;
-   width: 100%;
-}
 
 .nopadding {
 
@@ -67,12 +59,29 @@
    overflow:hidden;
   
 }
-
+.ribbon-right{
+     position: absolute;
+    color:yellow;
+    background: #A21D0A;
+    font-size: 13px;
+    font-weight: bold;
+    float: right;
+    clear: both;
+    padding: 4px;
+    text-shadow: 1px 1px 2px #111;
+    right: 2px;
+    top: 5px;
+    white-space: nowrap;
+    display: inline-block;
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
+}
 .ribbon {
     position: absolute;
     color: #fff;
     background: #A21D0A;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: bold;
     float: left;
     clear: both;

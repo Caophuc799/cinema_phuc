@@ -1,6 +1,16 @@
 var app = angular.module("app.cinema", []);
 
 
+firebase.auth().onAuthStateChanged(function (user) {
+    if (user) {
+         window.location.href = '/film/list';
+    } else {
+        // No user is signed in.
+
+        //  alert('Vui lòng đăng nhập');
+    }
+});
+
 app.controller('registerController', ['$scope', function ($scope) {
     $scope.baibai = "Mai";
     $scope.password = '';

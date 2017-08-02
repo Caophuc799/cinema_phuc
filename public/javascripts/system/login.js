@@ -44,7 +44,7 @@ app.controller('loginController', ['$scope', function ($scope) {
                 url: user.photoURL
             })
             console.log(user);
-            window.location.href = "/film/list";
+           // window.location.href = "/film/list";
             // ...
         }).catch(function (error) {
             // Handle Errors here.

@@ -42,6 +42,7 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
                     console.log($scope.account.$id);
 
                 })
+                console.log($scope.account);
 
             }
         } else {

@@ -37,14 +37,15 @@ app.controller('loginController', ['$scope', function ($scope) {
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-
+            var databaseRef = firebase.database().ref();
             databaseRef.child('/users/' + user.uid).set({
                 email: user.email,
                 name: user.displayName,
                 url: user.photoURL
             })
+            console.log("dc r");
             console.log(user);
-           // window.location.href = "/film/list";
+            window.location.href = "/film/list";
             // ...
         }).catch(function (error) {
             // Handle Errors here.
@@ -54,6 +55,7 @@ app.controller('loginController', ['$scope', function ($scope) {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
+            console.log(error);
             // ...
         });
     }

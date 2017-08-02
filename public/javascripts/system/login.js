@@ -8,7 +8,7 @@ var app = angular.module("app.cinema", []);
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      //  window.location.href = '/film/list';
+        //  window.location.href = '/film/list';
     } else {
         // No user is signed in.
 
@@ -25,8 +25,8 @@ app.controller('loginController', ['$scope', function ($scope) {
 
     //dang nhap bang fb
     $scope.loginFacebook = function () {
-        var id = '1966928746924754';
-        var idpp = '6732424686315d9c9e72076230c02cd3';
+        // var id = '1966928746924754';
+        // var idpp = '6732424686315d9c9e72076230c02cd3';
         var provider = new firebase.auth.FacebookAuthProvider();
         provider.addScope('user_birthday');
         provider.setCustomParameters({
@@ -37,6 +37,13 @@ app.controller('loginController', ['$scope', function ($scope) {
             var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
+
+            databaseRef.child('/users/' + user.uid).set({
+                email: user.email,
+                name: user.displayName,
+                url: user.photoURL
+            })
+            console.log(user);
             window.location.href = "/film/list";
             // ...
         }).catch(function (error) {
@@ -66,15 +73,15 @@ app.controller('loginController', ['$scope', function ($scope) {
             var user = result.user;
             var databaseRef = firebase.database().ref();
 
-            
+
             // User is signed in.
 
-            databaseRef.child('/users/'+user.uid).set({
+            databaseRef.child('/users/' + user.uid).set({
                 email: user.email,
                 name: user.displayName,
                 url: user.photoURL
             })
-           
+
             window.location.href = "/film/list";
             // ...
         }).catch(function (error) {

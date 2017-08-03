@@ -42,10 +42,10 @@
                     <div>
 
 
-                      
+
                         <div class="menu-dis">
                             <a href="/user">
-                                  Tài khoản
+                              {{account.name}}
                                 <div class="avatar-profile-header">
                                 <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
                                   </div>
@@ -69,7 +69,7 @@
     </div>
 
 
-  
+
 
 
     <!-- Body -->
@@ -83,7 +83,7 @@
                         <img style="border-radius:20px;border:1px solid black" id="avatar-film" src="https://firebasestorage.googleapis.com/v0/b/filmapplication-9a88c.appspot.com/o/a.jpg?alt=media&token=852bf4e3-1bf0-48dc-bbd5-93e81b10c076"
                             class="avatar" alt="avatar">
                     </div>
-                    <h6 id="upload-other-photo" style="display:none;">Upload a different photo... </h6>
+                    <!-- <h6 id="upload-other-photo" style="display:none;">Upload a different photo... </h6> -->
                     <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm" required>
                 </div>
             </div>
@@ -100,8 +100,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label style="text-align:left;font-size:16px;" class="col-lg-2 col-lg-offset-1 control-label  text-right">Thể Loại</label>
-                        <div class="col-lg-4">
+                        <label style="text-align:left;font-size:16px;" class="col-lg-4 col-lg-offset-1 control-label  text-right">Thể Loại</label>
+                        <div class="col-lg-6">
 
 
                             <select class="form-control" ng-init="genre = optionsGenre[0]" ng-model="genre" ng-options="option.name for option in optionsGenre">
@@ -122,12 +122,22 @@
                         </div>
                     </div>
 
-
                     <div class="form-group">
-                        <label style="text-align:left;font-size:16px;" class="col-lg-3 col-lg-offset-1 control-label">Thời gian phát hành</label>
-                        <div class="col-lg-4">
+                        <label style="text-align:left;font-size:16px;" class="col-lg-4 col-lg-offset-1 control-label">Thời gian phát hành</label>
+                        <div class="col-lg-6">
 
-                            <input ng-model="year.value" type="date" class="form-control" value='' />
+                             <input ng-model="year.value" type="date" class="form-control" value='' /> 
+                            <!-- <div class="input-append date form_datetime">
+                                <input size="16" type="text" value="" readonly>
+                                <span class="add-on"><i class="icon-th"></i></span>
+                            </div>
+
+                            <script type="text/javascript">
+                                $(".form_datetime").datetimepicker({
+                                    format: "dd MM yyyy - hh:ii"
+                                });
+
+                            </script> -->
                             <!-- <select class="form-control" ng-model="year" id="yearselect" ng-change="selectoption();"></select> -->
 
 

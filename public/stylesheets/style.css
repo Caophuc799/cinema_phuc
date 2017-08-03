@@ -31,8 +31,8 @@ a {
     margin-left: 10px;
 } */
 .avatar-profile-header{
-    height: 35px;
-    width: 35px;
+    height: 34px;
+    width: 34px;
     border-radius: 50%;
     border: 2px solid white;
     overflow: hidden;
@@ -70,40 +70,47 @@ ul{
     
 }
 .menu-ac a{
-    padding-top:14px;
+    padding-top:17px;
     float:right;
     color:aquamarine; 
     margin-right:1px;
       margin-left:10px;
-    font-size: 20px;
-  
+    font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.4);
        padding-bottom:10px;
-  font-family: 'Anton', sans-serif;
+ font-family: "Open Sans",sans-serif;
     text-transform:uppercase;
+font-weight: bold;
+border-radius: 5px;
+  height: 51px;
+}
+
+.menu-dis a{
+    padding-top:17px;
+  
+    float:right;
+     font-family: "Open Sans",sans-serif;
+    color:white; 
+    margin-right:1px;
+    margin-left:14px;
+    font-size: 15px;
+        padding-bottom:10px;
+ font-weight: bold;
+   text-transform:uppercase;
 }
 .menu-ac a:hover{
     background-color: #F5F6CE;
      text-decoration:wavy;
   color: black;
-     border-radius: 15px;
+     border-radius: 5px;
+     height: 51px;
 }
 .menu-dis a:hover{
     
       background-color: #F5F6CE;
       text-decoration:wavy;
       color: black;
-      border-radius: 15px;
-}
-.menu-dis a{
-    padding-top:14px;
-    float:right;
-     
-    color:white; 
-    margin-right:1px;
-    margin-left:14px;
-    font-size: 20px;
-        padding-bottom:10px;
-  font-family: 'Anton', sans-serif;
-   text-transform:uppercase;
+      border-radius: 5px;
+        height: 51px;
 }
 

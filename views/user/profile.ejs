@@ -73,7 +73,7 @@
 
                             <div class="menu-ac">
                                 <a href="">
-                                       Tài khoản
+                                     {{account.name}}
                                     <div class="avatar-profile-header">
                                         <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
                                     </div>
@@ -96,73 +96,86 @@
 
         <!-- Body -->
         <div class="container main-container">
-            <h1 class="page-header">Chỉnh sửa hồ sơ cá nhân</h1>
+            <h1 class="page-header title-header">Chỉnh sửa hồ sơ cá nhân</h1>
             <div class="row">
                 <!-- left column -->
 
-                <div class="col-md-4 col-sm-6 col-xs-12 main-left">
-                    <div class="avatar-profile">
 
-                        <img id="img-profile" src="{{account.url}}" class="avatar-img" alt="avatar">
-                    </div>
-                    <h2 style="margin-left:75px;">Ảnh đại diện
-
-                    </h2>
-                    <br>
-                    <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm">
-
-                </div>
 
                 <!-- edit form column -->
                 <div class="col-md-7  personal-info">
 
-                    <h2>Thông tin cá nhân</h2>
-                    <hr>
+                    <!-- <h2>Thông tin cá nhân</h2>
+                    <hr> -->
                     <form class="form-horizontala" role="form">
                         <div class="form-group">
-                            <label class="col-lg-6 control-label">Display Name:</label>
-                            <div class="col-lg-11">
+                            <label class="col-lg-6 control-label title-top">Tên hiển thị:</label>
+                            <div class="col-lg-12">
                                 <input ng-model="account.name" class="form-control" value="" type="text">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-lg-6 control-label">Email:</label>
-                            <div class="col-lg-11">
+                            <label class="col-lg-6 control-label title-top">Email:</label>
+                            <div class="col-lg-12">
                                 <input ng-model="account.email" class="form-control" value="" type="text">
                             </div>
 
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-6 control-label">Password:</label>
-                            <div class="col-md-11">
-                                <input ng-model="password" class="form-control" value="" type="password">
+                            <label class="col-lg-6 control-label title-top">Điện thoại:</label>
+                            <div class="col-lg-12">
+                                <input ng-model="account.phone" class="form-control" value="" type="tel">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-6 control-label">Confirm password:</label>
-                            <div class="col-md-11">
-                                <input ng-model="confirmpassword" class="form-control" value="" type="password">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-
-                            <label class="col-md-3 control-label">  <br></label>
-                            <div class="col-md-8 col-md-offset-6" style="margin-right:20px;">
-                                <input ng-click="savechange()" class="btn btn-primary" value="Save Changes" type="button">
-                                <span></span>
-                                <input class="btn btn-primary" value="Reset" type="reset">
+                            <label class="col-lg-6 control-label title-top">Địa chỉ:</label>
+                            <div class="col-lg-12">
+                                <input ng-model="account.address" class="form-control" value="" type="text">
                             </div>
                         </div>
                     </form>
                 </div>
+                <div class="col-md-3 main-left">
+                    <div class="avatar-profile">
+
+                        <img id="img-profile" src="{{account.url}}" class="avatar-img" alt="avatar">
+                    </div>
+                    <div class="image-title">Ảnh đại diện
+
+                    </div>
+                    <br>
+                    <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm">
+
+                </div>
+                <div class="col-md-11 personal-info-2">
+
+                    <div class="form-group">
+                        <label class="col-lg-6 control-label title-top">Giới thiệu bản thân:</label>
+                        
+                            <textarea style="margin-left:18px;" ng-model="account.description" cols="29" rows="3" class="form-control"></textarea>
+                            <!-- <input ng-model="account.description" class="form-control" value="" type="text"> -->
+                       
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label class="col-md-3 control-label"> </label>
+                        <div class="col-md-8 col-md-offset-9" style="padding-left:40px;margin-right:0px;">
+                            <input ng-click="savechange()" class="btn btn-primary" value="Save Changes" type="button">
+                            <span></span>
+                            <input class="btn btn-primary" value="Reset" type="reset">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal -->
-        <!-- 
+    <!-- Modal -->
+    <!-- 
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="col-xs-8 col-xs-offset-2">

@@ -1,6 +1,6 @@
 .avatar-profile{
-    height: 230px;
-    width: 230px;
+    height: 150px;
+    width: 150px;
     border-radius: 50%;
     border: 2px solid white;
     overflow: hidden;
@@ -12,7 +12,12 @@
     width: 100%;
     object-fit: cover;
 }
-
+.image-title{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    text-align: center;
+}
 .header-icon-logout{
     padding-top: 2px;
     float: right;
@@ -48,32 +53,71 @@
  
     border-radius: 10px;
     padding-bottom: 30px;
-    padding-left: 55px;
+     padding-left: 30px; 
+     padding-right: 40px; 
 }
 .main-left{
-background-color: #B5B5B5;
-padding-bottom: 16px;
-padding-top: 20px;
-width: 330px;
+/* background-color: #B5B5B5; */
+/* padding-bottom: 30px; */
+/* padding-top: 30px;
+margin-left: 20px; */
+width: 350px;
+margin-top: 20px;
+padding-top: 5px;
 color:black;
 border-radius: 10px;
-border: 0.5px solid grey;
-height: 411px;
+ border: 0.5px solid grey; 
+
 }
 .btn-uploadfile{
     width: 280px;
 }
 .personal-info{
-    background-color: #B5B5B5;
+    /* background-color: #B5B5B5; */
     margin-left: 20px;
-  
-color:black;
-     margin-right: 20px;
+  margin-top: 0px;
+    color:black;
+     /* margin-right: 20px; */
      border-radius: 10px;
-border: 0.5px solid grey;
-padding-left: 50px;
-padding-bottom: 30px;
+/* border: 0.5px solid grey; */
+/* padding-left: 50px; */
+/* padding-bottom: 29px; */
 font-size: 16px;
+width: 500px;
+
+}
+.personal-info-2{
+    /* background-color: #B5B5B5; */
+    margin-left: 20px;
+  margin-top: 0px;
+    color:black;
+     /* margin-right: 20px; */
+     border-radius: 10px;
+/* border: 0.5px solid grey; */
+/* padding-left: 50px; */
+/* padding-bottom: 29px; */
+font-size: 16px;
+
 
 }
 
+#upload-file{
+    margin-bottom: 10px;
+    margin-top: 0px;
+}
+.title-header{
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    /* margin-top: 20px; */
+     margin-bottom: 0px; 
+    margin-right: 20px;
+}
+.title-top{
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+hr{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}

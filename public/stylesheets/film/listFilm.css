@@ -11,9 +11,9 @@
 } 
 
 .card{
-   background-color: rgba(0, 0, 0, 0.9);
+   background-color: rgba(0, 0, 0, 0.8);
    position: absolute;
-    height: 120px; 
+    height: 90px; 
    bottom: 0px;
    /* border: 1px solid black; */
    width: 100%;
@@ -46,9 +46,9 @@
     vertical-align: super;
   /* height: 150px; */
   height: auto;
-  min-height: 120px;
+  min-height: 90px;
   max-height: 430px;    
-  font-size: 36px;
+  font-size: 30px;
      background-color: rgba(0, 0, 0, 1);
     
      padding-bottom: 2px;
@@ -69,10 +69,10 @@
     }
  
 .nopadding a:hover{
-    font-size: 32px;
+    font-size: 31px;
 }
 .nopadding {
- font-size: 30px;
+ font-size: 25px;
   margin-top: 25px !important;
   outline: 2px solid #333;
   display: block;

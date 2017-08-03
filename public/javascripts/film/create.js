@@ -11,7 +11,7 @@ function readURL(input) {
         };
 
         reader.readAsDataURL(input.files[0]);
-        $('#upload-other-photo').attr('style', 'display:visible');
+        // $('#upload-other-photo').attr('style', 'display:visible');
     }
 }
 
@@ -180,8 +180,8 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
                         console.log(film);
 
                         databaseRef.child('/films').push(film);
-                        alert("Tạo thành công");
-                        window.location.href = '/film/create';
+                        alert("Tạo phim thành công");
+                        window.location.href = '/film/list';
                     });
 
 

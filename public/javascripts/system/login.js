@@ -54,6 +54,7 @@ app.controller('loginController', ['$scope', function ($scope) {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
+            console.log(error);
            alert("Đăng nhập có lỗi, vui lòng thử lại");
             // ...
         });

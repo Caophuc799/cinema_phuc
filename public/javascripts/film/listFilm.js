@@ -24,6 +24,22 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
         for (var i = 0; i < $scope.listFilm.length; ++i) {
             //    console.log($scope.listFilm[i]);
             //    console.log($scope.listFilm[i].$id);
+            var parts = $scope.listFilm[i].year.split('/');
+            //please put attention to the month (parts[0]), Javascript counts months from 0:
+            // January - 0, February - 1, etc
+            var mydate = new Date(parts[2], parts[1] - 1, parts[0]);
+            var datecur=new Date();
+           console.log(mydate);
+            if(mydate.getFullYear()==datecur.getFullYear()){
+                console.log("dc");
+
+            }
+            if(mydate.getFullYear()>=datecur.getFullYear()&&mydate.getMonth()==datecur.getMonth()){
+                $scope.listFilm[i].year='Phim Mới';
+                console.log("dc");
+            }
+            // console.log(mydate);
+            // if ($scope.listFilm[i].year)
 
         }
     });

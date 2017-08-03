@@ -20,7 +20,7 @@ a {
 .white{
   color: white;
 }
-
+/* 
 .header-icon-logout{
     padding-top: 2px;
     float: right;
@@ -29,7 +29,7 @@ a {
     color: white;
     margin-top: 5px;
     margin-left: 10px;
-}
+} */
 .avatar-profile-header{
     height: 40px;
     width: 40px;
@@ -73,17 +73,38 @@ ul{
     color:aquamarine; 
     margin-right:1px;
       margin-left:10px;
-    font-size: 22px;
-     font-style: italic;
+    font-size: 20px;
+  
+       padding-bottom:10px;
+  font-family: 'Anton', sans-serif;
+    text-transform:uppercase;
 }
-
+.menu-ac a:hover{
+    background-color: #F5F6CE;
+     text-decoration:wavy;
+  color: black;
+     border-radius: 15px;
+}
+.menu-dis a:hover{
+    
+      background-color: #F5F6CE;
+      text-decoration:wavy;
+      color: black;
+      border-radius: 15px;
+}
 .menu-dis a{
     padding-top:14px;
     float:right;
+     
     color:white; 
     margin-right:1px;
     margin-left:14px;
-    font-size: 22px;
-   
+    font-size: 20px;
+        padding-bottom:10px;
+  font-family: 'Anton', sans-serif;
+   text-transform:uppercase;
 }
 
+.size-form{
+    width: 1000px;
+}

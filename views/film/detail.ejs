@@ -46,10 +46,10 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <div ng-click="signoutCinema()" style="margin-left:14px;font-size:22px;padding-top:10px;" class="header-icon-logout">
-                            <a style="color:white;" href="#">
+                       <div ng-click="signoutCinema()" class=" menu-dis">
+                            <a  href="#">
                             Đăng suất
-                            <i  class="fa fa-sign-out white" aria-hidden="true"></i></a>
+                            <i  class="fa fa-sign-out " aria-hidden="true"></i></a>
                         </div>
                         <div>
                             <a href="/user">
@@ -96,21 +96,21 @@
                     </div>
                     <!-- edit form column -->
                     <div class="main-right">
-                        <h1>Tên Phim:
+                        <h1>
                             {{Film.name}}
                         </h1>
-                        <hr>
+                       
 
                         <!-- <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-edit"></i></a> -->
 
 
-                        <h3><div class="tieude">Thể Loại:</div>
+                        <h3 class="content-style"><div class="tieude">Thể Loại: </div>
 
                             <!-- <a href="#" editable-select="Film.genre" e-ng-options="s.name for s in genres"> -->
                             {{Film.genre}}
 
                         </h3>
-                        <h3><div class="tieude">Năm sản xuất:</div>{{Film.year}}</h3>
+                        <h3 class="content-style"><div class="tieude">Năm sản xuất: </div>{{Film.year}}</h3>
                         <div class="tieude">
                         Nội dung:
                         </div>

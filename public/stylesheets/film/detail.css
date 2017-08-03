@@ -18,6 +18,7 @@
        border:1px solid black;
        position: relative;
      overflow: hidden; 
+     
 }
     .image-avatar img{
      object-fit: cover;
@@ -31,29 +32,35 @@
     color: black;
 }
 .content-style{
-font-family: 'Tinos', serif;
- font-size: 20px;
- font-stretch: condensed;
+    font-family: 'Dancing Script', cursive;
+ font-size: 22px;
+ text-align: justify;
+
 
  
-  border-radius: 10px;
- padding: 10px;
 }
 .tieude{
-   font-size:27px;
+   font-size:30px;
    display: inline;
-   font-family: 'Bevan', cursive;
+  font-family: 'Francois One', sans-serif;
+   border-bottom: 1px solid black;
 }
 .main-right{
     padding: 10px;
-    background-color: rgb(200, 219, 230);
+     background-color: rgba(244, 244, 244, 0.3); 
     border-radius: 10px;
-    height: 510px;  
+    /* height: 510px;   */
     margin-left: 430px;
     margin-right: 10px;
-     overflow: scroll;
+     /* overflow: scroll;
      
- border: 1px solid darkgrey;
+ border: 1px solid darkgrey; */
   
+}
+.main-right h1{
+    font-size: 80px;
+    font-family: 'Lobster', cursive;
+    color:#003300;
+    border-bottom: 1px solid black;
 }
 

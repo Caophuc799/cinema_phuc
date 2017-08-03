@@ -24,7 +24,6 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
         for (var i = 0; i < $scope.listFilm.length; ++i) {
             //    console.log($scope.listFilm[i]);
             //    console.log($scope.listFilm[i].$id);
-            if($scope.listFilm[i].year)
 
         }
     });

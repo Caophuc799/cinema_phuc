@@ -49,22 +49,23 @@
                         <div ng-click="signoutCinema()" class=" menu-dis">
                             <a href="#">
                                  <i  class="fa fa-sign-out " aria-hidden="true"></i>
-                            Đăng suất
+                            Đăng xuất
                            </a>
                         </div>
-                        <div>
 
-                            <div class="menu-dis">
-                                <a href="/user">
-                                   {{account.name}}
-                                    <div class="avatar-profile-header">
-                                        <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
-                                    </div>
-                                   
-                                </a>
 
-                            </div>
+                        <div class="menu-dis">
+                            <a style="float:left;" href="/user">
+
+                                <div class="avatar-profile-header">
+                                    <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
+                                </div>
+                                <div style="margin-left:40px;">
+                                    {{account.name}}
+                                </div>
                             </a>
+
+
                         </div>
                         <div class="menu-dis">
                             <a href="/film/create">
@@ -112,10 +113,12 @@
                     </h3>
                     <h3 class="content-style">
                         <div class="tieude">Năm sản xuất: </div>{{Film.year}}</h3>
-                    <div class="tieude">
-                        Nội dung:
-                    </div>
-                    <p class="content-style"> {{Film.content}}</p>
+                    <h3 class="content-style">
+                        <div class="tieude">
+                            Nội dung:
+                        </div>
+                        <p style="font-size:20px;"> {{Film.content}}</p>
+                    </h3>
                 </div>
             </div>
 

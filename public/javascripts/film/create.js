@@ -48,7 +48,9 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
 
                 $scope.account.$loaded(function () {
                     console.log($scope.account.$id);
-
+                    if ($scope.account.name == '' || $scope.account.name == ' ') {
+                        $scope.account.name = "Tài Khoản";
+                    }
                 })
 
             }
@@ -117,7 +119,7 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
         else if (file == null) {
             alert("Vui lòng chọn ảnh");
         } {
-            if (new Date(da).getTime()>new Date(Date.now()).getTime())
+            if (new Date(da).getTime() > new Date(Date.now()).getTime())
             { alert("Ngày không hợp lí"); }
             else {
                 // Data firebase

@@ -8,7 +8,7 @@ var app = angular.module("app.cinema", []);
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-         window.location.href = '/film/list';
+        window.location.href = '/film/list';
     } else {
         // No user is signed in.
 
@@ -38,14 +38,21 @@ app.controller('loginController', ['$scope', function ($scope) {
             // The signed-in user info.
             var user = result.user;
             var databaseRef = firebase.database().ref();
+            var emailacc='';
+            if(user.email!=null){
+                emailacc=user.email;
+            }
             databaseRef.child('/users/' + user.uid).set({
-                email: user.email,
+                email: emailacc,
                 name: user.displayName,
-                url: user.photoURL
+                url: user.photoURL,
+                phone: ' ',
+                address: ' ',
+                description: ' '
             })
-           
-          window.location.href = "/film/list";
-            
+            console.log(user);
+            window.location.href = "/film/list";
+
         }).catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -55,7 +62,7 @@ app.controller('loginController', ['$scope', function ($scope) {
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
             console.log(error);
-           alert("Đăng nhập có lỗi, vui lòng thử lại");
+            alert("Đăng nhập có lỗi, vui lòng thử lại");
             // ...
         });
     }
@@ -81,9 +88,12 @@ app.controller('loginController', ['$scope', function ($scope) {
             databaseRef.child('/users/' + user.uid).set({
                 email: user.email,
                 name: user.displayName,
-                url: user.photoURL
+                url: user.photoURL,
+                phone: ' ',
+                address: ' ',
+                description: ' '
             })
-           
+
             window.location.href = "/film/list";
             // ...
         }).catch(function (error) {

@@ -36,32 +36,34 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                         <div ng-click="signoutCinema()" class=" menu-dis">
-                            <a  href="#">
+                        <div ng-click="signoutCinema()" class=" menu-dis">
+                            <a href="#">
                                   <i  class="fa fa-sign-out " aria-hidden="true"></i>
-                            Đăng suất
+                            Đăng xuất
                           </a>
                         </div>
-                        <div>
 
 
-                               
 
-                                    
 
-                          
-                            <div class="menu-dis">
-                               
-                            
-                                <a href="/user">
-                                    <div class="avatar-profile-header">
-                                <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
-                                  </div>
-                               {{account.name}}
-                                  
-</a>
 
-                            </div>
+
+
+
+                        <div class="menu-dis">
+
+
+                            <a style="float:left;" href="/user">
+                                <div class="avatar-profile-header">
+                                    <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
+                                </div>
+                                <div style="margin-left:40px;">
+                                {{account.name}}
+                                </div>
+
+                            </a>
+
+
 
                         </div>
                         <div class="menu-dis">
@@ -84,10 +86,10 @@
 
 
 
-<div class="intro">
-    <img src="/images/1.jpg" alt="" class="loading">
-    <h1> Loading...</h1>
-</div>
+        <div class="intro">
+            <img src="/images/1.jpg" alt="" class="loading">
+            <h1> Loading...</h1>
+        </div>
 
 
 
@@ -109,7 +111,7 @@
                         </span> -->
                             <div class="ribbon">
                                 {{Film.year}}
-                                <div style="color:yellow">{{Film.new}}</div>
+                                <div >{{Film.new}}</div>
                             </div>
                             <div class="card">
                                 <p class="card-name">{{Film.name}}</p>

@@ -7,7 +7,7 @@ app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$fireba
     function ($scope, $log, $firebaseArray, $firebaseObject) {
 
 
-          firebase.auth().onAuthStateChanged(function (user) {
+        firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
 
                 if (user != null) {
@@ -20,7 +20,9 @@ app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$fireba
 
                     $scope.account.$loaded(function () {
                         console.log($scope.account.$id);
-
+                        if($scope.account.name==''||$scope.account.name==' '){
+                            $scope.account.name = "Tài Khoản";
+                        }
                     })
 
                 }

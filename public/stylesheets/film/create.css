@@ -46,3 +46,13 @@ input[type=date]::-webkit-clear-button{
      -webkit-appearance: none;
     display: none;
 }
+hr{
+    margin-top: 0px;
+    margin-bottom: 0px;
+ }
+/*.film-info{
+    margin-right: 20px;
+} */
+.input-info{
+   left:40px;
+}

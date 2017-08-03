@@ -3,7 +3,7 @@ var app = angular.module("app.cinema", []);
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-         window.location.href = '/film/list';
+        window.location.href = '/film/list';
     } else {
         // No user is signed in.
 
@@ -35,11 +35,13 @@ app.controller('registerController', ['$scope', function ($scope) {
                         databaseRef.child('/users/' + firebaseUser.uid).set({
                             email: $scope.email,
                             name: $scope.yourname,
-                            url: "https://firebasestorage.googleapis.com/v0/b/filmapplication-9a88c.appspot.com/o/aa.jpg?alt=media&token=d94d5fc2-25bd-4f14-9193-8a719efb2733"
-
+                            url: "https://firebasestorage.googleapis.com/v0/b/filmapplication-9a88c.appspot.com/o/aa.jpg?alt=media&token=d94d5fc2-25bd-4f14-9193-8a719efb2733",
+                            phone: '. ',
+                            address: '. ' ,
+                            description: '. '
                         })
 
-                        
+
 
                         alert('Tạo tài khoản thành công');
                         //  window.location.href = "/film/list";

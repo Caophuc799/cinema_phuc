@@ -31,9 +31,9 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
             var datecur = new Date();
             // console.log(mydate);
             if (mydate.getFullYear() >= datecur.getFullYear()) {
-                if ((mydate.getMonth()-datecur.getMonth())<=1) {
+                if ((mydate.getMonth() - datecur.getMonth()) <= 1) {
                     $scope.listFilm[i].new = 'Phim Mới';
-                      $scope.listFilm[i].year = '';
+                    $scope.listFilm[i].year = '';
                 }
 
             }
@@ -53,9 +53,11 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
 
                 $scope.account.$loaded(function () {
                     console.log($scope.account.$id);
-
+                   if($scope.account.name==''||$scope.account.name==' '){
+                        $scope.account.name = "Tài Khoản";
+                    }
                 })
-                console.log($scope.account);
+              
 
             }
         } else {

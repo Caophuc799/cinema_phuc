@@ -22,7 +22,7 @@
     margin-top: 5px;
     margin-left: 10px;
 }
-.avatar-profile-header{
+/*.avatar-profile-header{
     height: 40px;
     width: 40px;
     border-radius: 50%;
@@ -39,7 +39,7 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
-}
+} */
 
 .main-container{
    width: 970px;

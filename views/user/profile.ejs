@@ -61,30 +61,31 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                         <div ng-click="signoutCinema()" class=" menu-dis">
-                            <a  href="#">
-                            Đăng suất
-                            <i  class="fa fa-sign-out " aria-hidden="true"></i></a>
+                            <a href="#">
+                           
+                            <i  class="fa fa-sign-out " aria-hidden="true"></i>
+                         Đăng suất
+                        </a>
                         </div>
                         <div>
-                            <a href="">
-
-                                <div class="avatar-profile-header">
 
 
-                                    <img src="{{account.url}}" class="avatar-img" alt="avatar">
 
-                                </div>
-                                <div class="menu-ac">
-                                    <a href="">
-                                    Tài khoản
-</a>
-                                </div>
-                            </a>
+                            <div class="menu-ac">
+                                <a href="">
+                                       Tài khoản
+                                    <div class="avatar-profile-header">
+                                        <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
+                                    </div>
+                                 
+                                </a>
+                            </div>
                         </div>
                         <div class="menu-dis">
                             <a href="/film/create">
-                                Tạo Phim
+                             
                                 <i class="glyphicon glyphicon-pencil"></i>
+                                   Tạo Phim
                             </a>
                         </div>
                     </div>
@@ -105,9 +106,9 @@
                         <img id="img-profile" src="{{account.url}}" class="avatar-img" alt="avatar">
                     </div>
                     <h2 style="margin-left:75px;">Ảnh đại diện
-                       
+
                     </h2>
-                     <br>
+                    <br>
                     <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm">
 
                 </div>
@@ -115,10 +116,10 @@
                 <!-- edit form column -->
                 <div class="col-md-7  personal-info">
 
-                    <h2 >Thông tin cá nhân</h2>
+                    <h2>Thông tin cá nhân</h2>
                     <hr>
-                    <form class="form-horizontala"  role="form">
-                        <div class="form-group" >
+                    <form class="form-horizontala" role="form">
+                        <div class="form-group">
                             <label class="col-lg-6 control-label">Display Name:</label>
                             <div class="col-lg-11">
                                 <input ng-model="account.name" class="form-control" value="" type="text">
@@ -145,9 +146,9 @@
                                 <input ng-model="confirmpassword" class="form-control" value="" type="password">
                             </div>
                         </div>
-                       
+
                         <div class="form-group">
-                           
+
                             <label class="col-md-3 control-label">  <br></label>
                             <div class="col-md-8 col-md-offset-6" style="margin-right:20px;">
                                 <input ng-click="savechange()" class="btn btn-primary" value="Save Changes" type="button">

@@ -13,26 +13,30 @@
 .card{
    background-color: rgba(0, 0, 0, 0.9);
    position: absolute;
-   height: 120px;
-   bottom: 1px;
+    height: 120px; 
+   bottom: 0px;
    /* border: 1px solid black; */
    width: 100%;
+   padding:2px;
    padding-top:10px;
    overflow: hidden;
+    /* height: auto; */
   
    
 }
 .card p{
-    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+   
 }
  .card-name{
-     text-align: center;
+     
       color: white;
-      position: absolute;
+      position: relative;
        top: 5px;
-      left: 5px;
+      left: 2px;
       right:5px;
-      
+       margin-right: 2px;
     
       text-transform:uppercase;
     font-family: 'Francois One', sans-serif;
@@ -40,9 +44,11 @@
  }
 .card:hover{
     vertical-align: super;
-  height: 150px;
- max-height:438px; 
-  font-size: 37px;
+  /* height: 150px; */
+  height: auto;
+  min-height: 120px;
+  max-height: 430px;    
+  font-size: 36px;
      background-color: rgba(0, 0, 0, 1);
     
      padding-bottom: 2px;
@@ -112,4 +118,18 @@
     -webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
     box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.75);
+}
+
+
+.intro {
+    position: absolute;
+    width: 100%;
+    top: calc(50vh - 150px);
+    text-align: center;
+}
+img.loading {
+    opacity: 0;
+    width: 150px;
+    transform-style: preserve-3d;
+    animation: loading 2s 2 alternate ease;
 }

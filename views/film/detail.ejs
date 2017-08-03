@@ -46,32 +46,31 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                       <div ng-click="signoutCinema()" class=" menu-dis">
-                            <a  href="#">
+                        <div ng-click="signoutCinema()" class=" menu-dis">
+                            <a href="#">
+                                 <i  class="fa fa-sign-out " aria-hidden="true"></i>
                             Đăng suất
-                            <i  class="fa fa-sign-out " aria-hidden="true"></i></a>
+                           </a>
                         </div>
                         <div>
-                            <a href="/user">
 
-                                <div class="avatar-profile-header">
+                            <div class="menu-dis">
+                                <a href="/user">
+                                     Tài khoản
+                                    <div class="avatar-profile-header">
+                                        <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
+                                    </div>
+                                   
+                                </a>
 
-
-                                    <img src="{{account.url}}" class="avatar-img" alt="avatar">
-
-                                </div>
-                                <div class="menu-dis">
-                                    <a href="/user">
-                                    Tài khoản
- </a>
-
-                                </div>
+                            </div>
                             </a>
                         </div>
                         <div class="menu-dis">
                             <a href="/film/create">
-                                Tạo Phim
+                                
                                 <i class="glyphicon glyphicon-pencil"></i>
+                                Tạo Phim
                             </a>
                         </div>
                     </div>
@@ -81,46 +80,48 @@
 
 
 
-     
-
-            <!-- Body -->
-            <div class="container main-container" >
-
-                <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <div class="image-avatar">
-                            <img src='{{Film.url}}' style="border-radius:20px;border:1px solid black" alt="avatar">
-
-                        </div>
-                    </div>
-                    <!-- edit form column -->
-                    <div class="main-right">
-                        <h1>
-                            {{Film.name}}
-                        </h1>
-                       
-
-                        <!-- <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-edit"></i></a> -->
 
 
-                        <h3 class="content-style"><div class="tieude">Thể Loại: </div>
+        <!-- Body -->
+        <div class="container main-container">
 
-                            <!-- <a href="#" editable-select="Film.genre" e-ng-options="s.name for s in genres"> -->
-                            {{Film.genre}}
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="image-avatar">
+                        <img src='{{Film.url}}' style="border-radius:20px;border:1px solid black" alt="avatar">
 
-                        </h3>
-                        <h3 class="content-style"><div class="tieude">Năm sản xuất: </div>{{Film.year}}</h3>
-                        <div class="tieude">
-                        Nội dung:
-                        </div>
-                        <p class="content-style"> {{Film.content}}</p>
                     </div>
                 </div>
+                <!-- edit form column -->
+                <div class="main-right">
+                    <h1>
+                        {{Film.name}}
+                    </h1>
 
 
+                    <!-- <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-edit"></i></a> -->
 
+
+                    <h3 class="content-style">
+                        <div class="tieude">Thể Loại: </div>
+
+                        <!-- <a href="#" editable-select="Film.genre" e-ng-options="s.name for s in genres"> -->
+                        {{Film.genre}}
+
+                    </h3>
+                    <h3 class="content-style">
+                        <div class="tieude">Năm sản xuất: </div>{{Film.year}}</h3>
+                    <div class="tieude">
+                        Nội dung:
+                    </div>
+                    <p class="content-style"> {{Film.content}}</p>
+                </div>
             </div>
+
+
+
+        </div>
 
 
 

@@ -31,14 +31,16 @@ a {
     margin-left: 10px;
 } */
 .avatar-profile-header{
-    height: 40px;
-    width: 40px;
+    height: 35px;
+    width: 35px;
     border-radius: 50%;
     border: 2px solid white;
     overflow: hidden;
-    float:right;
+    float:left;
     display: inline-block;
-    margin-top: 5px;
+    margin-top: -7px;
+      margin-bottom: -3px;
+
 
 }
 
@@ -105,6 +107,3 @@ ul{
    text-transform:uppercase;
 }
 
-.size-form{
-    width: 1000px;
-}

@@ -52,7 +52,7 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
                 $scope.account = $firebaseObject(databaseRef.child('/users/' + user.uid));
 
                 $scope.account.$loaded(function () {
-                    console.log($scope.account.$id);
+                     console.log($scope.account);
                    if($scope.account.name==''||$scope.account.name==' '){
                         $scope.account.name = "Tài Khoản";
                     }

@@ -34,9 +34,10 @@
         
     }
     #upload-file{
-        margin-left: 8px;
+        margin-left: 1px;
         /* background-color:rgba(137  , 137 ,137, 0.3); */
         border-radius: 8px;
+        width: 300px;
     }
     input[type=date]::-webkit-inner-spin-button {
     -webkit-appearance: none;

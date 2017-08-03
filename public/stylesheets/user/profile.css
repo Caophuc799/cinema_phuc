@@ -1,6 +1,6 @@
 .avatar-profile{
-    height: 150px;
-    width: 150px;
+    height: 234px;
+    width: 234px;
     border-radius: 50%;
     border: 2px solid white;
     overflow: hidden;
@@ -13,9 +13,9 @@
     object-fit:scale-down;
 }
 .image-title{
-    margin-top: 0px;
+    margin-top: 6px;
     margin-bottom: 0px;
-    font-size: 18px;
+    font-size: 24px;
     text-align: center;
 }
 .header-icon-logout{
@@ -62,8 +62,9 @@
 /* padding-top: 30px;
 margin-left: 20px; */
 width: 360px;
-margin-top: 20px;
-padding-top: 5px;
+margin-top: 15px;
+padding-top: 10px;
+padding-bottom: 5px;
 color:black;
 border-radius: 10px;
  border: 0.5px solid grey; 

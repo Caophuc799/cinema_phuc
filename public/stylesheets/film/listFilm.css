@@ -80,7 +80,8 @@
   position: relative;
    height: 440px;
    width: 100%;
-  padding: 2px;
+  /* padding: 2px; */
+  border: 2px solid gray;
    overflow:hidden;
 }
 .ribbon-right{

@@ -35,10 +35,10 @@ app.controller('registerController', ['$scope', function ($scope) {
                         databaseRef.child('/users/' + firebaseUser.uid).set({
                             email: $scope.email,
                             name: $scope.yourname,
-                            url: "https://firebasestorage.googleapis.com/v0/b/filmapplication-9a88c.appspot.com/o/aa.jpg?alt=media&token=d94d5fc2-25bd-4f14-9193-8a719efb2733",
-                            phone: '. ',
-                            address: '. ' ,
-                            description: '. '
+                            url: "https://firebasestorage.googleapis.com/v0/b/filmproject-bb14a.appspot.com/o/aa.jpg?alt=media&token=53477238-c43d-4a74-b114-4b62f0b83efd",
+                            phone: ' ',
+                            address: ' ' ,
+                            description: ' '
                         })
 
 

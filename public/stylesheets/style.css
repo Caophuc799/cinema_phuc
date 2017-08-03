@@ -48,7 +48,7 @@ a {
 .avatar-profile-header img{
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: scale-down;
 }
 ul{
     list-style: none;
@@ -155,5 +155,9 @@ font-weight: bold;
          /* padding-left: 10px;
      padding-right: 10px; */
 }
+    textarea {
+    resize: none;
+}
+
     
 

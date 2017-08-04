@@ -8,37 +8,51 @@
 .login-container{
     margin-top: 60px;
     height: 450px;
-    width:330px;
+    width:530px;
     background-color: white;
     border:  1px solid thistle;
     border-bottom-width: 4px;
-    border-radius: 10px;
+     border-radius: 10px; 
+    padding-left:50px;
+    padding-right:50px;
+    /* text-align: center; */
     
 }
 .omb_authTitle {
-    margin-top: 30px;
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 40px;
     text-align: center;
-    font-size: 35px;
-	line-height: 100%;
+    font-size: 45px;
+    line-height: 100%;
+        font-family: 'Nothing You Could Do', cursive;
 }
+   
 .omb_socialButtons a {
 	color: white; 
     opacity:0.9;
     width: 110px;
     display: inline-block;
     position: relative;
+    
   
 }
 .omb_socialButtons a:hover {
     color: white;
 	opacity:1;    	
 }
- .omb_socialButtons .omb_btn-facebook {background: #3b5998;   margin-left: 15px;position: absolute;}
+ .omb_socialButtons .omb_btn-facebook {
+     background: #3b5998;
+      width: 150px; 
+        margin-left: 50px;
+        position: absolute;
+          border-radius: 0px;
+    }
 .omb_socialButtons .omb_btn-google {    background: #c32f10;
-    margin-left: 55px;
-    float: left;
+   left:100px;
+     width: 150px; 
+    float: right;
     position: absolute;
+    border-radius: 0px;
 }
 .omb_loginOr {
 	position: relative;
@@ -51,7 +65,7 @@
     
 }
 .omb_hrOr {
-	background-color: black;
+	/* background-color: black; */
 	height: 1px;
 	
 	margin-bottom: 0px !important;
@@ -68,3 +82,17 @@
 	width: 2.5em;
 	text-align: center;
 }			
+
+.checkoption{
+   width: 100%;
+   height: 50px;
+   border: 1px solid gray;
+}
+.login-option{
+ width: 50%;
+font-size: 35px;
+ height: 100%;
+ text-align: center;
+    background-color: #CE0000;
+    color: white;
+}

@@ -5,7 +5,7 @@ var app = angular.module("app.cinema", ["xeditable", 'firebase']);
 
 app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$firebaseObject',
     function ($scope, $log, $firebaseArray, $firebaseObject) {
-
+        $scope.ten = "Tài Khoản";
 
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
@@ -19,9 +19,10 @@ app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$fireba
                     $scope.account = $firebaseObject(databaseRef.child('/users/' + user.uid));
 
                     $scope.account.$loaded(function () {
-                         console.log($scope.account);
-                        if($scope.account.name==''||$scope.account.name==' '){
-                            $scope.account.name = "Tài Khoản";
+                        console.log($scope.account);
+                        if ($scope.account.name == '' || $scope.account.name == ' ') {
+                        }else{
+                            $scope.ten = $scope.account.name
                         }
                     })
 

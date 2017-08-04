@@ -38,19 +38,26 @@ app.controller('loginController', ['$scope', function ($scope) {
             // The signed-in user info.
             var user = result.user;
             var databaseRef = firebase.database().ref();
-            var emailacc='';
-            if(user.email!=null){
-                emailacc=user.email;
+            var emailacc = '';
+            if (user.email != null) {
+                emailacc = user.email;
             }
-            databaseRef.child('/users/' + user.uid).set({
+            var account = {
                 email: emailacc,
                 name: user.displayName,
                 url: user.photoURL,
                 phone: ' ',
                 address: ' ',
                 description: ' '
-            })
-            console.log(user);
+            }
+            databaseRef.child('/users/' + user.uid).set(account)
+
+
+            console.log(account);
+            console.log(user.uid);
+            console.log($scope.email);
+            console.log($scope.yourname);
+
             window.location.href = "/film/list";
 
         }).catch(function (error) {
@@ -61,7 +68,7 @@ app.controller('loginController', ['$scope', function ($scope) {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-             console.log("Lỗi đăng nhập google");
+            console.log("Lỗi đăng nhập google");
             console.log(error);
             alert("Đăng nhập có lỗi, vui lòng thử lại");
             // ...
@@ -85,15 +92,24 @@ app.controller('loginController', ['$scope', function ($scope) {
 
 
             // User is signed in.
-
-            databaseRef.child('/users/' + user.uid).set({
+            var account = {
                 email: user.email,
                 name: user.displayName,
                 url: user.photoURL,
                 phone: ' ',
                 address: ' ',
                 description: ' '
-            })
+            }
+
+
+            databaseRef.child("/users/" + user.uid).set(account);
+
+            console.log(account);
+            console.log(user.uid);
+            console.log($scope.email);
+            console.log($scope.yourname);
+
+
 
             window.location.href = "/film/list";
             // ...

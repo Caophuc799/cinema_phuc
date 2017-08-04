@@ -1,13 +1,16 @@
 .omb_authTitle {
   
+     margin-top: 20px;
+   
     text-align: center;
-    font-size: 35px;
-	line-height: 100%;
+    font-size: 45px;
+    line-height: 100%;
+        font-family: 'Nothing You Could Do', cursive;
 }
 .main-center{
-   padding-left: 30px;
+   /* padding-left: 30px; */
 }
-
+/* 
 .form-register{
     background-color: white;
    margin-top: 40px;
@@ -17,4 +20,20 @@
    height: 450px;
    border-bottom-width: 4px;
    border-bottom-color: grey;
+} */
+.login-container{
+    margin-top: 60px;
+    height: 450px;
+    width:530px;
+    background-color: white;
+    border:  1px solid thistle;
+    border-bottom-width: 4px;
+     border-radius: 10px; 
+    padding-left:50px;
+    padding-right:50px;
+    /* text-align: center; */
+    
+}
+.login-button{
+    width: 428px;
 }

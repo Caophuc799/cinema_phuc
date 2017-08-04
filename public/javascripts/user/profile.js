@@ -23,8 +23,8 @@ function readURL(input) {
             console.log(checkimg);
             $('#img-profile')
                 .attr('src', e.target.result);
-                // .width(234)
-                // .height(234);
+            // .width(234)
+            // .height(234);
         };
 
 
@@ -32,12 +32,16 @@ function readURL(input) {
     }
 }
 
+function trimSpace(str) {
+    return str.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g, "").replace(/\s+/g, " ");
+}
 app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$firebaseObject',
     function ($scope, $log, $firebaseArray, $firebaseObject) {
 
 
-        $scope.mai = "mai";
 
+        $scope.mai = "mai";
+        $scope.ten = "Tài Khoản";
 
         var file = null;
         document.getElementById('upload-file').addEventListener('change', function (event) {
@@ -56,9 +60,13 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                     $scope.account = $firebaseObject(databaseRef.child('/users/' + user.uid));
 
                     $scope.account.$loaded(function () {
-                         console.log($scope.account);
-                        if($scope.account.name==''||$scope.account.name==' '){
-                            $scope.account.name="Tài Khoản";
+                        console.log($scope.account);
+
+                        if ($scope.account.name == '' || $scope.account.name == ' ') {
+
+
+                        } else {
+                            $scope.ten = $scope.account.name
                         }
 
                     })
@@ -87,7 +95,7 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
             if (checkimg == false) {
                 var ac = {
                     email: $scope.account.email,
-                    name: $scope.account.name,
+                    name: trimSpace($scope.account.name),
                     url: $scope.account.url,
                     phone: $scope.account.phone,
                     address: $scope.account.address,

@@ -33,7 +33,7 @@ function readURL(input) {
 app.controller('createController', ['$scope', '$log', '$firebaseArray', '$firebaseObject', function ($scope, $log, $firebaseArray, $firebaseObject) {
 
 
-
+    $scope.ten = "Tài Khoản";
 
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -49,7 +49,10 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
                 $scope.account.$loaded(function () {
                     console.log($scope.account);
                     if ($scope.account.name == '' || $scope.account.name == ' ') {
-                        $scope.account.name = "Tài Khoản";
+
+
+                    } else {
+                        $scope.ten = $scope.account.name
                     }
 
                 })

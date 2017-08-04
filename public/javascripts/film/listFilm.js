@@ -15,7 +15,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$firebaseObject", function ($scope, $log, $firebaseArray, $firebaseObject) {
     var databaseRef = firebase.database().ref();
 
-
+    $scope.ten = "Tài Khoản";
     // User is signed in.
     $scope.listFilm = [];
     $scope.listFilm = $firebaseArray(databaseRef.child("/films"));
@@ -52,12 +52,15 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
                 $scope.account = $firebaseObject(databaseRef.child('/users/' + user.uid));
 
                 $scope.account.$loaded(function () {
-                     console.log($scope.account);
-                   if($scope.account.name==''||$scope.account.name==' '){
-                        $scope.account.name = "Tài Khoản";
+                    console.log($scope.account);
+                    if ($scope.account.name == '' || $scope.account.name == ' ') {
+                       
+
+                    } else {
+                        $scope.ten = $scope.account.name
                     }
                 })
-              
+
 
             }
         } else {

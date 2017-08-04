@@ -128,6 +128,9 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                             // window.location.href = 'film/list';
                         }
                     });
+
+
+                    
                     // databaseRef.child('users').child($scope.account.$id).update(ac);
                     // console.log(ac);
                     // alert("Cập nhật thành công");

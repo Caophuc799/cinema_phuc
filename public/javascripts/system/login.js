@@ -45,6 +45,7 @@ app.controller('loginController', ['$scope', function ($scope) {
                 emailacc = user.email;
             }
             var account = {
+                id: user.uid,
                 email: emailacc,
                 name: user.displayName,
                 url: user.photoURL,
@@ -52,13 +53,27 @@ app.controller('loginController', ['$scope', function ($scope) {
                 address: '',
                 description: ''
             }
-            databaseRef.child('/users/' + user.uid).set(account, function (error) {
-                if (error) {
-                    alert('Có lỗi, vui lòng thử lại');
+
+            databaseRef.child('users').orderByChild("id").equalTo(user.uid).once('value', function (snapshot) {
+                var userData = snapshot.val();
+                if (userData) {
+                    console.log("exists!");
                 } else {
-                    window.location.href = 'film/list';
+                    databaseRef.child('/users/' + user.uid).set(account, function (error) {
+                        if (error) {
+                            $.alert({
+                                title: 'Thông báo',
+                                content: 'Đã xảy ra lỗi, vui lòng thử lại'
+                            });
+                        } else {
+                            window.location.href = 'film/list';
+                        }
+                    });
+
                 }
             });
+
+
 
             console.log(account);
             console.log(user.uid);
@@ -75,9 +90,12 @@ app.controller('loginController', ['$scope', function ($scope) {
             var email = error.email;
             // The firebase.auth.AuthCredential type that was used.
             var credential = error.credential;
-            console.log("Lỗi đăng nhập google");
+            console.log("Lỗi đăng nhập facebook");
             console.log(error);
-            alert("Đăng nhập có lỗi, vui lòng thử lại");
+            $.alert({
+                title: 'Thông báo',
+                content: 'Đã xảy ra lỗi, vui lòng thử lại'
+            });
             // ...
         });
     }
@@ -100,6 +118,7 @@ app.controller('loginController', ['$scope', function ($scope) {
 
             // User is signed in.
             var account = {
+                id: user.uid,
                 email: user.email,
                 name: user.displayName,
                 url: user.photoURL,
@@ -107,13 +126,21 @@ app.controller('loginController', ['$scope', function ($scope) {
                 address: '',
                 description: ''
             }
-
-
-            databaseRef.child("/users/" + user.uid).set(account, function (error) {
-                if (error) {
-                    alert('Có lỗi, vui lòng thử lại');
+            databaseRef.child('users').orderByChild("id").equalTo(user.uid).once('value', function (snapshot) {
+                var userData = snapshot.val();
+                if (userData) {
+                    console.log("exists!");
                 } else {
-                    window.location.href = 'film/list';
+                    databaseRef.child('/users/' + user.uid).set(account, function (error) {
+                        if (error) {
+                            $.alert({
+                                title: 'Thông báo',
+                                content: 'Đã xảy ra lỗi, vui lòng thử lại'
+                            });
+                        } else {
+                            window.location.href = 'film/list';
+                        }
+                    });
                 }
             });
 
@@ -124,7 +151,7 @@ app.controller('loginController', ['$scope', function ($scope) {
 
 
 
-          
+
             // ...
         }).catch(function (error) {
             // Handle Errors here.
@@ -144,7 +171,10 @@ app.controller('loginController', ['$scope', function ($scope) {
         var auth = firebase.auth();
         auth.sendPasswordResetEmail($scope.resetemail).then(function () {
             // Email sent.
-            alert('Vui lòng kiểm tra email');
+            $.alert({
+                title: 'Thông báo',
+                content: 'Vui lòng kiểm tra email'
+            });
         }).catch(function (error) {
             // An error happened.
         });
@@ -164,10 +194,16 @@ app.controller('loginController', ['$scope', function ($scope) {
                 // Error Handling
                 console.log(error);
                 if (error.code == "auth/user-not-found") {
-                    alert("Tài khoản không tồn tại, vui lòng đăng kí");
+                    $.alert({
+                        title: 'Thông báo',
+                        content: 'Tài khoản không tồn tại, vui lòng đăng kí tài khoản'
+                    }); s
                 }
                 if (error.code == "auth/wrong-password") {
-                    alert("Mật khẩu sai, vui lòng nhập lại mật khẩu");
+                    $.alert({
+                        title: 'Thông báo',
+                        content: 'Sai mật khẩu, vui lòng nhập lại mật khẩu'
+                    });
                 }
             });
 

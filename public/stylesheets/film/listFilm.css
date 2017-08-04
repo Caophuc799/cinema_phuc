@@ -136,4 +136,7 @@ img.loading {
     width: 150px;
     transform-style: preserve-3d;
     animation: loading 2s 2 alternate ease;
+    
+}
+.full-container{
 }

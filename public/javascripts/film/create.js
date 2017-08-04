@@ -121,13 +121,23 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
 
         console.log($scope.year);
         if ($scope.name == '' || $scope.year == '' || $scope.content == '' || $scope.genre.name == '') {
-            alert("Vui lòng điền đầy đủ thông tin");
+            $.alert({
+                title: 'Thông báo',
+                content: 'Vui lòng điền đầy đủ thông tin!'
+            });
         }
         else if (file == null) {
-            alert("Vui lòng chọn ảnh");
+            $.alert({
+                title: 'Thông báo',
+                content: 'Vui lòng chọn ảnh!'
+            });
         } {
-            if (new Date(da).getTime() > new Date(Date.now()).getTime())
-            { alert("Ngày không hợp lí"); }
+            if (new Date(da).getTime() > new Date(Date.now()).getTime()) {
+                $.alert({
+                    title: 'Thông báo',
+                    content: 'Ngày sản xuất phim không hợp lí!'
+                });
+            }
             else {
                 // Data firebase
                 var databaseRef = firebase.database().ref();
@@ -189,7 +199,10 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
                         console.log(film);
 
                         databaseRef.child('/films').push(film);
-                        alert("Tạo phim thành công");
+                        $.alert({
+                            title: 'Thành công',
+                            content: 'Tạo phim thành công!'
+                        });
                         window.location.href = '/film/list';
                     });
 

@@ -49,7 +49,9 @@
     width: 100%;
     object-fit: cover;
 } */
-
+.full-container {
+    min-height: 72vh
+}
 .main-container{
    width: 970px;
    margin-top: 0px;

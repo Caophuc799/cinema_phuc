@@ -33,20 +33,20 @@
 
 <body>
 
-    <div ng-controller="detailController" ng-cloak>
+    <div class="full-container" ng-controller="detailController" ng-cloak>
 
         <!-- Header -->
         <!-- Header -->
         <div class="header">
-            <nav class="navbar navbar-inverse">
+            <nav style="border-radius:0px;" class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;margin-left:-10px;">Cinema</a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <div  data-toggle="modal" data-target="#logoutform" class=" menu-dis" style="margin-right:-7px;">
+                        <div data-toggle="modal" data-target="#logoutform" class=" menu-dis" style="margin-right:-10px;">
                             <a href="#">
                                  <i  class="fa fa-sign-out " aria-hidden="true"></i>
                             Đăng xuất
@@ -81,18 +81,18 @@
 
 
 
-  <div class="modal fade" id="logoutform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="logoutform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" style="width:371px" role="document">
                 <div class="modal-content">
-                     <div class="modal-header">
+                    <div class="modal-header">
                         <h5 style="display:inline;" class="modal-title" id="exampleModalLabel"></h5>
                         <button style="margin-top:0px;display:inline;" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-                    </div> 
+                    </div>
                     <div class="modal-body">
                         <h3> Bạn có muốn đăng suất không?</h3>
-                      
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" style="float:left;width:70px;" class="btn btn-secondary" data-dismiss="modal">Không</button>
@@ -103,7 +103,12 @@
         </div>
 
         <!-- Body -->
-        <div class="container main-container">
+        <div ng-hide="inhidden" class="loading-container">
+            <div class="spinner"></div>
+            <div class="spinner-center"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+        <div ng-hide="ahidden" class="container main-container">
 
             <div class="row">
                 <!-- left column -->
@@ -148,7 +153,7 @@
 
 
     </div>
-     <%- partial('./../share/footer.ejs') -%>
+    <%- partial('./../share/footer.ejs') -%>
 </body>
 
 </html>

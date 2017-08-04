@@ -68,4 +68,7 @@
     color:#003300;
     border-bottom: 1px solid black;
 }
+.full-container{
+    min-height: 72vh;
+}
 

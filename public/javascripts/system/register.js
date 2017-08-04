@@ -3,9 +3,9 @@ var app = angular.module("app.cinema", []);
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        setTimeout(function(){
+        setTimeout(function () {
             window.location.href = '/film/list';
-        },1500);
+        }, 1500);
         //  window.location.href = '/film/list';
     } else {
         // No user is signed in.
@@ -23,7 +23,10 @@ app.controller('registerController', ['$scope', function ($scope) {
     $scope.createUser = function () {
         if ($scope.password != null) {
             if ($scope.password != $scope.passwordConfirm) {
-                alert("Mật khẩu xác nhận không giống ");
+                $.alert({
+                    title: 'Thông báo',
+                    content: 'Mật khẩu xác nhận không đúng'
+                });
             }
             else {
                 firebase.auth().createUserWithEmailAndPassword($scope.email, $scope.password)
@@ -35,6 +38,7 @@ app.controller('registerController', ['$scope', function ($scope) {
 
                         // User is signed in.
                         var account = {
+                            id: firebaseUser.uid,
                             email: $scope.email,
                             name: $scope.yourname,
                             url: '',
@@ -44,11 +48,14 @@ app.controller('registerController', ['$scope', function ($scope) {
                         }
 
 
-                        databaseRef.child("/users/" + firebaseUser.uid).set(account,function(error){
-                            if(error){
-                                alert('Có lỗi, vui lòng thử lại');
-                            }else{
-                                window.location.href='film/list';
+                        databaseRef.child("/users/" + firebaseUser.uid).set(account, function (error) {
+                            if (error) {
+                                $.alert({
+                                    title: 'Thông báo',
+                                    content: 'Đã xảy ra lỗi, vui lòng thử lại!'
+                                });
+                            } else {
+                                window.location.href = 'film/list';
                             }
                         });
 
@@ -56,18 +63,27 @@ app.controller('registerController', ['$scope', function ($scope) {
                         console.log(firebaseUser.uid);
                         console.log($scope.email);
                         console.log($scope.yourname);
-                        alert('Tạo tài khoản thành công');
+                        $.alert({
+                            title: 'Thành công',
+                            content: 'Tạo tài khoản thành công'
+                        });
 
                     }).catch(function (error) {
                         // Handle Errors here.
                         var errorCode = error.code;
                         var errorMessage = error.message;
                         if (errorCode == 'auth/weak-password') {
-                            alert('The password is too weak.');
+                            $.alert({
+                                title: 'Thông báo',
+                                content: 'Mật khẩu quá yếu'
+                            });
                         } else {
 
                             if (error.code == "auth/email-already-in-use") {
-                                alert('Tài khoản đã tồn tại');
+                                 $.alert({
+                                title: 'Thông báo',
+                                content: 'Tài khoản đã tồn tại'
+                            });
                             } else {
                                 alert(errorMessage);
                             }

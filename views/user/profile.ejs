@@ -31,7 +31,7 @@
 <body>
 
 
-    <div ng-controller="profileController">
+    <div class="full-container" ng-controller="profileController">
 
         <!-- 
         <nav class="navbar navbar-inverse bg-faded">
@@ -52,15 +52,15 @@
         </nav>  -->
         <!-- Header -->
         <div class="header">
-            <nav class="navbar navbar-inverse">
+            <nav style="border-radius:0px;" class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;">Cinema</a>
+                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;margin-left:-10px;">Cinema</a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <div data-toggle="modal" data-target="#logoutform" class=" menu-dis" style="margin-right:-7px;">
+                        <div data-toggle="modal" data-target="#logoutform" class=" menu-dis" style="margin-right:-10px;">
                             <a href="#">
                            
                             <i  class="fa fa-sign-out " aria-hidden="true"></i>
@@ -118,10 +118,14 @@
             </div>
         </div>
 
-
+        <div ng-hide="inhidden" class="loading-container">
+            <div class="spinner"></div>
+            <div class="spinner-center"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
 
         <!-- Body -->
-        <div class="container main-container">
+        <div class="container main-container" ng-hide="ahidden">
             <h1 class="page-header title-header">Chỉnh sửa hồ sơ cá nhân</h1>
             <div class="row">
                 <!-- left column -->
@@ -200,7 +204,7 @@
                             <div class="col-md-8 col-md-offset-9" style="padding-left:60px;margin-right:20px;">
                                 <input ng-click="savechange()" class="btn btn-primary" value="Save Changes" type="button">
                                 <span></span>
-                                <input class="btn btn-primary" value="Reset" type="reset">
+                                <input ng-click="reset()" class="btn btn-primary" value="Reset" type="button">
                             </div>
                         </div>
                     </div>

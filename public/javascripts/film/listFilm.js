@@ -19,8 +19,11 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
     // User is signed in.
     $scope.listFilm = [];
     $scope.listFilm = $firebaseArray(databaseRef.child("/films"));
-
+    $scope.inhidden = '';
+    $scope.ahidden = 'none'
     $scope.listFilm.$loaded().then(function () {
+        $scope.inhidden = 'none';
+        $scope.ahidden = '';
         for (var i = 0; i < $scope.listFilm.length; ++i) {
             //    console.log($scope.listFilm[i]);
             //    console.log($scope.listFilm[i].$id);

@@ -39,7 +39,8 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
     function ($scope, $log, $firebaseArray, $firebaseObject) {
 
 
-
+        $scope.inhidden = '';
+        $scope.ahidden = 'none';
         $scope.mai = "mai";
         $scope.ten = "Tài Khoản";
         $scope.imageavatar = '/images/avatar.png';
@@ -60,6 +61,9 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                     $scope.account = $firebaseObject(databaseRef.child('/users/' + user.uid));
 
                     $scope.account.$loaded(function () {
+                        $scope.ahidden = '';
+                        $scope.inhidden = 'none';
+
                         console.log($scope.account);
                         if ($scope.account.url != '') {
                             $scope.imageavatar = $scope.account.url;
@@ -81,9 +85,16 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
             }
         });
 
+        $scope.reset = function () {
+            $scope.account.email = '';
+            $scope.account.name = '';
+            $scope.account.phone = '';
+            $scope.account.description = '';
+            $scope.account.address = '';
+        }
+
+
         $scope.savechange = function () {
-
-
 
             var storageRef = firebase.storage().ref();
             var databaseRef = firebase.database().ref();
@@ -91,7 +102,11 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
             console.log(checkimg);
 
             if (trimSpace($scope.account.email) == '' || trimSpace($scope.account.name) == '' || trimSpace($scope.account.phone) == '' || trimSpace($scope.account.address) == '' || trimSpace($scope.account.description) == '') {
-                alert("Thông tin còn thiếu");
+                $.alert({
+                    title: 'Thông báo',
+                    content: 'Vui lòng điền đầy đủ thông tin!'
+                });
+
             } else {
 
 
@@ -106,10 +121,11 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                     }
                     databaseRef.child('users').child($scope.account.$id).update(ac, function (error) {
                         if (!error) {
-
-                            alert("Cập nhật thành công ");
-
-                            window.location.href = 'film/list';
+                            $.alert({
+                                title: 'Thành công',
+                                content: 'Cập nhật thông tin thành công!'
+                            });
+                            // window.location.href = 'film/list';
                         }
                     });
                     // databaseRef.child('users').child($scope.account.$id).update(ac);
@@ -171,7 +187,10 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                             databaseRef.child('users').child($scope.account.$id).update(ab, function (error) {
                                 if (!error) {
 
-                                    alert("Cập nhật thành công ");
+                                    $.alert({
+                                        title: 'Thành công',
+                                        content: 'Cập nhật thông tin thành công!'
+                                    });
 
                                     window.location.href = 'film/list';
                                 }

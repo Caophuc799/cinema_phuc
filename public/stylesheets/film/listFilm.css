@@ -13,7 +13,7 @@
 .card{
    background-color: rgba(0, 0, 0, 0.8);
    position: absolute;
-    height: 90px; 
+    height: auto;
    bottom: 0px;
    /* border: 1px solid black; */
    width: 100%;
@@ -27,6 +27,7 @@
 .card p{
     font-family: 'Roboto Slab', serif;
     text-align: center;
+  
    
 }
  .card-name{
@@ -38,6 +39,8 @@
       right:5px;
        margin-right: 2px;
     
+  min-height: 70px;
+  max-height: 430px;
       text-transform:uppercase;
     font-family: 'Francois One', sans-serif;
    
@@ -46,9 +49,9 @@
     vertical-align: super;
   /* height: 150px; */
   height: auto;
-  min-height: 90px;
+  min-height: 70px;
   max-height: 430px;    
-  font-size: 30px;
+  font-size: 29px;
      background-color: rgba(0, 0, 0, 1);
     
      padding-bottom: 2px;
@@ -69,10 +72,10 @@
     }
  
 .nopadding a:hover{
-    font-size: 31px;
+    font-size: 28px;
 }
 .nopadding {
- font-size: 25px;
+ font-size: 24px;
   margin-top: 25px !important;
   outline: 2px solid #333;
   display: block;

@@ -42,7 +42,7 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
 
         $scope.mai = "mai";
         $scope.ten = "Tài Khoản";
-
+        $scope.imageavatar = '/images/avatar.png';
         var file = null;
         document.getElementById('upload-file').addEventListener('change', function (event) {
             file = event.target.files[0];
@@ -61,8 +61,10 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
 
                     $scope.account.$loaded(function () {
                         console.log($scope.account);
-
-                        if ($scope.account.name == '' || $scope.account.name == ' ') {
+                        if ($scope.account.url != '') {
+                            $scope.imageavatar = $scope.account.url;
+                        }
+                        if (trimSpace($scope.account.name) == '' || $scope.account.name == ' ') {
 
 
                         } else {
@@ -88,83 +90,99 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
             // Create the file metadata
             console.log(checkimg);
 
-
-
-
-
-            if (checkimg == false) {
-                var ac = {
-                    email: $scope.account.email,
-                    name: trimSpace($scope.account.name),
-                    url: $scope.account.url,
-                    phone: $scope.account.phone,
-                    address: $scope.account.address,
-                    description: $scope.account.description
-                }
-
-                databaseRef.child('users').child($scope.account.$id).update(ac);
-                console.log(ac);
-                alert("Cập nhật thành công");
+            if (trimSpace($scope.account.email) == '' || trimSpace($scope.account.name) == '' || trimSpace($scope.account.phone) == '' || trimSpace($scope.account.address) == '' || trimSpace($scope.account.description) == '') {
+                alert("Thông tin còn thiếu");
             } else {
 
 
-                if (file != null) {
-                    var metadata = {
-                        contentType: file.type
-                    };
-                }
-                // Create a reference to 'images/mountains.jpg'
-                var uploadTask = storageRef.child('images/' + (Date.now()) + '.jpg').put(file, metadata);
+                if (checkimg == false) {
+                    var ac = {
+                        email: $scope.account.email,
+                        name: trimSpace($scope.account.name),
+                        url: $scope.account.url,
+                        phone: $scope.account.phone,
+                        address: $scope.account.address,
+                        description: $scope.account.description
+                    }
+                    databaseRef.child('users').child($scope.account.$id).update(ac, function (error) {
+                        if (!error) {
 
+                            alert("Cập nhật thành công ");
 
-                // Listen for state changes, errors, and completion of the upload.
-                uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                    function (snapshot) {
-                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
-                        switch (snapshot.state) {
-                            case firebase.storage.TaskState.PAUSED: // or 'paused'
-                                console.log('Upload is paused');
-                                break;
-                            case firebase.storage.TaskState.RUNNING: // or 'running'
-                                console.log('Upload is running');
-                                break;
+                            window.location.href = 'film/list';
                         }
-                    }, function (error) {
-
-                        // A full list of error codes is available at
-                        // https://firebase.google.com/docs/storage/web/handle-errors
-                        switch (error.code) {
-                            case 'storage/unauthorized':
-                                // User doesn't have permission to access the object
-                                break;
-
-                            case 'storage/canceled':
-                                // User canceled the upload
-                                break;
-                            case 'storage/unknown':
-                                // Unknown error occurred, inspect error.serverResponse
-                                break;
-                        }
-                    }, function () {
-                        // Upload completed successfully, now we can get the download URL
-                        var ab = {
-                            email: $scope.account.email,
-                            name: $scope.account.name,
-                            url: uploadTask.snapshot.downloadURL,
-                            phone: $scope.account.phone,
-                            address: $scope.account.address,
-                            description: $scope.account.description
-                        }
-
-                        databaseRef.child('users').child($scope.account.$id).update(ab);
-
-                        alert("Cập nhật thành công ");
                     });
+                    // databaseRef.child('users').child($scope.account.$id).update(ac);
+                    // console.log(ac);
+                    // alert("Cập nhật thành công");
+                } else {
+
+
+                    if (file != null) {
+                        var metadata = {
+                            contentType: file.type
+                        };
+                    }
+                    // Create a reference to 'images/mountains.jpg'
+                    var uploadTask = storageRef.child('images/' + (Date.now()) + '.jpg').put(file, metadata);
+
+
+                    // Listen for state changes, errors, and completion of the upload.
+                    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                        function (snapshot) {
+                            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                            console.log('Upload is ' + progress + '% done');
+                            switch (snapshot.state) {
+                                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                                    console.log('Upload is paused');
+                                    break;
+                                case firebase.storage.TaskState.RUNNING: // or 'running'
+                                    console.log('Upload is running');
+                                    break;
+                            }
+                        }, function (error) {
+
+                            // A full list of error codes is available at
+                            // https://firebase.google.com/docs/storage/web/handle-errors
+                            switch (error.code) {
+                                case 'storage/unauthorized':
+                                    // User doesn't have permission to access the object
+                                    break;
+
+                                case 'storage/canceled':
+                                    // User canceled the upload
+                                    break;
+                                case 'storage/unknown':
+                                    // Unknown error occurred, inspect error.serverResponse
+                                    break;
+                            }
+                        }, function () {
+                            // Upload completed successfully, now we can get the download URL
+                            var ab = {
+                                email: $scope.account.email,
+                                name: $scope.account.name,
+                                url: uploadTask.snapshot.downloadURL,
+                                phone: $scope.account.phone,
+                                address: $scope.account.address,
+                                description: $scope.account.description
+                            }
+
+                            databaseRef.child('users').child($scope.account.$id).update(ab, function (error) {
+                                if (!error) {
+
+                                    alert("Cập nhật thành công ");
+
+                                    window.location.href = 'film/list';
+                                }
+                            });
+
+
+                        });
 
 
 
+                }
             }
         }
 

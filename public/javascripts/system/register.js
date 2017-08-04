@@ -3,7 +3,10 @@ var app = angular.module("app.cinema", []);
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-         window.location.href = '/film/list';
+        setTimeout(function(){
+            window.location.href = '/film/list';
+        },1500);
+        //  window.location.href = '/film/list';
     } else {
         // No user is signed in.
 
@@ -34,25 +37,27 @@ app.controller('registerController', ['$scope', function ($scope) {
                         var account = {
                             email: $scope.email,
                             name: $scope.yourname,
-                            url: "https://firebasestorage.googleapis.com/v0/b/filmproject-bb14a.appspot.com/o/aa.jpg?alt=media&token=53477238-c43d-4a74-b114-4b62f0b83efd",
-                            phone: ' ',
-                            address: ' ',
-                            description: ' '
+                            url: '',
+                            phone: '',
+                            address: '',
+                            description: ''
                         }
-                       
-                        
-                        databaseRef.child("/users/" + firebaseUser.uid).set(account);
+
+
+                        databaseRef.child("/users/" + firebaseUser.uid).set(account,function(error){
+                            if(error){
+                                alert('Có lỗi, vui lòng thử lại');
+                            }else{
+                                window.location.href='film/list';
+                            }
+                        });
 
 
                         console.log(firebaseUser.uid);
                         console.log($scope.email);
                         console.log($scope.yourname);
-
-
-
-
                         alert('Tạo tài khoản thành công');
-                           window.location.href = "/film/list";
+
                     }).catch(function (error) {
                         // Handle Errors here.
                         var errorCode = error.code;

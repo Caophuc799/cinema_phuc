@@ -34,7 +34,7 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
 
 
     $scope.ten = "Tài Khoản";
-
+    $scope.imageavatar = '/images/avatar.png';
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
 
@@ -48,6 +48,9 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
 
                 $scope.account.$loaded(function () {
                     console.log($scope.account);
+                    if ($scope.account.url != '') {
+                        $scope.imageavatar = $scope.account.url;
+                    }
                     if ($scope.account.name == '' || $scope.account.name == ' ') {
 
 

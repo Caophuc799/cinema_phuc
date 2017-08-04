@@ -6,7 +6,7 @@ var app = angular.module("app.cinema", ["xeditable", 'firebase']);
 app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$firebaseObject',
     function ($scope, $log, $firebaseArray, $firebaseObject) {
         $scope.ten = "Tài Khoản";
-
+        $scope.imageavatar = '/images/avatar.png';
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
 
@@ -20,8 +20,11 @@ app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$fireba
 
                     $scope.account.$loaded(function () {
                         console.log($scope.account);
+                        if ($scope.account.url != '') {
+                            $scope.imageavatar = $scope.account.url;
+                        }
                         if ($scope.account.name == '' || $scope.account.name == ' ') {
-                        }else{
+                        } else {
                             $scope.ten = $scope.account.name
                         }
                     })

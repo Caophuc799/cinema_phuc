@@ -32,7 +32,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <div ng-click="signoutCinema()" class=" menu-dis">
+                    <div  data-toggle="modal" data-target="#logoutform"  class=" menu-dis" style="margin-right:-7px;">
                         <a href="#">
                            
                             <i  class="fa fa-sign-out " aria-hidden="true"></i>
@@ -47,9 +47,9 @@
                         <a style="float:left;" href="/user">
 
                             <div class="avatar-profile-header">
-                                <img style="background-color:white;" src="{{account.url}}" class="avatar-img">
+                                <img style="background-color:white;" src="{{imageavatar}}" class="avatar-img">
                             </div>
-                            <div style="margin-left:40px;">
+                            <div class="nameacc">
                                 {{ten}}
                             </div>
 
@@ -71,8 +71,26 @@
     </div>
 
 
-
-
+     <div class="modal fade" id="logoutform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:371px" role="document">
+                <div class="modal-content">
+                     <div class="modal-header">
+                        <h5 style="display:inline;" class="modal-title" id="exampleModalLabel"></h5>
+                        <button style="margin-top:0px;display:inline;" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                    </div> 
+                    <div class="modal-body">
+                        <h3> Bạn có muốn đăng suất không?</h3>
+                      
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" style="float:left;width:70px;" class="btn btn-secondary" data-dismiss="modal">Không</button>
+                        <button type="button" style="float:right;width:70px;" ng-click="signoutCinema()" class="btn btn-primary">Có</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <!-- Body -->
     <div class="container main-container">
@@ -82,8 +100,7 @@
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="text-center">
                     <div class="image-avatar">
-                        <img style="border-radius:20px;border:1px solid black" id="avatar-film" src="https://firebasestorage.googleapis.com/v0/b/filmproject-bb14a.appspot.com/o/a.jpg?alt=media&token=aa7b98c8-1b22-4867-8272-327d366717fe"
-                            class="avatar" alt="avatar">
+                        <img style="border-radius:20px;border:1px solid black" id="avatar-film" src="/images/a.jpg" class="avatar" alt="avatar">
                     </div>
                     <!-- <h6 id="upload-other-photo" style="display:none;">Upload a different photo... </h6> -->
                     <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm" required>
@@ -97,8 +114,8 @@
                     <h2 class="col-lg-10" style="margin-top:-4px;left:20px;">Thông tin phim:</h2>
                     <div class="form-group">
                         <label style="text-align:left;font-size:16px;" class="col-lg-11 input-info">Tên Phim</label>
-                        <div  class="col-lg-11 input-info">
-                            <input   ng-model="name" class="form-control" placeholder="Tên phim" type="text" required>
+                        <div class="col-lg-11 input-info">
+                            <input ng-model="name" class="form-control" placeholder="Tên phim" type="text" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -167,7 +184,7 @@
         </div>
     </div>
 
-
+ <%- partial('./../share/footer.ejs') -%>
 
 
 

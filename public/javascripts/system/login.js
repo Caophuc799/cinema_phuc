@@ -8,7 +8,9 @@ var app = angular.module("app.cinema", []);
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        window.location.href = '/film/list';
+        setTimeout(function () {
+            window.location.href = '/film/list';
+        }, 1500);
     } else {
         // No user is signed in.
 
@@ -46,19 +48,24 @@ app.controller('loginController', ['$scope', function ($scope) {
                 email: emailacc,
                 name: user.displayName,
                 url: user.photoURL,
-                phone: ' ',
-                address: ' ',
-                description: ' '
+                phone: '',
+                address: '',
+                description: ''
             }
-            databaseRef.child('/users/' + user.uid).set(account)
-
+            databaseRef.child('/users/' + user.uid).set(account, function (error) {
+                if (error) {
+                    alert('Có lỗi, vui lòng thử lại');
+                } else {
+                    window.location.href = 'film/list';
+                }
+            });
 
             console.log(account);
             console.log(user.uid);
-            console.log($scope.email);
-            console.log($scope.yourname);
+            // console.log($scope.email);
+            // console.log($scope.yourname);
 
-            window.location.href = "/film/list";
+            //   window.location.href = "/film/list";
 
         }).catch(function (error) {
             // Handle Errors here.
@@ -96,13 +103,19 @@ app.controller('loginController', ['$scope', function ($scope) {
                 email: user.email,
                 name: user.displayName,
                 url: user.photoURL,
-                phone: ' ',
-                address: ' ',
-                description: ' '
+                phone: '',
+                address: '',
+                description: ''
             }
 
 
-            databaseRef.child("/users/" + user.uid).set(account);
+            databaseRef.child("/users/" + user.uid).set(account, function (error) {
+                if (error) {
+                    alert('Có lỗi, vui lòng thử lại');
+                } else {
+                    window.location.href = 'film/list';
+                }
+            });
 
             console.log(account);
             console.log(user.uid);
@@ -111,7 +124,7 @@ app.controller('loginController', ['$scope', function ($scope) {
 
 
 
-            window.location.href = "/film/list";
+          
             // ...
         }).catch(function (error) {
             // Handle Errors here.

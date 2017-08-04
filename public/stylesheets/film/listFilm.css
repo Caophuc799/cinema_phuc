@@ -139,4 +139,5 @@ img.loading {
     
 }
 .full-container{
+    min-height: 89vh;
 }

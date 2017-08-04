@@ -22,9 +22,9 @@ function readURL(input) {
             checkimg = true;
             console.log(checkimg);
             $('#img-profile')
-                .attr('src', e.target.result)
-                .width(300)
-                .height(300);
+                .attr('src', e.target.result);
+                // .width(234)
+                // .height(234);
         };
 
 

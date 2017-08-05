@@ -176,14 +176,16 @@
                     </div>
                     <div class="col-md-5 main-left">
                         <div class="avatar-profile">
-
+                            <div class="caption-change">
+                                <h3>Change</h3>
+                            </div>
                             <img id="img-profile" src="{{imageavatar}}" class="avatar-img" alt="avatar">
                         </div>
                         <div class="image-title">Ảnh đại diện
 
                         </div>
                         <br>
-                        <input type="file" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm">
+                        <input type="file" style="display:none;" id="upload-file" onchange="readURL(this);" class="text-center center-block well well-sm">
 
                     </div>
                     <div class="col-md-12 personal-info-2">
@@ -219,6 +221,29 @@
 
     </div>
     <%- partial('./../share/footer.ejs') -%>
+
+
+
+        <script>
+            $("#img-profile").click(function () {
+                console.log("dc");
+                $("#upload-file").click();
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                $("[rel='tooltip']").tooltip();
+
+                $('.avatar-profile').hover(
+                    function () {
+                        $(this).find('.caption-change').slideDown(250); //.fadeIn(250)
+                    },
+                    function () {
+                        $(this).find('.caption-change').slideUp(250); //.fadeOut(205)
+                    }
+                );
+            });
+        </script>
 </body>
 
 </html>

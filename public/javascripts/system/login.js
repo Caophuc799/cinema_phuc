@@ -8,9 +8,7 @@ var app = angular.module("app.cinema", []);
 
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        setTimeout(function () {
-            window.location.href = '/film/list';
-        }, 1500);
+
     } else {
         // No user is signed in.
 
@@ -18,15 +16,38 @@ firebase.auth().onAuthStateChanged(function (user) {
     }
 });
 
+var callbackMain = function () {
+    setTimeout(function () {
+        window.location.href = '/film/list';
+    }, 2500);
+}
 app.controller('loginController', ['$scope', function ($scope) {
 
     $scope.nam = "10000";
     $scope.resetemail = '';
     // No user is signed in.
+    $scope.attrhidden = '';
+    $scope.anhidden = 'none';
+    $scope.inhidden = '';
+   
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            $scope.anhidden = 'none';
+            $scope.inhidden = '';
+            callbackMain();
+        } else {
+            $scope.anhidden = '';
+            $scope.inhidden = 'none';
+            // No user is signed in.
 
+            //  alert('Vui lòng đăng nhập');
+        }
+    });
+    
 
     //dang nhap bang fb
     $scope.loginFacebook = function () {
+
         // var id = '1966928746924754';
         // var idpp = '6732424686315d9c9e72076230c02cd3';
         var provider = new firebase.auth.FacebookAuthProvider();
@@ -34,6 +55,7 @@ app.controller('loginController', ['$scope', function ($scope) {
         provider.setCustomParameters({
             'display': 'popup'
         });
+
         firebase.auth().signInWithPopup(provider).then(function (result) {
             // This gives you a Facebook Access Token. You can use it to access the Facebook API.
             var token = result.credential.accessToken;
@@ -60,13 +82,16 @@ app.controller('loginController', ['$scope', function ($scope) {
                 if (userData) {
                     console.log("exists!");
                 } else {
+
                     databaseRef.child('/users/' + user.uid).set(account, function (error) {
                         if (error) {
+
                             $.alert({
                                 title: 'Thông báo',
                                 content: 'Đã xảy ra lỗi, vui lòng thử lại'
                             });
                         } else {
+
                             window.location.href = 'film/list';
                         }
                     });
@@ -84,6 +109,8 @@ app.controller('loginController', ['$scope', function ($scope) {
             //   window.location.href = "/film/list";
 
         }).catch(function (error) {
+            $scope.anhidden = '';
+            $scope.inhidden = 'none';
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -135,11 +162,13 @@ app.controller('loginController', ['$scope', function ($scope) {
                 } else {
                     databaseRef.child('/users/' + user.uid).set(account, function (error) {
                         if (error) {
+
                             $.alert({
                                 title: 'Thông báo',
                                 content: 'Đã xảy ra lỗi, vui lòng thử lại'
                             });
                         } else {
+
                             window.location.href = 'film/list';
                         }
                     });
@@ -156,6 +185,7 @@ app.controller('loginController', ['$scope', function ($scope) {
 
             // ...
         }).catch(function (error) {
+
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -172,10 +202,38 @@ app.controller('loginController', ['$scope', function ($scope) {
     $scope.ResetPassword = function () {
         if ($scope.resetemail == '') {
 
-            // $.alert({
+            $.confirm({
+                title: 'Thông báo',
+                content: 'Bạn chưa nhập email',
+                buttons: {
+                    'Bỏ qua': function () {
+                        // here the key 'something' will be used as the text.
+                        // $.alert('You clicked on something.');
+                        $('#exampleModalLong').modal('hide');
+                    },
+                    'Tiếp tục nhập': {
+
+                    }
+                }
+            });
+            // $('#exampleModalLong').confirm({
             //     title: 'Thông báo',
-            //     content: 'Bạn chưa nhập email'
+            //     content: 'Bạn chưa nhập email',
+            //     buttons: {
+
+            //         'Tiếp tục nhập': function () {
+            //             console.log('dc');
+            //         }, 'Bỏ qua': function () {
+            //             $('#exampleModalLong').modal('hide');
+            //         }
+            //     }
+
             // });
+
+
+
+
+
         } else {
             var auth = firebase.auth();
             auth.sendPasswordResetEmail($scope.resetemail).then(function () {
@@ -186,6 +244,10 @@ app.controller('loginController', ['$scope', function ($scope) {
                 });
             }).catch(function (error) {
                 // An error happened.
+                $.alert({
+                    title: 'Thông báo',
+                    content: 'Email không đúng!'
+                });
             });
         }
     }

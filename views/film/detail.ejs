@@ -24,6 +24,7 @@
 
         <!-- Load style header-->
         <script src="/javascripts/film/detail.js"></script>
+        <script src="/javascripts/main.js"></script>
         <link rel="stylesheet" href="/stylesheets/style.css">
 
 
@@ -34,7 +35,11 @@
 <body>
 
     <div class="full-container" ng-controller="detailController" ng-cloak>
-
+        <div onclick="topFunction()" class="scroll-top-wrapper ">
+            <span class="scroll-top-inner">
+	        	<i class="fa fa-2x fa-arrow-circle-up"></i>
+	              </span>
+        </div>
         <!-- Header -->
         <!-- Header -->
         <div class="header">
@@ -85,7 +90,7 @@
             <div class="modal-dialog" style="width:371px" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 style="display:inline;" class="modal-title" id="exampleModalLabel"></h5>
+                        <h3 style="display:inline;" class="modal-title" id="exampleModalLabel">Thông báo</h3>
                         <button style="margin-top:0px;display:inline;" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -114,7 +119,7 @@
                 <!-- left column -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="image-avatar">
-                        <img src='{{Film.url}}' style="border-radius:20px;border:1px solid black" alt="avatar">
+                        <img src='{{Film.url}}' alt="avatar">
 
                     </div>
                 </div>

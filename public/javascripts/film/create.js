@@ -26,7 +26,11 @@ function readURL(input) {
 //     }
 //     document.getElementById("yearselect").innerHTML = options;
 // }
-
+function textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (o.scrollHeight) + "px";
+    window.scrollTo(0, document.body.scrollHeight);
+}
 
 
 app.controller('createController', ['$scope', '$log', '$firebaseArray', '$firebaseObject', function ($scope, $log, $firebaseArray, $firebaseObject) {
@@ -47,7 +51,7 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
 
                 $scope.account.$loaded(function () {
                     console.log($scope.account);
-                    if ($scope.account.url != ''&&$scope.account.url != null) {
+                    if ($scope.account.url != '' && $scope.account.url != null) {
                         $scope.imageavatar = $scope.account.url;
                     }
                     if ($scope.account.name == '' || $scope.account.name == null) {
@@ -206,8 +210,10 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
                                     }
                                 }, function () {
                                     // Upload completed successfully, now we can get the download URL
+                                    var newkey = databaseRef.child('/films').push().key;
                                     var da = $scope.year.value.getDate() + '/' + ($scope.year.value.getMonth() + 1) + '/' + $scope.year.value.getFullYear();
                                     var film = {
+                                        id: newkey,
                                         name: $scope.name,
                                         url: uploadTask.snapshot.downloadURL,
                                         year: da,
@@ -216,15 +222,15 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
                                     }
                                     console.log(film);
 
-                                    databaseRef.child('/films').push(film);
+                                    databaseRef.child('/films/' + newkey).set(film);
                                     $.dialog({
                                         title: 'Thành công',
                                         content: 'Tạo phim thành công!'
                                     });
-                                    setTimeout(function() {
-                                         window.location.href = '/film/list';
+                                    setTimeout(function () {
+                                        window.location.href = '/film/list';
                                     }, 1500);
-                                   
+
                                 });
 
 

@@ -9,6 +9,7 @@
 
         <!-- Load javascript  -->
         <script src="/javascripts/film/create.js"></script>
+        <script src="/javascripts/main.js"></script>
         <!-- Load style header-->
         <link rel="stylesheet" href="/stylesheets/style.css">
         <link rel="stylesheet" href="/stylesheets/film/create.css">
@@ -21,7 +22,11 @@
 <!-- onload="loadAgeSelector()" -->
 
 <body ng-controller="createController">
-
+    <div onclick="topFunction()" class="scroll-top-wrapper ">
+        <span class="scroll-top-inner">
+	        	<i class="fa fa-2x fa-arrow-circle-up"></i>
+	              </span>
+    </div>
     <!-- Header -->
     <!-- Header -->
     <div class="header">
@@ -69,7 +74,7 @@
         <div class="modal-dialog" style="width:371px" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 style="display:inline;" class="modal-title" id="exampleModalLabel"></h5>
+                    <h3 style="display:inline;" class="modal-title" id="exampleModalLabel">Thông báo</h3>
                     <button style="margin-top:0px;display:inline;" type="button" class="close" data-dismiss="modal" aria-label="Close">
                              <span aria-hidden="true">&times;</span>
                         </button>
@@ -112,7 +117,7 @@
 
 
                 <form class="form-horizontal" role="form">
-                    <h2 class="col-lg-10" style="margin-top:-4px;left:20px;">Thông tin phim:</h2>
+                    <!-- <h2 class="col-lg-10" style="margin-top:-4px;left:20px;">Thông tin phim:</h2> -->
                     <div class="form-group">
                         <label style="text-align:left;font-size:16px;" class="col-lg-11 input-info">Tên Phim</label>
                         <div class="col-lg-11 input-info">
@@ -168,12 +173,14 @@
                     </div>
                     <div class="form-group">
                         <label style="text-align:left;font-size:16px;" class="col-lg-4 input-info">Nội dung phim</label>
-                        <div class="col-lg-11 input-info">
-                            
-                            <textarea ng-model="content" class="form-control" placeholder="Nội dung phim" rows="5" required>
+                        <div contentEditable="true" class="col-lg-11 input-info">
+
+                            <textarea onkeyup="textAreaAdjust(this)" style="overflow:hidden" ng-model="content" class="form-control content-film" placeholder="Nội dung phim"
+                                rows="7" required>
 
                             </textarea>
                         </div>
+
 
                     </div>
                     <div style="float:right;left:13px;" class="form-group col-lg-3">
@@ -209,7 +216,6 @@
 
                 $("#upload-file").click();
             });
-
         </script>
         <script>
             $("#caption-film").click(function () {

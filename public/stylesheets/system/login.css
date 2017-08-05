@@ -46,6 +46,7 @@
         margin-left: 50px;
         position: absolute;
           border-radius: 0px;
+          font-size: 22px;
     }
 .omb_socialButtons .omb_btn-google {    background: #c32f10;
    left:100px;
@@ -53,6 +54,7 @@
     float: right;
     position: absolute;
     border-radius: 0px;
+      font-size: 22px;
 }
 .omb_loginOr {
 	position: relative;

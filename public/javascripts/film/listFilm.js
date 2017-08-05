@@ -21,6 +21,57 @@ var Getyearfromstring = function (str) {
     var parts = str.split('/');
     return parts[2];
 }
+// Nếu này da1 lớn hoặc bằng hơn da2 thì trả về 1 ngược lại trả về 0
+var CompareStringDate = function (da1, da2) {
+
+
+    var parts1 = da1.split('/');
+    var myda1 = new Date(parts1[2], parts1[1] - 1, parts1[0]);
+    var parts2 = da2.split('/');
+    var myda2 = new Date(parts2[2], parts2[1] - 1, parts2[0]);
+    if (myda1.getFullYear() > myda2.getFullYear()) {
+
+        return 1;
+
+    }
+    if (myda1.getFullYear() == myda2.getFullYear()) {
+        if ((myda1.getMonth() > myda2.getMonth())) {
+
+            return 1;
+
+        };
+        if ((myda1.getMonth() == myda2.getMonth())) {
+            if (myda1.getDay() >= myda2.getDay()) {
+
+                return 1;
+
+            }
+        };
+
+    }
+
+    return 0;
+}
+// sort ngayf
+
+var sortByDate = function (marr) {
+    var arr = marr;
+    //  console.log(arr);
+    for (var i = 0; i < arr.length; ++i) {
+        for (var j = arr.length - 1; j >= i; j--) {
+            if (CompareStringDate(arr[i].year, arr[j].year) == 0) {
+
+                var tam = arr[i];
+                arr[i] = arr[j];
+                arr[j] = tam;
+
+
+            }
+        }
+    }
+    // console.log(arr);
+    return arr;
+}
 app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$firebaseObject", function ($scope, $log, $firebaseArray, $firebaseObject) {
     var databaseRef = firebase.database().ref();
 
@@ -83,7 +134,11 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
     $scope.listFilm.$loaded().then(function () {
         $scope.inhidden = 'none';
         $scope.ahidden = '';
-        // console.log($scope.listFilm);
+        // console.log($scope.listFilm);    
+        $scope.listFilm = sortByDate($scope.listFilm);
+        // console.log('////////////////////');
+
+        // console.log(tam);
         $scope.listFilmDefault = $scope.listFilm;
         for (var i = 0; i < $scope.listFilm.length; ++i) {
             var parts = $scope.listFilm[i].year.split('/');
@@ -91,13 +146,13 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
             var mydate = new Date(parts[2], parts[1] - 1, parts[0]);
             var datecur = new Date();
             // console.log(mydate);
-          
 
-            if (mydate.getFullYear() - datecur.getFullYear()>=0) {
-                if ((datecur.getMonth() - mydate.getMonth()) <=1) {
+
+            if (mydate.getFullYear() - datecur.getFullYear() >= 0) {
+                if ((datecur.getMonth() - mydate.getMonth()) <= 1) {
                     $scope.listFilm[i].new = 'Phim Mới';
 
-                } 
+                }
 
             }
         }
@@ -128,12 +183,12 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
                                     $scope.listFilm.push($scope.listFilmDefault[i]);
                                 }
                             } else
-                                if ($scope.searchtime.name == 'Trước 2013') {
-                                    if (Getyearfromstring($scope.listFilmDefault[i].year) < $scope.searchtime.name) {
 
-                                        $scope.listFilm.push($scope.listFilmDefault[i]);
-                                    }
+                                if (Getyearfromstring($scope.listFilmDefault[i].year) == $scope.searchtime.name) {
+
+                                    $scope.listFilm.push($scope.listFilmDefault[i]);
                                 }
+
                     }
                 }
             } else {
@@ -252,6 +307,29 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
                 content: 'Không có phim nào'
             });
             $scope.listFilm = $scope.listFilmDefault;
+        } else {
+            $scope.listFilm = sortByDate($scope.listFilm);
+            for (var i = 0; i < $scope.listFilm.length; ++i) {
+                var parts = $scope.listFilm[i].year.split('/');
+                $scope.listFilm[i].new = $scope.listFilm[i].year
+                var mydate = new Date(parts[2], parts[1] - 1, parts[0]);
+                var datecur = new Date();
+                // console.log(mydate);
+
+
+                if (mydate.getFullYear() - datecur.getFullYear() >= 0) {
+                    if ((datecur.getMonth() - mydate.getMonth()) <= 1) {
+                        $scope.listFilm[i].new = 'Phim Mới';
+
+                    }
+
+                }
+            }
+            $.alert({
+                title: 'Thông báo',
+                content: 'Đã tìm xong'
+            });
+
         }
 
 

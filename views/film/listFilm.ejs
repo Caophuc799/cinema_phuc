@@ -6,9 +6,14 @@
 <head>
 
     <%- partial('./../share/load.ejs') -%>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css"
+            media="screen">
+
         <link href="https://fonts.googleapis.com/css?family=Pacifico&amp;subset=vietnamese" rel="stylesheet">
         <!-- Load javascript  -->
         <script src="/javascripts/film/listFilm.js"></script>
+        <script src="/javascripts/main.js"></script>
         <!--Load style css my cinema-->
 
         <link rel="stylesheet" href="/stylesheets/film/listFilm.css">
@@ -23,9 +28,13 @@
 <body>
 
     <div class="full-container" ng-controller="listFilmController">
-
-
-
+       <!-- ? <button onclick="topFunction()" id="myBtnGoTop" title="Go to top">Top</button> -->
+        <div onclick="topFunction()" class="scroll-top-wrapper ">
+            <span class="scroll-top-inner">
+	        	<i class="fa fa-2x fa-arrow-circle-up"></i>
+	              </span>
+        </div>
+      
         <!-- Header -->
 
         <!-- Header -->
@@ -84,7 +93,7 @@
             <div class="modal-dialog" style="width:371px" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 style="display:inline;" class="modal-title" id="exampleModalLabel"></h5>
+                        <h3 style="display:inline;" class="modal-title" id="exampleModalLabel">Thông báo</h3>
                         <button style="margin-top:0px;display:inline;" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -114,16 +123,17 @@
 
         <!-- List Film -->
         <div class="container" ng-cloak>
-            <div class="orderby">
-                <h4> Thể loại</h4>
-                <select class="form-control sort-genre" ng-init="searchgenre = optionsGenre[0]" ng-model="searchgenre" ng-options="option.name for option in optionsGenre">
+            <div style="float:left" class=" form-control orderby">
+                <label class="laa"> Thể loại</label>
+                <select style="margin-bottom: 20px;" class="form-control sort-genre" ng-init="searchgenre = optionsGenre[0]" ng-model="searchgenre"
+                    ng-options="option.name for option in optionsGenre">
 
                </select>
-                <h4> Thời gian</h4>
+                <label class="laa"> Thời gian</label>
                 <select class="form-control sort-time" ng-init="searchtime = timesOption[0]" ng-model="searchtime" ng-options="time.name for time in timesOption">
 
                </select>
-                <h4> Tên phim</h4>
+                <label class="laa">Tên phim</label>
                 <input type="text" class=" search-query form-control sort-name" ng-model="searchname" placeholder="Tìm phim theo tên" />
 
 
@@ -139,11 +149,11 @@
             </div>
             <div class="row-inline">
 
-                <div ng-repeat="Film in listFilm | orderBy:'-year'" class="col-sm-4">
+                <div ng-repeat="Film in listFilm" class="col-sm-4">
 
                     <div class="nopadding">
 
-                        <a href='/film/detail/{{Film.$id}}'>
+                        <a href='/film/detail/{{Film.id}}'>
                             <!-- <a href='/film/detail/{{Film.$id}}'>  -->
                             <img class="card-img" alt="ảnh" src='{{Film.url}}'>
                             <!-- <span style="font-size:12px;" class="ribbon">
@@ -151,7 +161,7 @@
                             
                         </span> -->
                             <div class="ribbon">
-                              
+
                                 <div>{{Film.new}}</div>
                             </div>
                             <div class="card">
@@ -183,6 +193,7 @@
         </script>  -->
 
     </div>
+
     <%- partial('./../share/footer.ejs') -%>
 </body>
 

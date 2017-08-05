@@ -59,8 +59,12 @@
     <div ng-controller="loginController">
 
 
-
-        <div class="container login-container">
+        <div ng-hide="inhidden" style="margin-top:49vh;" class="loading-container">
+            <div class="spinner"></div>
+            <div class="spinner-center"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+        <div ng-hide="anhidden" class="container login-container">
             <!-- <div class="checkoption">
                 <div class="login-option">
                     Login
@@ -94,26 +98,27 @@
             <form class="form-signin">
 
                 <div class="input-group">
-                    <span style="height:45px;border-bottom-left-radius:10px;border-top-left-radius:10px;" class="input-group-addon"><i style="font-size:25px;" class="fa fa-user"></i></span>
-                    <label for="inputEmail" class="sr-only">Email address</label>
-                    <input style="height:45px;border-bottom-right-radius:10px;border-top-right-radius:10px;" ng-model="username" name="username"
+                    <span style="height:50px;border-bottom-left-radius:10px;border-top-left-radius:10px;" class="input-group-addon"><i style="font-size:25px;" class="fa fa-user"></i></span>
+                    <label for="inputEmail" class="sr-only">Email</label>
+                    <input style="height:50px;border-bottom-right-radius:10px;border-top-right-radius:10px;" ng-model="username" name="username"
                         type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                 </div>
                 <br>
                 <div class="input-group">
-                    <span style="height:45px;border-bottom-left-radius:10px;border-top-left-radius:10px;" class="input-group-addon"><i style="font-size:25px;" class="fa fa-lock"></i></span>
+                    <span style="height:50px;border-bottom-left-radius:10px;border-top-left-radius:10px;" class="input-group-addon"><i style="font-size:25px;" class="fa fa-lock"></i></span>
                     <label for="inputPassword" class="sr-only">Password </label>
-                    <input style="height:45px;border-bottom-right-radius:10px;border-top-right-radius:10px;" ng-model="password" name="password"
+                    <input style="height:50px;border-bottom-right-radius:10px;border-top-right-radius:10px;" ng-model="password" name="password"
                         type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 </div>
-                <div class="checkbox">
+                <!-- <div class="checkbox">
                     <label>
-                <input ng-model="remember" type="checkbox" value="remember-me">Remember me
+                <input ng-model="remember"  type="checkbox" value="remember-me">Nhớ mật
             </label>
-                </div>
-                <button ng-click="loginCinema()" class="btn btn-lg btn-primary btn-block" type="submit">Sign in </button>
+                </div> -->
                 <br>
-                <a href="" data-toggle="modal" data-target="#exampleModalLong">Forgot password?</a>
+                <button style="height:50px;" ng-click="loginCinema()" class="btn btn-lg btn-primary btn-block" type="submit">Sign in </button>
+                <br>
+                <a href="" style="font-size:16px;" data-toggle="modal" data-target="#exampleModalLong">Forgot password?</a>
 
             </form>
 
@@ -121,7 +126,8 @@
 
         <!-- Modal -->
 
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div ng-hide="attrhidden" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="col-xs-8 col-xs-offset-2">
                     <div class="modal-content">
@@ -139,7 +145,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button ng-click="ResetPassword()" type="button" class="btn btn-primary" data-dismiss="modal">Send</button>
+                            <button ng-click="ResetPassword()" type="button" class="btn btn-primary">Send</button>
 
                         </div>
                     </div>

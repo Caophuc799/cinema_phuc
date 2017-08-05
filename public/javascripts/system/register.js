@@ -1,25 +1,42 @@
 var app = angular.module("app.cinema", []);
 
 
-firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-        setTimeout(function () {
-            window.location.href = '/film/list';
-        }, 1500);
-        //  window.location.href = '/film/list';
-    } else {
-        // No user is signed in.
+// firebase.auth().onAuthStateChanged(function (user) {
+//     if (user) {
+//         setTimeout(function () {
+//             window.location.href = '/film/list';
+//         }, 1500);
+//         //  window.location.href = '/film/list';
+//     } else {
+//         // No user is signed in.
 
-        //  alert('Vui lòng đăng nhập');
-    }
-});
+//         //  alert('Vui lòng đăng nhập');
+//     }
+// });
 
 app.controller('registerController', ['$scope', function ($scope) {
     $scope.baibai = "Mai";
     $scope.password = '';
     $scope.passwordConfirm = '';
 
+    $scope.anhidden = 'none';
+    $scope.inhidden = '';
 
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            $scope.anhidden = 'none';
+            $scope.inhidden = '';
+            setTimeout(function () {
+                window.location.href = '/film/list';
+            }, 2000);
+        } else {
+            $scope.anhidden = '';
+            $scope.inhidden = 'none';
+            // No user is signed in.
+
+            //  alert('Vui lòng đăng nhập');
+        }
+    });
     $scope.createUser = function () {
         if ($scope.password != null) {
             if ($scope.password != $scope.passwordConfirm) {
@@ -45,7 +62,7 @@ app.controller('registerController', ['$scope', function ($scope) {
                             phone: '',
                             address: '',
                             description: '',
-                            type:'user'
+                            type: 'user'
                         }
 
 
@@ -81,10 +98,10 @@ app.controller('registerController', ['$scope', function ($scope) {
                         } else {
 
                             if (error.code == "auth/email-already-in-use") {
-                                 $.alert({
-                                title: 'Thông báo',
-                                content: 'Tài khoản đã tồn tại'
-                            });
+                                $.alert({
+                                    title: 'Thông báo',
+                                    content: 'Tài khoản đã tồn tại'
+                                });
                             } else {
                                 alert(errorMessage);
                             }

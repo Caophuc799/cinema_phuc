@@ -14,20 +14,26 @@
 </head>
 
 <body>
-    
+
     <div ng-controller="registerController">
-       
-        <div class="container">
+        <div ng-hide="inhidden" style="margin-top:49vh;" class="loading-container">
+            <div class="spinner"></div>
+            <div class="spinner-center"></div>
+            <div class="loading-text">Loading...</div>
+        </div>
+        <div ng-hide="anhidden" class="container">
 
             <div class="row justify-content-md-center" style="display:flex;flex-direction:row;justify-content:center">
 
-                <div  class="col-sm-5 login-container">
+                <div class="col-sm-5 login-container">
                     <div class="form-register">
-                        
-                            <div class="panel-title text-center">
-                                 <h3 class="omb_authTitle"><a href="/" style="color:black">Login</a>  or <div style="color:blue;display:inline">Sign up</div></h3>  
-                            </div>
-                        
+
+                        <div class="panel-title text-center">
+                            <h3 class="omb_authTitle"><a href="/" style="color:black">Login</a> or
+                                <div style="color:blue;display:inline">Sign up</div>
+                            </h3>
+                        </div>
+
                         <div class="main-login">
                             <form class="form-horizontal" method="post" action="#">
                                 <div class="main-center">
@@ -83,11 +89,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                                
+
                                     <div class="form-group col-sm-12 ">
                                         <button ng-click="createUser()" type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
                                     </div>
-                                   
+
                             </form>
                             </div>
                         </div>

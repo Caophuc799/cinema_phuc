@@ -35,6 +35,13 @@ function readURL(input) {
 // function trimSpace(str) {
 //     return str.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g, "").replace(/\s+/g, " ");
 // }
+
+function textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (o.scrollHeight) + "px";
+    window.scrollTo(0, document.body.scrollHeight);
+}
+
 app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$firebaseObject',
     function ($scope, $log, $firebaseArray, $firebaseObject) {
 

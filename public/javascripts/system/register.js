@@ -44,7 +44,8 @@ app.controller('registerController', ['$scope', function ($scope) {
                             url: '',
                             phone: '',
                             address: '',
-                            description: ''
+                            description: '',
+                            type:'user'
                         }
 
 

@@ -22,14 +22,14 @@
 
 <body>
 
-    <div class="full-container"  ng-controller="listFilmController">
+    <div class="full-container" ng-controller="listFilmController">
 
 
 
         <!-- Header -->
 
         <!-- Header -->
-        <div class="header" >
+        <div class="header">
             <nav style="border-radius:0px;" class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -41,7 +41,7 @@
                         <div data-toggle="modal" data-target="#logoutform" class=" menu-dis" style="margin-right:-10px;">
                             <a href="#">
                                   <i  class="fa fa-sign-out " aria-hidden="true"></i>
-                            Đăng xuất
+                            ĐĂNG XUẤT
                           </a>
                         </div>
                         <!-- ng-click="signoutCinema()" -->
@@ -65,10 +65,11 @@
                         <div class="menu-dis">
                             <a href="/film/create">
                                 <i style="font-size:12px;" class="glyphicon glyphicon-pencil"></i>
-                                Tạo Phim
+                               TẠO PHIM
                                 
                             </a>
                         </div>
+
                     </div>
                 </div>
             </nav>
@@ -89,7 +90,7 @@
         </button>
                     </div>
                     <div class="modal-body">
-                        <h3> Bạn có muốn đăng suất không?</h3>
+                        <h3> Bạn có muốn đăng xuất không?</h3>
 
                     </div>
                     <div class="modal-footer">
@@ -113,6 +114,24 @@
 
         <!-- List Film -->
         <div class="container" ng-cloak>
+            <div class="orderby">
+                <h4> Thể loại</h4>
+                <select class="form-control sort-genre" ng-init="searchgenre = optionsGenre[0]" ng-model="searchgenre" ng-options="option.name for option in optionsGenre">
+
+               </select>
+                <h4> Thời gian</h4>
+                <select class="form-control sort-time" ng-init="searchtime = timesOption[0]" ng-model="searchtime" ng-options="time.name for time in timesOption">
+
+               </select>
+                <h4> Tên phim</h4>
+                <input type="text" class=" search-query form-control sort-name" ng-model="searchname" placeholder="Tìm phim theo tên" />
+
+
+                <button ng-click="searchFilm()" class="btn btn-primary">
+                     <i class="fa fa-search" aria-hidden="true"></i>
+                         Tìm
+                </button>
+            </div>
             <div ng-hide="inhidden" class="loading-container">
                 <div class="spinner"></div>
                 <div class="spinner-center"></div>
@@ -120,7 +139,7 @@
             </div>
             <div class="row-inline">
 
-                <div ng-repeat="Film in listFilm" class="col-sm-4">
+                <div ng-repeat="Film in listFilm | orderBy:'-year'" class="col-sm-4">
 
                     <div class="nopadding">
 
@@ -132,7 +151,7 @@
                             
                         </span> -->
                             <div class="ribbon">
-                                {{Film.year}}
+                              
                                 <div>{{Film.new}}</div>
                             </div>
                             <div class="card">

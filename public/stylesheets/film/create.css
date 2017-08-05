@@ -13,6 +13,7 @@
     background-color: white;
    padding-left: 30px;
     border-radius: 10px;
+    min-height: 76.30vh;
 }
 
 .image-avatar{
@@ -48,14 +49,7 @@ body {
         border-radius: 8px;
         width: 300px;
     }
-    input[type=date]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    display: none;
-}
-input[type=date]::-webkit-clear-button{
-     -webkit-appearance: none;
-    display: none;
-}
+  
 hr{
     margin-top: 0px;
     margin-bottom: 0px;

@@ -29,12 +29,10 @@ function readURL(input) {
 
 
 
-
-
 app.controller('createController', ['$scope', '$log', '$firebaseArray', '$firebaseObject', function ($scope, $log, $firebaseArray, $firebaseObject) {
 
 
-    $scope.ten = "Tài Khoản";
+    $scope.ten = "TÀI KHOẢN";
     $scope.imageavatar = '/images/avatar.png';
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
@@ -49,10 +47,10 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
 
                 $scope.account.$loaded(function () {
                     console.log($scope.account);
-                    if ($scope.account.url != '') {
+                    if ($scope.account.url != ''&&$scope.account.url != null) {
                         $scope.imageavatar = $scope.account.url;
                     }
-                    if ($scope.account.name == '' || $scope.account.name == ' ') {
+                    if ($scope.account.name == '' || $scope.account.name == null) {
 
 
                     } else {
@@ -70,6 +68,7 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
     });
 
     $scope.name = '';
+    $scope.content = '';
     $scope.year = {
         value: new Date(Date.now())
     };
@@ -118,100 +117,124 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
 
 
     $scope.createFilm = function () {
-        var da = $scope.year.value.getDate() + '/' + $scope.year.value.getMonth() + '/' + $scope.year.value.getFullYear();
+        var da = ($scope.year.value.getMonth() + 1) + '/' + $scope.year.value.getDate() + '/' + $scope.year.value.getFullYear();
+        console.log(new Date(da).getMonth() > new Date(Date.now()).getMonth());
 
-        console.log($scope.year);
-        if ($scope.name == '' || $scope.year == '' || $scope.content == '' || $scope.genre.name == '') {
+        if (($scope.name) == '' || $scope.name == null || ($scope.year) == '' || ($scope.year) == null || ($scope.content) == '' || $scope.content == null || ($scope.genre.name) == '' || ($scope.genre.name) == null) {
             $.alert({
                 title: 'Thông báo',
                 content: 'Vui lòng điền đầy đủ thông tin!'
             });
         }
-        else if (file == null) {
-            $.alert({
-                title: 'Thông báo',
-                content: 'Vui lòng chọn ảnh!'
-            });
-        } {
-            if (new Date(da).getTime() > new Date(Date.now()).getTime()) {
+        else {
+            if (file == null) {
                 $.alert({
                     title: 'Thông báo',
-                    content: 'Ngày sản xuất phim không hợp lí!'
+                    content: 'Vui lòng chọn ảnh!'
                 });
-            }
-            else {
-                // Data firebase
-                var databaseRef = firebase.database().ref();
-
-                // Upload image
-                // Create a root reference
-                var storageRef = firebase.storage().ref();
-
-                // Create the file metadata
-                var metadata = {
-                    contentType: file.type
-                };
-
-                // Create a reference to 'images/mountains.jpg'
-                console.log((Date.now()));
-                var uploadTask = storageRef.child('images/' + (Date.now()) + '.jpg').put(file, metadata);
-
-
-                // Listen for state changes, errors, and completion of the upload.
-                uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                    function (snapshot) {
-                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log('Upload is ' + progress + '% done');
-                        switch (snapshot.state) {
-                            case firebase.storage.TaskState.PAUSED: // or 'paused'
-                                console.log('Upload is paused');
-                                break;
-                            case firebase.storage.TaskState.RUNNING: // or 'running'
-                                console.log('Upload is running');
-                                break;
-                        }
-                    }, function (error) {
-
-                        // A full list of error codes is available at
-                        // https://firebase.google.com/docs/storage/web/handle-errors
-                        switch (error.code) {
-                            case 'storage/unauthorized':
-                                // User doesn't have permission to access the object
-                                break;
-
-                            case 'storage/canceled':
-                                // User canceled the upload
-                                break;
-                            case 'storage/unknown':
-                                // Unknown error occurred, inspect error.serverResponse
-                                break;
-                        }
-                    }, function () {
-                        // Upload completed successfully, now we can get the download URL
-                        var da = $scope.year.value.getDate() + '/' + $scope.year.value.getMonth() + '/' + $scope.year.value.getFullYear();
-                        var film = {
-                            name: $scope.name,
-                            url: uploadTask.snapshot.downloadURL,
-                            year: da,
-                            content: $scope.content,
-                            genre: $scope.genre.name
-                        }
-                        console.log(film);
-
-                        databaseRef.child('/films').push(film);
-                        $.alert({
-                            title: 'Thành công',
-                            content: 'Tạo phim thành công!'
-                        });
-                        window.location.href = '/film/list';
+                console.log($scope.content);
+            } else {
+                if (new Date(da).getFullYear() > new Date(Date.now()).getFullYear()) {
+                    $.alert({
+                        title: 'Thông báo',
+                        content: 'Ngày sản xuất phim không hợp lí!'
                     });
+                }
+                else {
+                    if ((new Date(da).getFullYear() == new Date(Date.now()).getFullYear() && new Date(da).getMonth() > new Date(Date.now()).getMonth())) {
+                        $.alert({
+                            title: 'Thông báo',
+                            content: 'Ngày sản xuất phim không hợp lí!'
+                        });
+                    } else {
+
+                        if ((new Date(da).getFullYear() == new Date(Date.now()).getFullYear() && new Date(da).getMonth() == new Date(Date.now()).getMonth() && new Date(da).getDate() > new Date(Date.now()).getDate())) {
+
+                            $.alert({
+                                title: 'Thông báo',
+                                content: 'Ngày sản xuất phim không hợp lí!'
+                            });
+                        }
+
+                        else {
+                            // Data firebase
+                            var databaseRef = firebase.database().ref();
+
+                            // Upload image
+                            // Create a root reference
+                            var storageRef = firebase.storage().ref();
+
+                            // Create the file metadata
+                            var metadata = {
+                                contentType: file.type
+                            };
+
+                            // Create a reference to 'images/mountains.jpg'
+                            console.log((Date.now()));
+                            var uploadTask = storageRef.child('images/' + (Date.now()) + '.jpg').put(file, metadata);
 
 
+                            // Listen for state changes, errors, and completion of the upload.
+                            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                                function (snapshot) {
+                                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                    console.log('Upload is ' + progress + '% done');
+                                    switch (snapshot.state) {
+                                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                                            console.log('Upload is paused');
+                                            break;
+                                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                                            console.log('Upload is running');
+                                            break;
+                                    }
+                                }, function (error) {
+
+                                    // A full list of error codes is available at
+                                    // https://firebase.google.com/docs/storage/web/handle-errors
+                                    switch (error.code) {
+                                        case 'storage/unauthorized':
+                                            // User doesn't have permission to access the object
+                                            break;
+
+                                        case 'storage/canceled':
+                                            // User canceled the upload
+                                            break;
+                                        case 'storage/unknown':
+                                            // Unknown error occurred, inspect error.serverResponse
+                                            break;
+                                    }
+                                }, function () {
+                                    // Upload completed successfully, now we can get the download URL
+                                    var da = $scope.year.value.getDate() + '/' + ($scope.year.value.getMonth() + 1) + '/' + $scope.year.value.getFullYear();
+                                    var film = {
+                                        name: $scope.name,
+                                        url: uploadTask.snapshot.downloadURL,
+                                        year: da,
+                                        content: $scope.content,
+                                        genre: $scope.genre.name
+                                    }
+                                    console.log(film);
+
+                                    databaseRef.child('/films').push(film);
+                                    $.dialog({
+                                        title: 'Thành công',
+                                        content: 'Tạo phim thành công!'
+                                    });
+                                    setTimeout(function() {
+                                         window.location.href = '/film/list';
+                                    }, 1500);
+                                   
+                                });
+
+
+                        }
+
+                    }
+
+                }
             }
-
         }
-
     }
 
     $scope.signoutCinema = function () {

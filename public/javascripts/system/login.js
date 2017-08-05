@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 app.controller('loginController', ['$scope', function ($scope) {
 
     $scope.nam = "10000";
-
+    $scope.resetemail = '';
     // No user is signed in.
 
 
@@ -51,7 +51,8 @@ app.controller('loginController', ['$scope', function ($scope) {
                 url: user.photoURL,
                 phone: '',
                 address: '',
-                description: ''
+                description: '',
+                type: 'facebook'
             }
 
             databaseRef.child('users').orderByChild("id").equalTo(user.uid).once('value', function (snapshot) {
@@ -124,7 +125,8 @@ app.controller('loginController', ['$scope', function ($scope) {
                 url: user.photoURL,
                 phone: '',
                 address: '',
-                description: ''
+                description: '',
+                type: 'google'
             }
             databaseRef.child('users').orderByChild("id").equalTo(user.uid).once('value', function (snapshot) {
                 var userData = snapshot.val();
@@ -168,16 +170,24 @@ app.controller('loginController', ['$scope', function ($scope) {
     }
 
     $scope.ResetPassword = function () {
-        var auth = firebase.auth();
-        auth.sendPasswordResetEmail($scope.resetemail).then(function () {
-            // Email sent.
-            $.alert({
-                title: 'Thông báo',
-                content: 'Vui lòng kiểm tra email'
+        if ($scope.resetemail == '') {
+
+            // $.alert({
+            //     title: 'Thông báo',
+            //     content: 'Bạn chưa nhập email'
+            // });
+        } else {
+            var auth = firebase.auth();
+            auth.sendPasswordResetEmail($scope.resetemail).then(function () {
+                // Email sent.
+                $.alert({
+                    title: 'Thông báo',
+                    content: 'Vui lòng kiểm tra email'
+                });
+            }).catch(function (error) {
+                // An error happened.
             });
-        }).catch(function (error) {
-            // An error happened.
-        });
+        }
     }
     $scope.loginCinema = function () {
 

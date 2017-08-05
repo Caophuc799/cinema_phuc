@@ -5,7 +5,7 @@ var app = angular.module("app.cinema", ["xeditable", 'firebase']);
 
 app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$firebaseObject',
     function ($scope, $log, $firebaseArray, $firebaseObject) {
-        $scope.ten = "Tài Khoản";
+        $scope.ten = "TÀI KHOẢN";
         $scope.inhidden = '';
         $scope.ahidden = 'none';
         $scope.imageavatar = '/images/avatar.png';
@@ -77,6 +77,9 @@ app.controller('detailController', ['$scope', '$log', '$firebaseArray', '$fireba
 
         $scope.Film = $firebaseObject(databaseRef.child('/films/' + $scope.id));
         $scope.Film.$loaded(function () {
+           
+              
+         
             console.log($scope.Film);
         });
 

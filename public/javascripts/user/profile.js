@@ -32,9 +32,9 @@ function readURL(input) {
     }
 }
 
-function trimSpace(str) {
-    return str.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g, "").replace(/\s+/g, " ");
-}
+// function trimSpace(str) {
+//     return str.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g, "").replace(/\s+/g, " ");
+// }
 app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$firebaseObject',
     function ($scope, $log, $firebaseArray, $firebaseObject) {
 
@@ -42,7 +42,8 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
         $scope.inhidden = '';
         $scope.ahidden = 'none';
         $scope.mai = "mai";
-        $scope.ten = "Tài Khoản";
+        $scope.ten = "TÀI KHOẢN";
+
         $scope.imageavatar = '/images/avatar.png';
         var file = null;
         document.getElementById('upload-file').addEventListener('change', function (event) {
@@ -63,12 +64,16 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                     $scope.account.$loaded(function () {
                         $scope.ahidden = '';
                         $scope.inhidden = 'none';
+                        if ($scope.account.type == 'user') {
 
+                            document.getElementById("myemail").disabled = true;
+                        }
                         console.log($scope.account);
-                        if ($scope.account.url != '') {
+                        if ($scope.account.url != ''&&$scope.account.url != null) {
                             $scope.imageavatar = $scope.account.url;
                         }
-                        if (trimSpace($scope.account.name) == '' || $scope.account.name == ' ') {
+                        if (($scope.account.name) == '' || $scope.account.name == null) {
+                            console.log($scope.account.name + '.');
 
 
                         } else {
@@ -101,7 +106,7 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
             // Create the file metadata
             console.log(checkimg);
 
-            if (trimSpace($scope.account.email) == '' || trimSpace($scope.account.name) == '' || trimSpace($scope.account.phone) == '' || trimSpace($scope.account.address) == '' || trimSpace($scope.account.description) == '') {
+            if (($scope.account.email) == '' || ($scope.account.name) == '' || ($scope.account.phone) == '' || ($scope.account.address) == '' || ($scope.account.description) == '') {
                 $.alert({
                     title: 'Thông báo',
                     content: 'Vui lòng điền đầy đủ thông tin!'
@@ -113,7 +118,7 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                 if (checkimg == false) {
                     var ac = {
                         email: $scope.account.email,
-                        name: trimSpace($scope.account.name),
+                        name: ($scope.account.name),
                         url: $scope.account.url,
                         phone: $scope.account.phone,
                         address: $scope.account.address,
@@ -130,7 +135,7 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                     });
 
 
-                    
+
                     // databaseRef.child('users').child($scope.account.$id).update(ac);
                     // console.log(ac);
                     // alert("Cập nhật thành công");

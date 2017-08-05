@@ -267,7 +267,7 @@ input[type=date]::-webkit-clear-button{
 	height: 48px;
 	line-height: 48px;
 	right: 30px;
-	bottom: 13px;
+	bottom: 85px;
 	padding-top: 2px;
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
@@ -291,4 +291,3 @@ input[type=date]::-webkit-clear-button{
   line-height: inherit;
   margin-top:-1px;
 }
- 

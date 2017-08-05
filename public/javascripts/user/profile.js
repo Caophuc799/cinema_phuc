@@ -71,12 +71,13 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
                     $scope.account.$loaded(function () {
                         $scope.ahidden = '';
                         $scope.inhidden = 'none';
-                        if ($scope.account.type == 'user') {
+
+                        if ($scope.account.type == 'user' || $scope.account.type == 'google') {
 
                             document.getElementById("myemail").disabled = true;
                         }
                         console.log($scope.account);
-                        if ($scope.account.url != ''&&$scope.account.url != null) {
+                        if ($scope.account.url != '' && $scope.account.url != null) {
                             $scope.imageavatar = $scope.account.url;
                         }
                         if (($scope.account.name) == '' || $scope.account.name == null) {
@@ -111,112 +112,133 @@ app.controller('profileController', ['$scope', '$log', '$firebaseArray', '$fireb
             var storageRef = firebase.storage().ref();
             var databaseRef = firebase.database().ref();
             // Create the file metadata
-            console.log(checkimg);
+            // console.log(checkimg);
 
-            if (($scope.account.email) == '' || ($scope.account.name) == '' || ($scope.account.phone) == '' || ($scope.account.address) == '' || ($scope.account.description) == '') {
+            console.log($scope.account.phone);
+            if (($scope.account.email) == '' || ($scope.account.email) == null || ($scope.account.name) == '' || ($scope.account.name) == null || ($scope.account.phone) == '' || ($scope.account.phone) == null || ($scope.account.address) == '' || ($scope.account.address) == null || ($scope.account.description) == '' || ($scope.account.description) == null) {
                 $.alert({
                     title: 'Thông báo',
                     content: 'Vui lòng điền đầy đủ thông tin!'
                 });
 
             } else {
-
-
-                if (checkimg == false) {
-                    var ac = {
-                        email: $scope.account.email,
-                        name: ($scope.account.name),
-                        url: $scope.account.url,
-                        phone: $scope.account.phone,
-                        address: $scope.account.address,
-                        description: $scope.account.description
-                    }
-                    databaseRef.child('users').child($scope.account.$id).update(ac, function (error) {
-                        if (!error) {
-                            $.alert({
-                                title: 'Thành công',
-                                content: 'Cập nhật thông tin thành công!'
-                            });
-                            // window.location.href = 'film/list';
-                        }
+                if ($scope.account.phone.toString().length > 12) {
+                    console.log("Looix");
+                    $.alert({
+                        title: 'Thông báo',
+                        content: 'Số điện thoại quá dài'
                     });
+                }
+                else
+                    if ($scope.account.phone.toString().length < 9) {
+                        console.log("Looix");
+                        $.alert({
+                            title: 'Thông báo',
+                            content: 'Số điện thoại ngắn'
+                        });
+                    } else
+                        if ($scope.account.phone < 100000000 || $scope.account.phone > 99999999999) {
+                            $.alert({
+                                title: 'Thông báo',
+                                content: 'Số điện thoại không đúng'
+                            });
+                        }
+                        else
+                            if (checkimg == false) {
+                                var ac = {
+                                    email: $scope.account.email,
+                                    name: ($scope.account.name),
+                                    url: $scope.account.url,
+                                    phone: $scope.account.phone,
+                                    address: $scope.account.address,
+                                    description: $scope.account.description
+                                }
+                                databaseRef.child('users').child($scope.account.$id).update(ac, function (error) {
+                                    if (!error) {
+                                        $.alert({
+                                            title: 'Thành công',
+                                            content: 'Cập nhật thông tin thành công!'
+                                        });
+                                        // window.location.href = 'film/list';
+                                    }
+                                });
 
 
 
-                    // databaseRef.child('users').child($scope.account.$id).update(ac);
-                    // console.log(ac);
-                    // alert("Cập nhật thành công");
-                } else {
+                                // databaseRef.child('users').child($scope.account.$id).update(ac);
+                                // console.log(ac);
+                                // alert("Cập nhật thành công");
+                            } else {
 
 
-                    if (file != null) {
-                        var metadata = {
-                            contentType: file.type
-                        };
-                    }
-                    // Create a reference to 'images/mountains.jpg'
-                    var uploadTask = storageRef.child('images/' + (Date.now()) + '.jpg').put(file, metadata);
+                                if (file != null) {
+                                    var metadata = {
+                                        contentType: file.type
+                                    };
+                                }
+                                // Create a reference to 'images/mountains.jpg'
+                                var uploadTask = storageRef.child('images/' + (Date.now()) + '.jpg').put(file, metadata);
 
 
-                    // Listen for state changes, errors, and completion of the upload.
-                    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                        function (snapshot) {
-                            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-                            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                            console.log('Upload is ' + progress + '% done');
-                            switch (snapshot.state) {
-                                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                                    console.log('Upload is paused');
-                                    break;
-                                case firebase.storage.TaskState.RUNNING: // or 'running'
-                                    console.log('Upload is running');
-                                    break;
-                            }
-                        }, function (error) {
+                                // Listen for state changes, errors, and completion of the upload.
+                                uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                                    function (snapshot) {
+                                        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                        console.log('Upload is ' + progress + '% done');
+                                        switch (snapshot.state) {
+                                            case firebase.storage.TaskState.PAUSED: // or 'paused'
+                                                console.log('Upload is paused');
+                                                break;
+                                            case firebase.storage.TaskState.RUNNING: // or 'running'
+                                                console.log('Upload is running');
+                                                break;
+                                        }
+                                    }, function (error) {
 
-                            // A full list of error codes is available at
-                            // https://firebase.google.com/docs/storage/web/handle-errors
-                            switch (error.code) {
-                                case 'storage/unauthorized':
-                                    // User doesn't have permission to access the object
-                                    break;
+                                        // A full list of error codes is available at
+                                        // https://firebase.google.com/docs/storage/web/handle-errors
+                                        switch (error.code) {
+                                            case 'storage/unauthorized':
+                                                // User doesn't have permission to access the object
+                                                break;
 
-                                case 'storage/canceled':
-                                    // User canceled the upload
-                                    break;
-                                case 'storage/unknown':
-                                    // Unknown error occurred, inspect error.serverResponse
-                                    break;
-                            }
-                        }, function () {
-                            // Upload completed successfully, now we can get the download URL
-                            var ab = {
-                                email: $scope.account.email,
-                                name: $scope.account.name,
-                                url: uploadTask.snapshot.downloadURL,
-                                phone: $scope.account.phone,
-                                address: $scope.account.address,
-                                description: $scope.account.description
-                            }
+                                            case 'storage/canceled':
+                                                // User canceled the upload
+                                                break;
+                                            case 'storage/unknown':
+                                                // Unknown error occurred, inspect error.serverResponse
+                                                break;
+                                        }
+                                    }, function () {
+                                        // Upload completed successfully, now we can get the download URL
+                                        var ab = {
+                                            email: $scope.account.email,
+                                            name: $scope.account.name,
+                                            url: uploadTask.snapshot.downloadURL,
+                                            phone: $scope.account.phone,
+                                            address: $scope.account.address,
+                                            description: $scope.account.description
+                                        }
 
-                            databaseRef.child('users').child($scope.account.$id).update(ab, function (error) {
-                                if (!error) {
+                                        databaseRef.child('users').child($scope.account.$id).update(ab, function (error) {
+                                            if (!error) {
 
-                                    $.alert({
-                                        title: 'Thành công',
-                                        content: 'Cập nhật thông tin thành công!'
+                                                $.alert({
+                                                    title: 'Thành công',
+                                                    content: 'Cập nhật thông tin thành công!'
+                                                });
+
+                                                window.location.href = 'film/list';
+                                            }
+                                        });
+
+
                                     });
 
-                                    window.location.href = 'film/list';
-                                }
-                            });
 
 
-                        });
-
-
-
-                }
+                            }
             }
         }
 

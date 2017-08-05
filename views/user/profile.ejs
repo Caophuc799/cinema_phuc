@@ -19,9 +19,7 @@
         <script src="/javascripts/user/profile.js">
 
         </script>
-        <script src="/javascripts/main.js">
-
-        </script>
+        
 
         <!-- Load style header-->
         <link rel="stylesheet" href="/stylesheets/style.css">
@@ -33,11 +31,11 @@
 
 <body>
 
-    <div onclick="topFunction()" class="scroll-top-wrapper ">
+    <!-- <div onclick="topFunction()" class="scroll-top-wrapper ">
         <span class="scroll-top-inner">
 	        	<i class="fa fa-2x fa-arrow-circle-up"></i>
 	              </span>
-    </div>
+    </div> -->
     <div class="full-container" ng-controller="profileController">
 
         <!-- 
@@ -62,7 +60,7 @@
             <nav style="border-radius:0px;" class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;margin-left:-10px;">Cinema</a>
+                        <a class="navbar-brand" href="/film/list" style="font-size:40px;color:antiquewhite;margin-left:-10px;">CINEMA</a>
                     </div>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -164,7 +162,7 @@
                         <div class="form-group">
                             <label class="col-lg-6 control-label title-top">Điện thoại:</label>
                             <div class="col-lg-12">
-                                <input ng-model="account.phone" class="form-control" value="" type="tel">
+                                   <input ng-model="account.phone" class="form-control" value="" type="number">
                             </div>
                         </div>
                         <div class="form-group">

@@ -165,7 +165,7 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
 
     $scope.searchFilm = function () {
         // console.log($('select[name=selector]').val());
-
+      
         if ($scope.searchname != null && $scope.searchname != '') {
             $scope.listFilm = [];
 
@@ -288,8 +288,7 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
                     title: 'Thông báo',
                     content: 'Đã tìm xong'
                 });
-                // $scope.inhidden = '';
-                // $scope.ahidden = 'none'
+                
             }
 
         }

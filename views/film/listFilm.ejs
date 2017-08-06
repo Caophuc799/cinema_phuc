@@ -10,7 +10,8 @@
         <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css"
             media="screen">
 
- <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Lobster|Oswald|Pacifico|Paytone+One&amp;subset=vietnamese" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Lobster|Oswald|Pacifico|Paytone+One&amp;subset=vietnamese"
+            rel="stylesheet">
 
 
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -154,33 +155,35 @@
                 <div class="spinner-center"></div>
                 <div class="loading-text">Loading...</div>
             </div>
-            <div ng-hide="anhidden" class="row-inline">
+            <div ng-hide="anhidden">
+                <div class="row-inline">
 
-                <div ng-repeat="Film in listFilm" class="col-sm-4">
+                    <div ng-repeat="Film in listFilm" class="col-sm-4">
 
-                    <div class="nopadding">
+                        <div class="nopadding">
 
-                        <a href='/film/detail/{{Film.id}}'>
-                            <!-- <a href='/film/detail/{{Film.$id}}'>  -->
-                            <img class="card-img" alt="ảnh" src='{{Film.url}}'>
-                            <!-- <span style="font-size:12px;" class="ribbon">
+                            <a href='/film/detail/{{Film.id}}'>
+                                <!-- <a href='/film/detail/{{Film.$id}}'>  -->
+                                <img class="card-img" alt="ảnh" src='{{Film.url}}'>
+                                <!-- <span style="font-size:12px;" class="ribbon">
                             {{Film.genre}}
                             
                         </span> -->
-                            <div class="ribbon">
+                                <div class="ribbon">
 
-                                <div>{{Film.new}}</div>
-                            </div>
-                            <div class="card">
-                                <p class="card-name">{{Film.name}}</p>
+                                    <div>{{Film.new}}</div>
+                                </div>
+                                <div class="card">
+                                    <p class="card-name">{{Film.name}}</p>
 
-                            </div>
-                        </a>
+                                </div>
+                            </a>
 
+                        </div>
                     </div>
+
+
                 </div>
-
-
             </div>
 
         </div>

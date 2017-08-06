@@ -133,19 +133,27 @@
         <div class="container" ng-cloak>
             <div style="float:left" class="  orderby">
                 <label class="laa"> Thể loại</label>
-                <select style="margin-bottom: 20px;" class="form-control sort-genre" ng-init="searchgenre = optionsGenre[0]" ng-model="searchgenre"
+                <select id="SelectionGenre" style="margin-bottom: 20px;" class="form-control sort-genre" ng-init="searchgenre = optionsGenre[0]" ng-model="searchgenre"
                     ng-options="option.name for option in optionsGenre">
 
                </select>
                 <label class="laa"> Thời gian</label>
-                <select class="form-control sort-time" ng-init="searchtime = timesOption[0]" ng-model="searchtime" ng-options="time.name for time in timesOption">
+                <select id="SelectTime" class="form-control sort-time" ng-init="searchtime = timesOption[0]" ng-model="searchtime" ng-options="time.name for time in timesOption">
 
                </select>
                 <label class="laa">Tên phim</label>
-                <input type="text" class=" search-query form-control sort-name" ng-model="searchname" placeholder="Tìm phim theo tên" />
+                <input type="search" class=" search-query form-control sort-name" ng-model="searchname" placeholder="Tìm phim theo tên" />
+                <!-- <input style="display:inline;" type="search" ng-model="q" placeholder="filter friends..." aria-label="filter listFilm" /> -->
+                <!-- <ul class="example-animate-container">
+                    <li class="animate-repeat" ng-repeat="friend in listFilm | filter:searchname as results">
+                        [{{$index + 1}}] {{friend.name}} who is {{friend.age}} years old.
+                    </li>
+                    <li class="animate-repeat" ng-if="results.length === 0">
+                        <strong>No results found...</strong>
+                    </li>
+                </ul> -->
 
-
-                <button ng-click="searchFilm()" class="btn btn-primary">
+                <button style="margin-left:5px;" ng-click="searchFilm()" class="btn btn-primary">
                      <i class="fa fa-search" aria-hidden="true"></i>
                          Tìm
                 </button>
@@ -156,9 +164,9 @@
                 <div class="loading-text">Loading...</div>
             </div>
             <div ng-hide="anhidden">
-                <div class="row-inline">
+                <div class="row-inline example-animate-container">
 
-                    <div ng-repeat="Film in listFilm" class="col-sm-4">
+                    <div ng-repeat="Film in listFilm | filter:searchname as results" class="col-sm-4 animate-repeat">
 
                         <div class="nopadding">
 
@@ -181,6 +189,7 @@
 
                         </div>
                     </div>
+                   
 
 
                 </div>

@@ -72,6 +72,17 @@ var sortByDate = function (marr) {
     // console.log(arr);
     return arr;
 }
+function bodauTiengViet(str) {
+    str = str.toLowerCase();
+    str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
+    str = str.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, "e");
+    str = str.replace(/ì|í|ị|ỉ|ĩ/g, "i");
+    str = str.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, "o");
+    str = str.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, "u");
+    str = str.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, "y");
+    str = str.replace(/đ/g, "d");
+    return str;
+}
 
 app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$firebaseObject", function ($scope, $log, $firebaseArray, $firebaseObject) {
     var databaseRef = firebase.database().ref();
@@ -144,6 +155,7 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
         // console.log(tam);
         $scope.listFilmDefault = $scope.listFilm;
         for (var i = 0; i < $scope.listFilm.length; ++i) {
+            $scope.listFilm[i].save = bodauTiengViet($scope.listFilm[i].name) + bodauTiengViet($scope.listFilm[i].content);
             var parts = $scope.listFilm[i].year.split('/');
             $scope.listFilm[i].new = $scope.listFilm[i].year
             var mydate = new Date(parts[2], parts[1] - 1, parts[0]);
@@ -162,137 +174,145 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
 
     });
 
-
+    // $('#SelectionGenre').on('change', function () {
+    //     $scope.listFilm = $scope.listFilmDefault;
+    //     $scope.searchFilm();
+    // });
+    // $('#SelectTime').on('change', function () {
+    //     $scope.listFilm = $scope.listFilmDefault;
+    //     $scope.searchFilm();
+    // });
     $scope.searchFilm = function () {
         // console.log($('select[name=selector]').val());
-      
-        if ($scope.searchname != null && $scope.searchname != '') {
-            $scope.listFilm = [];
 
-            for (var i = 0; i < $scope.listFilmDefault.length; ++i) {
-                if (trimSpace($scope.listFilmDefault[i].name.toUpperCase()).includes(trimSpace($scope.searchname.toUpperCase()))) {
-                    $scope.listFilm.push($scope.listFilmDefault[i]);
-                    // console.log('dc');
 
-                }
-            }
-
-        }
-
-        if ($scope.searchname == null || $scope.searchname == '') {
-
-            if ($scope.searchgenre.name == 'Tất cả') {
-                // console.log($scope.searchname);
-                // if (trimSpace($scope.searchname) == '' || $scope.searchname == null) {
+        if ($scope.listFilm.length > 0) {
+            if ($scope.searchname != null && $scope.searchname != '') {
                 $scope.listFilm = [];
+
                 for (var i = 0; i < $scope.listFilmDefault.length; ++i) {
-                    // if (trimSpace($scope.listFilmDefault[i].name.toUpperCase()) == trimSpace($scope.searchname.toUpperCase())) {
-                    if ($scope.searchtime.name == 'Tất cả') {
+                    if (trimSpace($scope.listFilmDefault[i].name.toUpperCase()).includes(trimSpace($scope.searchname.toUpperCase()))) {
                         $scope.listFilm.push($scope.listFilmDefault[i]);
-                    } else
-                        if ($scope.searchtime.name == 'Mới nhất') {
-                            if (Getyearfromstring($scope.listFilmDefault[i].year) >= 2017) {
+                        // console.log('dc');
 
-                                $scope.listFilm.push($scope.listFilmDefault[i]);
-                            }
-                        }
-                        else if ($scope.searchtime.name == 'Trước 2013') {
-                            if (Getyearfromstring($scope.listFilmDefault[i].year) < 2013) {
-
-                                $scope.listFilm.push($scope.listFilmDefault[i]);
-                            }
-                        } else
-
-                            if (Getyearfromstring($scope.listFilmDefault[i].year) == $scope.searchtime.name) {
-
-                                $scope.listFilm.push($scope.listFilmDefault[i]);
-                            }
-
-                    // }
+                    }
                 }
 
-            } else {
-                databaseRef.child('films').orderByChild("genre").equalTo($scope.searchgenre.name).once('value', function (snapshot) {
-                    var userData = snapshot.val();
+            }
+
+            if ($scope.searchname == null || $scope.searchname == '') {
+
+                if ($scope.searchgenre.name == 'Tất cả') {
+                    // console.log($scope.searchname);
+                    // if (trimSpace($scope.searchname) == '' || $scope.searchname == null) {
                     $scope.listFilm = [];
-                    if (userData) {
-                        // console.log(userData);
+                    for (var i = 0; i < $scope.listFilmDefault.length; ++i) {
+                        // if (trimSpace($scope.listFilmDefault[i].name.toUpperCase()) == trimSpace($scope.searchname.toUpperCase())) {
+                        if ($scope.searchtime.name == 'Tất cả') {
+                            $scope.listFilm.push($scope.listFilmDefault[i]);
+                        } else
+                            if ($scope.searchtime.name == 'Mới nhất') {
+                                if (Getyearfromstring($scope.listFilmDefault[i].year) >= 2017) {
 
-                        var arr = $.map(userData, function (el) {
-                            return el;
-                        });
-
-                        // if (trimSpace($scope.searchname) != '' || $scope.searchname == null) {
-
-
-                        for (var i = 0; i < arr.length; ++i) {
-
-                            // if (trimSpace(arr[i].name.toUpperCase()) == trimSpace($scope.searchname.toUpperCase())) {
-                            if ($scope.searchtime.name == 'Tất cả') {
-                                $scope.listFilm.push(arr[i]);
-                            } else
-                                if ($scope.searchtime.name == 'Mới nhất') {
-                                    if (Getyearfromstring(arr[i].year) >= 2017) {
-
-                                        $scope.listFilm.push(arr[i]);
-                                    }
+                                    $scope.listFilm.push($scope.listFilmDefault[i]);
                                 }
-                                else if ($scope.searchtime.name == 'Trước 2013') {
-                                    if (Getyearfromstring(arr[i].year) < 2013) {
+                            }
+                            else if ($scope.searchtime.name == 'Trước 2013') {
+                                if (Getyearfromstring($scope.listFilmDefault[i].year) < 2013) {
 
-                                        $scope.listFilm.push(arr[i]);
-                                    }
+                                    $scope.listFilm.push($scope.listFilmDefault[i]);
+                                }
+                            } else
+
+                                if (Getyearfromstring($scope.listFilmDefault[i].year) == $scope.searchtime.name) {
+
+                                    $scope.listFilm.push($scope.listFilmDefault[i]);
+                                }
+
+                        // }
+                    }
+
+                } else {
+                    databaseRef.child('films').orderByChild("genre").equalTo($scope.searchgenre.name).once('value', function (snapshot) {
+                        var userData = snapshot.val();
+                        $scope.listFilm = [];
+                        if (userData) {
+                            // console.log(userData);
+
+                            var arr = $.map(userData, function (el) {
+                                return el;
+                            });
+
+                            // if (trimSpace($scope.searchname) != '' || $scope.searchname == null) {
+
+
+                            for (var i = 0; i < arr.length; ++i) {
+
+                                // if (trimSpace(arr[i].name.toUpperCase()) == trimSpace($scope.searchname.toUpperCase())) {
+                                if ($scope.searchtime.name == 'Tất cả') {
+                                    $scope.listFilm.push(arr[i]);
                                 } else
+                                    if ($scope.searchtime.name == 'Mới nhất') {
+                                        if (Getyearfromstring(arr[i].year) >= 2017) {
 
-                                    if (Getyearfromstring(arr[i].year) == $scope.searchtime.name) {
-
-                                        $scope.listFilm.push(arr[i]);
+                                            $scope.listFilm.push(arr[i]);
+                                        }
                                     }
+                                    else if ($scope.searchtime.name == 'Trước 2013') {
+                                        if (Getyearfromstring(arr[i].year) < 2013) {
+
+                                            $scope.listFilm.push(arr[i]);
+                                        }
+                                    } else
+
+                                        if (Getyearfromstring(arr[i].year) == $scope.searchtime.name) {
+
+                                            $scope.listFilm.push(arr[i]);
+                                        }
+
+
+                            }
+
+                        } else {
 
 
                         }
-
-                    } else {
-
-
-                    }
-                });
-            }
-        }
-        if ($scope.listFilm.length == 0) {
-            $.alert({
-                title: 'Thông báo',
-                content: 'Không có phim nào'
-            });
-            $scope.listFilm = $scope.listFilmDefault;
-        } else {
-            $scope.listFilm = sortByDate($scope.listFilm);
-            for (var i = 0; i < $scope.listFilm.length; ++i) {
-                var parts = $scope.listFilm[i].year.split('/');
-                $scope.listFilm[i].new = $scope.listFilm[i].year
-                var mydate = new Date(parts[2], parts[1] - 1, parts[0]);
-                var datecur = new Date();
-                // console.log(mydate);
-
-
-                if (mydate.getFullYear() - datecur.getFullYear() >= 0) {
-                    if ((datecur.getMonth() - mydate.getMonth()) <= 1) {
-                        $scope.listFilm[i].new = 'Phim Mới';
-
-                    }
-
+                    });
                 }
             }
-            if ($scope.searchgenre.name != 'Tất cả' || $scope.searchtime.name != 'Tất cả' || $scope.searchname != '') {
+            if ($scope.listFilm.length == 0) {
                 $.alert({
                     title: 'Thông báo',
-                    content: 'Đã tìm xong'
+                    content: 'Không có phim nào'
                 });
-                
+                $scope.listFilm = $scope.listFilmDefault;
+            } else {
+                $scope.listFilm = sortByDate($scope.listFilm);
+                for (var i = 0; i < $scope.listFilm.length; ++i) {
+                    $scope.listFilm[i].save = bodauTiengViet($scope.listFilm[i].name) + bodauTiengViet($scope.listFilm[i].content);
+                    var parts = $scope.listFilm[i].year.split('/');
+                    $scope.listFilm[i].new = $scope.listFilm[i].year
+                    var mydate = new Date(parts[2], parts[1] - 1, parts[0]);
+                    var datecur = new Date();
+                    // console.log(mydate);
+
+
+                    if (mydate.getFullYear() - datecur.getFullYear() >= 0) {
+                        if ((datecur.getMonth() - mydate.getMonth()) <= 1) {
+                            $scope.listFilm[i].new = 'Phim Mới';
+
+                        }
+
+                    }
+                }
+                if ($scope.searchgenre.name != 'Tất cả' || $scope.searchtime.name != 'Tất cả' || $scope.searchname != '') {
+
+
+                }
+
             }
 
         }
-
 
     }
 

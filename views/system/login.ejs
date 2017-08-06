@@ -71,8 +71,8 @@
                 </div>
 
             </div> -->
-            <h3 class="omb_authTitle" style="color:blue">Login
-                <div style="color:black; display:inline"> or</div> <a style="color:black" href="/register"> Sign up</a></h3>
+            <h3 class="omb_authTitle" style="color:blue">Đăng nhập
+                <div style="color:black; display:inline"> hoặc </div> <a style="color:black" href="/register"> Đăng kí</a></h3>
             <div class="row omb_row-sm-offset-1 omb_socialButtons">
                 <div class="col-xs-4">
                     <a ng-click="loginFacebook()" class="btn btn-lg btn-block omb_btn-facebook">
@@ -116,24 +116,24 @@
             </label>
                 </div> -->
                 <br>
-                <button style="height:50px;" ng-click="loginCinema()" class="btn btn-lg btn-primary btn-block" type="submit">Sign in </button>
+                <button style="height:50px;" ng-click="loginCinema()" class="btn btn-lg btn-primary btn-block" type="submit">Đăng nhập </button>
                 <br>
-                <a href="" style="font-size:16px;" data-toggle="modal" data-target="#exampleModalLong">Forgot password?</a>
+                <a href="" style="font-size:16px;"  ng-click="ResetPassword()">Quên mật khẩu?</a>
 
             </form>
 
         </div>
 
         <!-- Modal -->
-
-        <div ng-hide="attrhidden" class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+<!-- 
+        <div ng-hide="attrhidden" class="modal fade" id="exampleModalLonglogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="col-xs-8 col-xs-offset-2">
                     <div class="modal-content">
 
                         <div class="modal-header">
-                            <h3 class="modal-title" style="display:inline-block;" id="exampleModalLongTitle">Forgot password</h3>
+                            <h3 class="modal-title" style="display:inline-block;" id="exampleModalLongTitle">Quên mật khẩu</h3>
                             <button type="button" style="margin-top:0px;display:inline-block;" class="close" data-dismiss="modal" aria-label="Close">
           <span  aria-hidden="true">&times;</span>
         </button>
@@ -145,13 +145,13 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button ng-click="ResetPassword()" type="button" class="btn btn-primary">Send</button>
+                            <button ng-click="ResetPassword()" type="button" class="btn btn-primary">Gửi</button>
 
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
     </div>
 </body>

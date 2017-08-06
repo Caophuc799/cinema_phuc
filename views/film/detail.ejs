@@ -13,6 +13,7 @@
         <script src="/javascripts/film/listFilm.js"></script>
         <!--Load style css my cinema-->
 
+      <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Lobster|Oswald|Pacifico|Paytone+One&amp;subset=vietnamese" rel="stylesheet">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/css/xeditable.min.css">
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/angular-xeditable/0.8.0/js/xeditable.min.js"></script>
@@ -24,7 +25,7 @@
 
         <!-- Load style header-->
         <script src="/javascripts/film/detail.js"></script>
-       
+
         <link rel="stylesheet" href="/stylesheets/style.css">
 
 
@@ -51,7 +52,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <div data-toggle="modal" data-target="#logoutform" class=" menu-dis" style="margin-right:-10px;">
+                        <div ng-click="signoutCinema()" class=" menu-dis" style="margin-right:-10px;">
                             <a href="#">
                                  <i  class="fa fa-sign-out " aria-hidden="true"></i>
                                 ĐĂNG XUẤT
@@ -85,7 +86,7 @@
         </div>
 
 
-
+        <!-- 
         <div class="modal fade" id="logoutform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" style="width:371px" role="document">
                 <div class="modal-content">
@@ -105,7 +106,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- Body -->
         <div ng-hide="inhidden" class="loading-container">
@@ -115,6 +116,9 @@
         </div>
         <div ng-hide="ahidden" class="container main-container">
 
+            <h1 class="header-title">
+                {{Film.name}}
+            </h1>
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -124,10 +128,9 @@
                     </div>
                 </div>
                 <!-- edit form column -->
+
                 <div class="main-right">
-                    <h1>
-                        {{Film.name}}
-                    </h1>
+
 
 
                     <!-- <a href="" ng-click="textBtnForm.$show()" ng-hide="textBtnForm.$visible"><i class="fa fa-edit"></i></a> -->

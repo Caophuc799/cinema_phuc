@@ -223,13 +223,13 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
                                     console.log(film);
 
                                     databaseRef.child('/films/' + newkey).set(film);
-                                    $.dialog({
-                                        title: 'Thành công',
-                                        content: 'Tạo phim thành công!'
+                                    $.alert({
+                                        title: 'Thông báo',
+                                        content: 'Đã tạo phim xong!'
                                     });
                                     setTimeout(function () {
                                         window.location.href = '/film/list';
-                                    }, 1500);
+                                    }, 2000);
 
                                 });
 
@@ -244,12 +244,29 @@ app.controller('createController', ['$scope', '$log', '$firebaseArray', '$fireba
     }
 
     $scope.signoutCinema = function () {
-        firebase.auth().signOut().then(function () {
-            // Sign-out successful.
-            window.location.href = "/";
-        }).catch(function (error) {
-            // An error happened.
+
+        $.confirm({
+            title: 'Thông báo',
+            content: 'Bạn có muốn đăng xuất?',
+            buttons: {
+                'Bỏ qua': function () {
+                    // here the key 'something' will be used as the text.
+                    // $.alert('You clicked on something.');
+                    $('#exampleModalLonglogin').modal('hide');
+                },
+                'Đăng xuất': {
+                    action: function () {
+                        firebase.auth().signOut().then(function () {
+                            // Sign-out successful.
+                            window.location.href = "/";
+                        }).catch(function (error) {
+                            // An error happened.
+                        });
+                    }
+                }
+            }
         });
+
     }
 
 

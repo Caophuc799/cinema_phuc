@@ -72,8 +72,11 @@ var sortByDate = function (marr) {
     // console.log(arr);
     return arr;
 }
+
 app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$firebaseObject", function ($scope, $log, $firebaseArray, $firebaseObject) {
     var databaseRef = firebase.database().ref();
+
+
 
     $scope.ten = "TÀI KHOẢN";
     $scope.timesOption = [{
@@ -161,39 +164,29 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
 
 
     $scope.searchFilm = function () {
+        // console.log($('select[name=selector]').val());
 
-        if ($scope.searchgenre.name == 'Tất cả') {
-            // console.log($scope.searchname);
-            if (trimSpace($scope.searchname) != '' || $scope.searchname == null) {
-                $scope.listFilm = [];
-                for (var i = 0; i < $scope.listFilmDefault.length; ++i) {
-                    if (trimSpace($scope.listFilmDefault[i].name.toUpperCase()) == trimSpace($scope.searchname.toUpperCase())) {
-                        if ($scope.searchtime.name == 'Tất cả') {
-                            $scope.listFilm.push($scope.listFilmDefault[i]);
-                        } else
-                            if ($scope.searchtime.name == 'Mới nhất') {
-                                if (Getyearfromstring($scope.listFilmDefault[i].year) >= 2017) {
+        if ($scope.searchname != null && $scope.searchname != '') {
+            $scope.listFilm = [];
 
-                                    $scope.listFilm.push($scope.listFilmDefault[i]);
-                                }
-                            }
-                            else if ($scope.searchtime.name == 'Trước 2013') {
-                                if (Getyearfromstring($scope.listFilmDefault[i].year) < 2013) {
+            for (var i = 0; i < $scope.listFilmDefault.length; ++i) {
+                if (trimSpace($scope.listFilmDefault[i].name.toUpperCase()).includes(trimSpace($scope.searchname.toUpperCase()))) {
+                    $scope.listFilm.push($scope.listFilmDefault[i]);
+                    // console.log('dc');
 
-                                    $scope.listFilm.push($scope.listFilmDefault[i]);
-                                }
-                            } else
-
-                                if (Getyearfromstring($scope.listFilmDefault[i].year) == $scope.searchtime.name) {
-
-                                    $scope.listFilm.push($scope.listFilmDefault[i]);
-                                }
-
-                    }
                 }
-            } else {
+            }
+
+        }
+
+        if ($scope.searchname == null || $scope.searchname == '') {
+
+            if ($scope.searchgenre.name == 'Tất cả') {
+                // console.log($scope.searchname);
+                // if (trimSpace($scope.searchname) == '' || $scope.searchname == null) {
                 $scope.listFilm = [];
                 for (var i = 0; i < $scope.listFilmDefault.length; ++i) {
+                    // if (trimSpace($scope.listFilmDefault[i].name.toUpperCase()) == trimSpace($scope.searchname.toUpperCase())) {
                     if ($scope.searchtime.name == 'Tất cả') {
                         $scope.listFilm.push($scope.listFilmDefault[i]);
                     } else
@@ -215,55 +208,26 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
                                 $scope.listFilm.push($scope.listFilmDefault[i]);
                             }
 
+                    // }
                 }
 
+            } else {
+                databaseRef.child('films').orderByChild("genre").equalTo($scope.searchgenre.name).once('value', function (snapshot) {
+                    var userData = snapshot.val();
+                    $scope.listFilm = [];
+                    if (userData) {
+                        // console.log(userData);
 
-            }
-        } else {
-            databaseRef.child('films').orderByChild("genre").equalTo($scope.searchgenre.name).once('value', function (snapshot) {
-                var userData = snapshot.val();
-                console.log(userData);
-                if (userData) {
-                    // console.log(userData);
+                        var arr = $.map(userData, function (el) {
+                            return el;
+                        });
 
-                    var arr = $.map(userData, function (el) {
-                        return el;
-                    });
+                        // if (trimSpace($scope.searchname) != '' || $scope.searchname == null) {
 
-                    if (trimSpace($scope.searchname) != '' || $scope.searchname == null) {
-                        $scope.listFilm = [];
 
                         for (var i = 0; i < arr.length; ++i) {
 
-                            if (trimSpace(arr[i].name.toUpperCase()) == trimSpace($scope.searchname.toUpperCase())) {
-                                if ($scope.searchtime.name == 'Tất cả') {
-                                    $scope.listFilm.push(arr[i]);
-                                } else
-                                    if ($scope.searchtime.name == 'Mới nhất') {
-                                        if (Getyearfromstring(arr[i].year) >= 2017) {
-
-                                            $scope.listFilm.push(arr[i]);
-                                        }
-                                    }
-                                    else if ($scope.searchtime.name == 'Trước 2013') {
-                                        if (Getyearfromstring(arr[i].year) < 2013) {
-
-                                            $scope.listFilm.push(arr[i]);
-                                        }
-                                    } else
-
-                                        if (Getyearfromstring(arr[i].year) == $scope.searchtime.name) {
-
-                                            $scope.listFilm.push(arr[i]);
-                                        }
-
-
-                            }
-                        }
-                    }
-                    else {
-                        $scope.listFilm = [];
-                        for (var i = 0; i < arr.length; ++i) {
+                            // if (trimSpace(arr[i].name.toUpperCase()) == trimSpace($scope.searchname.toUpperCase())) {
                             if ($scope.searchtime.name == 'Tất cả') {
                                 $scope.listFilm.push(arr[i]);
                             } else
@@ -285,21 +249,15 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
                                         $scope.listFilm.push(arr[i]);
                                     }
 
+
                         }
 
-                    }
-                } else {
-                    $scope.listFilm = $scope.listFilmDefault;
-                    if ($scope.searchgenre.name == 'Tất cả' && $scope.searchtime.name == 'Tất cả') {
-
                     } else {
-                        $.alert({
-                            title: 'Thông báo',
-                            content: 'Không có phim nào'
-                        });
+
+
                     }
-                }
-            });
+                });
+            }
         }
         if ($scope.listFilm.length == 0) {
             $.alert({
@@ -325,10 +283,14 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
 
                 }
             }
-            $.alert({
-                title: 'Thông báo',
-                content: 'Đã tìm xong'
-            });
+            if ($scope.searchgenre.name != 'Tất cả' || $scope.searchtime.name != 'Tất cả' || $scope.searchname != '') {
+                $.alert({
+                    title: 'Thông báo',
+                    content: 'Đã tìm xong'
+                });
+                // $scope.inhidden = '';
+                // $scope.ahidden = 'none'
+            }
 
         }
 
@@ -366,11 +328,28 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
         }
     });
     $scope.signoutCinema = function () {
-        firebase.auth().signOut().then(function () {
-            // Sign-out successful.
-            window.location.href = "/";
-        }).catch(function (error) {
-            // An error happened.
+
+        $.confirm({
+            title: 'Thông báo',
+            content: 'Bạn có muốn đăng xuất?',
+            buttons: {
+                'Bỏ qua': function () {
+                    // here the key 'something' will be used as the text.
+                    // $.alert('You clicked on something.');
+                    $('#exampleModalLonglogin').modal('hide');
+                },
+                'Đăng xuất': {
+                    action: function () {
+                        firebase.auth().signOut().then(function () {
+                            // Sign-out successful.
+                            window.location.href = "/";
+                        }).catch(function (error) {
+                            // An error happened.
+                        });
+                    }
+                }
+            }
         });
+
     }
 }]) 

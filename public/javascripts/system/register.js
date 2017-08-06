@@ -5,7 +5,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
         setTimeout(function () {
             window.location.href = '/film/list';
-        }, 1500);
+        }, 1000);
         //  window.location.href = '/film/list';
     } else {
         // No user is signed in.
@@ -20,6 +20,8 @@ app.controller('registerController', ['$scope', function ($scope) {
     $scope.passwordConfirm = '';
 
 
+
+    
     $scope.createUser = function () {
         if ($scope.password != null) {
             if ($scope.password != $scope.passwordConfirm) {

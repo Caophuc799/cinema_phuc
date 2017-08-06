@@ -10,6 +10,13 @@
         <link rel="stylesheet" id="font-awesome-css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css"
             media="screen">
 
+ <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Lobster|Oswald|Pacifico|Paytone+One&amp;subset=vietnamese" rel="stylesheet">
+
+
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Pacifico&amp;subset=vietnamese" rel="stylesheet">
         <!-- Load javascript  -->
         <script src="/javascripts/film/listFilm.js"></script>
@@ -28,13 +35,13 @@
 <body>
 
     <div class="full-container" ng-controller="listFilmController">
-       <!-- ? <button onclick="topFunction()" id="myBtnGoTop" title="Go to top">Top</button> -->
+        <!-- ? <button onclick="topFunction()" id="myBtnGoTop" title="Go to top">Top</button> -->
         <div onclick="topFunction()" id='scrollme' class="scroll-top-wrapper ">
             <span class="scroll-top-inner">
 	        	<i class="fa fa-2x fa-arrow-circle-up"></i>
 	              </span>
         </div>
-      
+
         <!-- Header -->
 
         <!-- Header -->
@@ -47,7 +54,7 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                        <div data-toggle="modal" data-target="#logoutform" class=" menu-dis" style="margin-right:-10px;">
+                        <div ng-click="signoutCinema()" class=" menu-dis" style="margin-right:-10px;">
                             <a href="#">
                                   <i  class="fa fa-sign-out " aria-hidden="true"></i>
                             ĐĂNG XUẤT
@@ -89,7 +96,7 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="logoutform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="logoutform" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" style="width:371px" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -108,7 +115,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -123,7 +130,7 @@
 
         <!-- List Film -->
         <div class="container" ng-cloak>
-            <div style="float:left" class=" form-control orderby">
+            <div style="float:left" class="  orderby">
                 <label class="laa"> Thể loại</label>
                 <select style="margin-bottom: 20px;" class="form-control sort-genre" ng-init="searchgenre = optionsGenre[0]" ng-model="searchgenre"
                     ng-options="option.name for option in optionsGenre">
@@ -147,7 +154,7 @@
                 <div class="spinner-center"></div>
                 <div class="loading-text">Loading...</div>
             </div>
-            <div class="row-inline">
+            <div ng-hide="anhidden" class="row-inline">
 
                 <div ng-repeat="Film in listFilm" class="col-sm-4">
 

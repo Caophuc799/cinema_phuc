@@ -29,7 +29,7 @@ app.controller('loginController', ['$scope', function ($scope) {
     $scope.attrhidden = '';
     $scope.anhidden = 'none';
     $scope.inhidden = '';
-   
+
     firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
             $scope.anhidden = 'none';
@@ -43,7 +43,7 @@ app.controller('loginController', ['$scope', function ($scope) {
             //  alert('Vui lòng đăng nhập');
         }
     });
-    
+
 
     //dang nhap bang fb
     $scope.loginFacebook = function () {
@@ -200,56 +200,64 @@ app.controller('loginController', ['$scope', function ($scope) {
     }
 
     $scope.ResetPassword = function () {
-        if ($scope.resetemail == '') {
+        $.confirm({
+            title: 'Quên mật khẩu',
+            content: '' +
+            '<form action="" class="formName">' +
+            '<div class="form-group">' +
+            '<label>Nhập email</label>' +
+            '<input type="email" placeholder="email" class="name form-control" required />' +
+            '</div>' +
+            '</form>',
+            buttons: {
+                formSubmit: {
+                    text: 'Gửi',
+                    btnClass: 'btn-blue',
+                    action: function () {
+                        // var name = this.$content.find('.name').val();
+                        // if (!name || name.search('@') != 1) {
 
-            $.confirm({
-                title: 'Thông báo',
-                content: 'Bạn chưa nhập email',
-                buttons: {
-                    'Bỏ qua': function () {
-                        // here the key 'something' will be used as the text.
-                        // $.alert('You clicked on something.');
-                        $('#exampleModalLong').modal('hide');
-                    },
-                    'Tiếp tục nhập': {
+                        //     $.alert({
+                        //         title: 'Thông báo',
+                        //         content: 'Email không đúng!'
+                        //     });
+                        //     return false;
+                        // } else {
 
+                        var auth = firebase.auth();
+                        auth.sendPasswordResetEmail($scope.resetemail).then(function () {
+                            // Email sent.
+                            $.alert({
+                                title: 'Thông báo',
+                                content: 'Vui lòng kiểm tra email'
+                            });
+                            return true;
+                        }).catch(function (error) {
+                            // An error happened.
+                            $.alert({
+                                title: 'Thông báo',
+                                content: 'Email không đúng!'
+                            });
+                            return false;
+                        });
+                        // }
                     }
-                }
-            });
-            // $('#exampleModalLong').confirm({
-            //     title: 'Thông báo',
-            //     content: 'Bạn chưa nhập email',
-            //     buttons: {
-
-            //         'Tiếp tục nhập': function () {
-            //             console.log('dc');
-            //         }, 'Bỏ qua': function () {
-            //             $('#exampleModalLong').modal('hide');
-            //         }
-            //     }
-
-            // });
-
-
-
-
-
-        } else {
-            var auth = firebase.auth();
-            auth.sendPasswordResetEmail($scope.resetemail).then(function () {
-                // Email sent.
-                $.alert({
-                    title: 'Thông báo',
-                    content: 'Vui lòng kiểm tra email'
+                },
+                'Bỏ qua': function () {
+                    //close
+                },
+            },
+            onContentReady: function () {
+                // bind to events
+                var jc = this;
+                this.$content.find('form').on('Gửi', function (e) {
+                    // if the user submits the form by pressing enter in the field.
+                    e.preventDefault();
+                    jc.$$formSubmit.trigger('click'); // reference the button and click it
                 });
-            }).catch(function (error) {
-                // An error happened.
-                $.alert({
-                    title: 'Thông báo',
-                    content: 'Email không đúng!'
-                });
-            });
-        }
+            }
+        });
+
     }
     $scope.loginCinema = function () {
 

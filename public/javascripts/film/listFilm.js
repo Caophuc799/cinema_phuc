@@ -175,7 +175,7 @@ app.controller('listFilmController', ['$scope', '$log', "$firebaseArray", "$fire
     });
 
     // $('#SelectionGenre').on('change', function () {
-    //   aaa  $scope.listFilm = $scope.listFilmDefault;
+    //     $scope.listFilm = $scope.listFilmDefault;
     //     $scope.searchFilm();
     // });
     // $('#SelectTime').on('change', function () {
